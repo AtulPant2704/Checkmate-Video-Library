@@ -1,0 +1,31 @@
+.nav-header .title {
+  border-bottom: none;
+}
+
+.menu-bar {
+  cursor: pointer;
+}
+
+.profile-header .user-profile {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.user-profile .user-name {
+  align-self: flex-end;
+  font-weight: 700;
+}
+
+.btn-check {
+  cursor: pointer;
+}
+
+.hamburger-menu-open {
+  position: fixed;
+}
+
+@media only screen and (max-width: 750px) {
+  .desktop-userName {
+    display: none;
+  }
+}
