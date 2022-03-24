@@ -1,0 +1,36 @@
+.footer {
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--row-color);
+  padding: 1rem;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  margin: 0.5rem auto;
+  font-weight: 500;
+}
+
+.social-media a {
+  margin-left: 0.5rem;
+}
+
+.social-media i {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  margin-right: 1rem;
+}
+
+.social-media i:hover {
+  color: var(--secondary-hover-color);
+}
+
+.footer-end {
+  font-size: 1rem;
+  margin: 0.5rem auto;
+}
