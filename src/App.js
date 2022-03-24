@@ -1,9 +1,17 @@
 import "./App.css";
+import {Routes,Route} from "react-router-dom";
+import {Navbar,Footer} from "./components";
+import {Login,SignUp} from "./pages";
 
 function App() {
   return (
     <div className="App">
-      <h2>CheckMate Video Library</h2>
+      <Navbar/>
+      <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+      </Routes>
+      <Footer/>
     </div>
   );
 }
