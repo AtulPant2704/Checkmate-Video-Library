@@ -1,0 +1,53 @@
+.form-section {
+  height: 90vh;
+  background-color: #f7f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.form-username label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-confirm-password label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-username input,
+.form-confirm-password input {
+  width: 100%;
+  border: 1px solid var(--default-color);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+.form-wrapper .btn-guest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-color);
+  margin: 2px auto;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.form-wrapper .btn-guest:hover {
+  background-color: initial;
+}
+
+.form-wrapper .btn-submit {
+  margin: 0.5rem 0;
+}
