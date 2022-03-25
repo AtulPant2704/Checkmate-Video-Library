@@ -1,19 +1,38 @@
-.nav-header .title {
+.nav-header .title-explore {
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-header .title-explore .title {
   border-bottom: none;
+}
+
+.nav-header .title-explore .explore-tab h3 {
+  color: var(--secondary-color);
 }
 
 .menu-bar {
   cursor: pointer;
 }
 
-.profile-header .user-profile {
-  display: flex;
-  gap: 0.5rem;
+.user-action {
+  text-align: center;
 }
 
-.user-profile .user-name {
-  align-self: flex-end;
-  font-weight: 700;
+.user-action .btn-user {
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.3rem;
+}
+
+.btn-user:hover {
+  background-color: initial;
+}
+
+.user-action p {
+  font-size: 1rem;
 }
 
 .btn-check {
