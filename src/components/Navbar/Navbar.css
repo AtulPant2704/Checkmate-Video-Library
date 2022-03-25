@@ -24,6 +24,14 @@
   position: fixed;
 }
 
+.page-routes li {
+  color: var(--secondary-hover-color);
+}
+
+.page-routes li i {
+  margin-right: 0.5rem;
+}
+
 @media only screen and (max-width: 750px) {
   .desktop-userName {
     display: none;

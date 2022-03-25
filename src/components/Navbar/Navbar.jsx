@@ -45,27 +45,48 @@ const Navbar = () => {
         </div>
         <div className="page-routes">
           <ul>
-            <li>
-              <Link to="/" onClick={closeMenuBar}>Home</Link>
-            </li>
-            <li>
-              <Link to="/explore" onClick={closeMenuBar}>Explore</Link>
-            </li>
-            <li>
-              <Link to="/playlists" onClick={closeMenuBar}>Playlists</Link>
-            </li>
-            <li>
-              <Link to="/liked" onClick={closeMenuBar}>Liked</Link>
-            </li>
-            <li>
-              <Link to="/watchlater" onClick={closeMenuBar}>Watch Later</Link>
-            </li>
-            <li>
-              <Link to="/history" onClick={closeMenuBar}>History</Link>
-            </li>
-            <li>
-              <Link to="/login" onClick={closeMenuBar}>Login</Link>
-            </li>
+            <Link to="/" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-house-chimney"></i>
+                <span>Home</span>
+              </li>
+            </Link>
+            <Link to="/explore" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-compass"></i>
+                <span>Explore</span>
+              </li>
+            </Link>
+            <Link to="/playlists" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-folder-plus"></i>
+                <span>Playlists</span>
+              </li>
+            </Link>
+            <Link to="/liked" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-thumbs-up"></i>
+                <span>Liked</span>
+              </li>
+            </Link>
+            <Link to="/watchlater" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-bookmark"></i>
+                <span>Watch Later</span>
+              </li>
+            </Link>
+            <Link to="/history" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-clock"></i>
+                <span>History</span>
+              </li>
+            </Link>
+            <Link to="/login" onClick={closeMenuBar}>
+              <li>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Login</span>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
