@@ -36,7 +36,7 @@ const Navbar = () => {
         </div>
         <Link to="/login">
             <div className="user-action">
-              <button className="btn btn-text-primary btn-user"><i class="fa-solid fa-user"></i></button>
+              <button className="btn btn-text-primary btn-user"><i className="fa-solid fa-user"></i></button>
               <p>Hi, Atul</p>
             </div>
         </Link>
