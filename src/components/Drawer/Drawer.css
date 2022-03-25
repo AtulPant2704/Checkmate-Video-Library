@@ -1,0 +1,24 @@
+.drawer-page-routes {
+  width: 5%;
+  background-color: white;
+  height: 100vh;
+  position: sticky;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.drawer-page-routes li {
+  color: var(--secondary-color);
+  margin: 1rem 2px;
+  text-align: center;
+}
+
+.drawer-page-routes li:nth-child(1) {
+  margin-top: 0;
+  padding-top: 1rem;
+}
+
+@media screen and (max-width: 750px) {
+  .drawer-page-routes {
+    display: none;
+  }
+}
