@@ -1,0 +1,42 @@
+.explore-page {
+  display: flex;
+}
+
+.explore-page .videos-section {
+  width: calc(100% - 10rem);
+  margin: 1rem auto;
+}
+
+.videos-section .video-categories {
+  margin: 1rem auto;
+}
+
+.video-categories button {
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: 1rem;
+  margin: 0.5rem;
+  background-color: white;
+}
+
+.video-categories button:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.video-categories button:nth-child(1) {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.videos-section .videos-container {
+  display: grid;
+  grid-gap: 1.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+@media screen and (max-width: 750px) {
+  .explore-page .videos-section {
+    width: 90%;
+  }
+}

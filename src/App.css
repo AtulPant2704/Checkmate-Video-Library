@@ -1,51 +1,44 @@
+#root {
+  height: 100%;
+}
+
 .App {
-  text-align: center;
+  max-height: 100vh;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #22201c;
-  min-height: 100vh;
+main {
+  min-height: calc(100vh - 230px);
+  height: fit-content;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-header {
+  margin: 0;
 }
 
-.brand-title {
-  font-size: 3rem;
-  color: #d9d9d9;
+.hamburger-menu {
+  display: block;
 }
 
-.brand-title span {
-  color: #ffde59;
+.title i {
+  font-size: 1.8rem;
 }
 
-.brand-description {
-  font-size: 1.4rem;
+.nav-title {
+  font-size: 1.8rem;
 }
 
-.links {
-  display: flex;
+.page-title {
+  font-size: 1.5rem;
 }
 
-.links a {
-  color: #d9d9d9;
-  font-size: 1.2rem;
-  margin: 1rem;
+a {
+  text-decoration: none;
+}
+
+iframe {
+  pointer-events: none;
 }
