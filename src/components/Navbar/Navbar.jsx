@@ -35,10 +35,10 @@ const Navbar = () => {
           <input type="text" placeholder="Search" className="input-search" />
         </div>
         <Link to="/login">
-            <div className="user-action">
-              <button className="btn btn-text-primary btn-user"><i className="fa-solid fa-user"></i></button>
-              <p>Hi, Atul</p>
-            </div>
+          <div className="user-action">
+            <button className="btn btn-text-primary btn-user"><i className="fa-solid fa-user"></i></button>
+            <p>Hi, Atul</p>
+          </div>
         </Link>
       </div>
 

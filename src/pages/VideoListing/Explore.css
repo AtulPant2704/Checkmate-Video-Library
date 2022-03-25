@@ -31,7 +31,7 @@
 
 .videos-section .videos-container {
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 1.7rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
