@@ -33,6 +33,7 @@
 
 .user-action p {
   font-size: 1rem;
+  color: var(--secondary-color);
 }
 
 .btn-check {
