@@ -33,7 +33,7 @@
   color: var(--row-color);
   font-size: 1.2rem;
   padding: 8px;
-  border-radius: 999px;
+  border-radius: 50%;
   height: 40px;
   width: 40px;
   background-color: rgba(0, 0, 0, 0.7);

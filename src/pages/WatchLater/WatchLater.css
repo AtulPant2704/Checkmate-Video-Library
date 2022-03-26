@@ -1,0 +1,33 @@
+.watchLaterVideo-page {
+    display: flex;
+}
+
+.watchLaterVideo-section{
+    width: calc(100% - 20rem);;
+    display: flex;
+    gap: 2rem;
+    margin: 2rem auto;
+}
+
+.watchLaterVideo-section .watchLaterVideo-intro{
+    width: 20rem;
+}
+
+.watchLaterVideo-section .watchLaterVideos-container{
+    width: 95%;
+}
+
+@media screen and (max-width: 1000px){
+    .watchLaterVideo-section {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 750px){
+    .watchLaterVideo-section {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+}

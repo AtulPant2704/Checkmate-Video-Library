@@ -1,0 +1,21 @@
+.playlists-page{
+    display: flex;
+}
+
+.user-playlists{
+    width: calc(100% - 10rem);
+    margin: 2rem auto;
+}
+
+.playlist-container{
+    margin: 1rem auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+}
+
+@media screen and (max-width: 750px){
+    .user-playlists{
+        width: 95%;
+    }
+}
