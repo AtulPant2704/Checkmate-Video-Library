@@ -1,0 +1,33 @@
+.likedVideo-page {
+    display: flex;
+}
+
+.likedVideo-section{
+    width: calc(100% - 20rem);;
+    display: flex;
+    gap: 2rem;
+    margin: 2rem auto;
+}
+
+.likedVideo-section .likeVideo-intro{
+    width: 20rem;
+}
+
+.likedVideo-section .likedVideos-container{
+    width: 95%;
+}
+
+@media screen and (max-width: 1000px){
+    .likedVideo-section {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 650px){
+    .likedVideo-section {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+}
