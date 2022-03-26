@@ -7,6 +7,7 @@ const VideoCard = () => {
       <div className="video-header">
         <img
           src="http://i3.ytimg.com/vi/tSRV1LSpWt8/hqdefault.jpg"
+          alt="chessbase-grand-prix-22"
           className="img-responsive video-thumbnail grid-position"
         ></img>
         <div className="video-controls grid-position">
