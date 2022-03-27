@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Navbar, Footer } from "./components";
-import { Login, SignUp, Explore, LikedVideos, WatchLater, History, Playlists } from "./pages";
+import { Login, SignUp, Explore, LikedVideos, WatchLater, History, Playlists, Profile } from "./pages";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path="/watchlater" element={<WatchLater />} />
         <Route path="/history" element={<History />} />
         <Route path="/playlists" element={<Playlists />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </div>
