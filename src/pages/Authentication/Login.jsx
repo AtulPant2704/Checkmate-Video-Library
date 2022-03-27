@@ -1,7 +1,62 @@
 import "./Authentication.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../hooks";
+import { loginService } from "../../services";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { authDispatch } = useAuth();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  })
+
+  const guestUser = {
+    email: "test@gmail.com",
+    password: "test123"
+  }
+
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value })
+  }
+
+  const guestUserHandler = (event) => {
+    event.preventDefault();
+    setUser(guestUser);
+  }
+
+  const loginHandler = async (event) => {
+    event.preventDefault();
+
+    if (user.email !== "" && user.password !== "") {
+      try {
+        const response = await loginService(user);
+        switch (response.status) {
+          case 200:
+            localStorage.setItem("token", response.data.encodedToken);
+            localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+            authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
+            navigate("/explore");
+            break;
+          case 404:
+            throw new Error("Email not found");
+          case 401:
+            throw new Error("Wrong Password");
+          case 500:
+            throw new Error("Server Error");
+        }
+      }
+      catch (error) {
+        alert(error);
+      }
+    }
+    else {
+      alert("Both of the fields need to be entered");
+    }
+  }
 
   return (
     <section className="form-section">
@@ -15,8 +70,9 @@ const Login = () => {
               type="email"
               placeholder="tanay@neog.camp"
               name="email"
-              value=""
+              value={user.email}
               required
+              onChange={changeHandler}
             />
           </div>
           <div className="form-password">
@@ -26,8 +82,9 @@ const Login = () => {
               type="password"
               placeholder="********"
               name="password"
-              value=""
+              value={user.password}
               required
+              onChange={changeHandler}
             />
           </div>
           <div className="user-history">
@@ -35,8 +92,8 @@ const Login = () => {
             <label htmlFor="user-save">Remember me</label>
             <Link to="./Put route to forgot password">Forgot your Password?</Link>
           </div>
-          <button className="btn btn-text-primary text-underline btn-guest">Add Guest credentials</button>
-          <button type="submit" className="btn-submit">
+          <button className="btn btn-text-primary text-underline btn-guest" onClick={guestUserHandler}>Add Guest credentials</button>
+          <button type="submit" className="btn-submit" onClick={loginHandler}>
             Submit
           </button>
         </form>
