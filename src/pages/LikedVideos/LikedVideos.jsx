@@ -24,7 +24,7 @@ const LikedVideos = () => {
                     <div className="likedVideos-container">
                         {likes.length > 0 ?
                             likes.map(video => (
-                                <HorizontalVideoCard key={video._id}{...video} />
+                                <HorizontalVideoCard key={video._id} {...video} />
                             )) :
                             <div className="empty-likes">
                                 <h2>No Liked Videos.</h2>
