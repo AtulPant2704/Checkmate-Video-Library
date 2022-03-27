@@ -1,7 +1,21 @@
 import "./Drawer.css"
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks";
 
 const Drawer = () => {
+  const navigate = useNavigate();
+  const { authState: { token } } = useAuth();
+
+  const checkToken = (path) => {
+    if (token) {
+      navigate(`/${path}`);
+    }
+    else {
+      navigate("/login");
+    }
+  }
+
   return (
     <div className="drawer-page-routes">
       <ul>
@@ -17,30 +31,22 @@ const Drawer = () => {
             <p>Explore</p>
           </li>
         </Link>
-        <Link to="/playlists">
-          <li>
-            <i className="fa-solid fa-folder-plus"></i>
-            <p>Playlists</p>
-          </li>
-        </Link>
-        <Link to="/liked">
-          <li>
-            <i className="fa-solid fa-thumbs-up"></i>
-            <p>Liked</p>
-          </li>
-        </Link>
-        <Link to="/watchlater">
-          <li>
-            <i className="fa-solid fa-bookmark"></i>
-            <p>Watch Later</p>
-          </li>
-        </Link>
-        <Link to="/history">
-          <li>
-            <i className="fa-solid fa-clock"></i>
-            <p>History</p>
-          </li>
-        </Link>
+        <li onClick={() => checkToken("playlists")}>
+          <i className="fa-solid fa-folder-plus"></i>
+          <p>Playlists</p>
+        </li>
+        <li onClick={() => checkToken("liked")}>
+          <i className="fa-solid fa-thumbs-up"></i>
+          <p>Liked</p>
+        </li>
+        <li onClick={() => checkToken("watchlater")}>
+          <i className="fa-solid fa-bookmark"></i>
+          <p>Watch Later</p>
+        </li>
+        <li onClick={() => checkToken("history")}>
+          <i className="fa-solid fa-clock"></i>
+          <p>History</p>
+        </li>
       </ul>
     </div>
   )
