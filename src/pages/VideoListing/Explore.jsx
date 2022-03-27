@@ -1,7 +1,10 @@
 import "./Explore.css";
+import { useVideos } from "../../hooks";
 import { Drawer, VideoCard } from "../../components";
 
 const Explore = () => {
+    const videos = useVideos();
+
     return (
         <main>
             <div className="explore-page">
@@ -15,21 +18,9 @@ const Explore = () => {
                         <button className="btn btn-outline-primary">Classics</button>
                     </div>
                     <div className="videos-container">
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
-                        <VideoCard />
+                        {videos.map(video => (
+                            <VideoCard key={video._id} {...video} />
+                        ))}
                     </div>
                 </section>
             </div>
