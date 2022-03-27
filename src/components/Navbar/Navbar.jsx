@@ -1,15 +1,28 @@
 import "./Navbar.css";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { authState } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const userName = authState.user;
 
   const openMenuBar = () => {
     setMenuOpen(true);
   }
   const closeMenuBar = () => {
     setMenuOpen(false);
+  }
+
+  const checkStatus = (userName) => {
+    return userName ? `Hi, ${userName.firstName}` : "Login";
+  }
+
+  const userHandler = async (type) => {
+    type === "Login" ? navigate("/login") : navigate("/profile");
   }
 
   return (
@@ -34,12 +47,10 @@ const Navbar = () => {
           </span>
           <input type="text" placeholder="Search" className="input-search" />
         </div>
-        <Link to="/login">
-          <div className="user-action">
-            <button className="btn btn-text-primary btn-user"><i className="fa-solid fa-user"></i></button>
-            <p>Hi, Atul</p>
-          </div>
-        </Link>
+        <div className="user-action">
+          <button className="btn btn-text-primary btn-user" onClick={() => userHandler(checkStatus(userName))}><i className="fa-solid fa-user"></i></button>
+          <p>{checkStatus(userName)}</p>
+        </div>
       </div>
 
       <div className={`hamburger-menu ${menuOpen ? "hamburger-menu-open" : ""}`}>

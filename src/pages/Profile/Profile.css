@@ -1,0 +1,11 @@
+.logout-page .btn-logout {
+    margin: 2rem;
+}
+
+.btn-logout {
+    background-color: var(--secondary-color);
+}
+
+.btn-logout:hover {
+    background-color: var(--secondary-hover-color);
+}

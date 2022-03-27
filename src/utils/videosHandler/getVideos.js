@@ -1,4 +1,4 @@
-import { getVideosService } from "../services";
+import { getVideosService } from "../../services";
 
 const getVideos = async (setVideos) => {
     try {
