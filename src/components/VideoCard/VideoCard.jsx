@@ -20,7 +20,11 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
   }
 
   const checkLikesAction = (_id) => {
-    return likes.find(item => item._id === _id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
+    return likes.find(item => item._id === _id);
+  }
+
+  const checkLikesActionHandler = (_id) => {
+    return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
   }
 
   return (
@@ -36,14 +40,14 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
             <span>{videoLength}</span>
           </div>
           <div className="action-btns">
-            <button onClick={() => checkLikesAction(_id)}>
-              <i className="fa-solid fa-thumbs-up like"></i>
+            <button onClick={() => checkLikesActionHandler(_id)}>
+              <i className={`${checkLikesAction(_id) ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>
             </button>
             <button>
-              <i className="fa-solid fa-bookmark watch-later"></i>
+              <i className="fa-regular fa-bookmark"></i>
             </button>
             <button>
-              <i className="fa-solid fa-folder-plus playlist"></i>
+              <i className="fa-solid fa-folder-plus"></i>
             </button>
           </div>
         </div>
