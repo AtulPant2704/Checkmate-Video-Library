@@ -1,1 +1,1 @@
-export { getVideos } from "./getVideos";
+export { getVideos } from "./videosHandler/getVideos";
