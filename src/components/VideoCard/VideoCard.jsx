@@ -1,6 +1,28 @@
 import "./VideoCard.css";
+import { useNavigate } from "react-router";
+import { useLikes, useVideos, useAuth } from "../../hooks";
+import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
 
-const VideoCard = ({ thumbnail, title, videoLength, channelName, channelImg }) => {
+const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {
+  const navigate = useNavigate();
+  const videos = useVideos();
+  const { authState: { token } } = useAuth();
+  const { likesState: { likes }, likesDispatch } = useLikes();
+
+  const callAddToLikesHandler = (_id) => {
+    if (token) {
+      const video = videos.find(item => item._id === _id);
+      addToLikesHandler(video, likesDispatch, token);
+    }
+    else {
+      navigate("/login");
+    }
+  }
+
+  const checkLikesAction = (_id) => {
+    return likes.find(item => item._id === _id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
+  }
+
   return (
     <div className="video-card">
       <div className="video-header">
@@ -14,7 +36,7 @@ const VideoCard = ({ thumbnail, title, videoLength, channelName, channelImg }) =
             <span>{videoLength}</span>
           </div>
           <div className="action-btns">
-            <button>
+            <button onClick={() => checkLikesAction(_id)}>
               <i className="fa-solid fa-thumbs-up like"></i>
             </button>
             <button>
