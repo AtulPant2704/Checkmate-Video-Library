@@ -4,7 +4,7 @@ const addToLikesHandler = async (video, likesDispatch, token) => {
     try {
         const response = await addToLikesService(video, token);
         if (response.status === 201) {
-            likesDispatch({ type: "LIKES", payload: response.data.likes });
+            likesDispatch({ type: "ADD_TO_LIKES", payload: response.data.likes });
         }
         else {
             throw new Error();
