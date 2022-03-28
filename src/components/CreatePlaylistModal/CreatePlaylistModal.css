@@ -23,8 +23,9 @@
     cursor: pointer;
 }
 
-.playlist-container {
-    padding: 0.5rem 2rem;
+.playlist-modal .playlist-container {
+    margin: 0;
+    padding: 1rem 2rem;
     border-bottom: 1px solid var(--border-light-color);
 }
 
@@ -33,6 +34,7 @@
 }
 
 .create-playlist-btn{
+    margin: 0.5rem 0;
     padding: 0.5rem 2rem;
     border: none;
     background: transparent;
@@ -50,6 +52,7 @@
 }
 
 .playlist-input-container{
+    margin: 0.5rem 0;
     padding: 0.5rem 2rem;
     display: flex;
     flex-direction: column;
