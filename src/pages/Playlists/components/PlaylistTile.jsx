@@ -1,12 +1,12 @@
 import "./PlaylistTile.css";
 
-const PlaylistTile = () => {
+const PlaylistTile = ({ title, videos }) => {
     return (
         <div className="playlist-tile">
-            <h2 className="playlist-name">Opening</h2>
+            <h2 className="playlist-name">{title}</h2>
             <div className="playlist-size">
                 <i className="fa-brands fa-youtube"></i>
-                <small>2 videos</small>
+                <small>{videos.length} videos</small>
             </div>
         </div>
     )
