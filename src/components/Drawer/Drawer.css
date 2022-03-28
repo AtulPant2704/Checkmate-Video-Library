@@ -13,11 +13,7 @@
   color: var(--secondary-color);
   margin: 1rem 2px;
   text-align: center;
-}
-
-.drawer-page-routes li:nth-child(1) {
-  margin-top: 0;
-  padding-top: 1rem;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 750px) {

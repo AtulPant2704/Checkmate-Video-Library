@@ -1,16 +1,18 @@
 import "./Profile.css";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../hooks";
+import { useAuth, useLikes } from "../../hooks";
 
 const Profile = () => {
     const navigate = useNavigate();
     const { authDispatch } = useAuth();
+    const { likesDispatch } = useLikes();
 
     const logoutHandler = () => {
         navigate("/login");
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        authDispatch({ type: "LOGOUT" })
+        authDispatch({ type: "LOGOUT" });
+        likesDispatch({ type: "EMPTY_LIKES" });
     }
 
     return (

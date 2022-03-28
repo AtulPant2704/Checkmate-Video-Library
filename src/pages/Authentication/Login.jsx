@@ -2,12 +2,14 @@ import "./Authentication.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../hooks";
+import { useAuth, useLikes } from "../../hooks";
 import { loginService } from "../../services";
+import { getLikesHandler } from "../../utils"
 
 const Login = () => {
   const navigate = useNavigate();
   const { authDispatch } = useAuth();
+  const { likesDispatch } = useLikes();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -38,7 +40,8 @@ const Login = () => {
           case 200:
             localStorage.setItem("token", response.data.encodedToken);
             localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-            authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } })
+            authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } });
+            getLikesHandler(response.data.encodedToken, likesDispatch);
             navigate("/explore");
             break;
           case 404:
