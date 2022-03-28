@@ -1,8 +1,25 @@
 import "./CreatePlaylistModal.css";
 import { useState } from "react";
+import { useAuth, usePlaylists } from "../../hooks";
+import { createNewPlaylistHandler } from "../../utils";
 
 const CreatePlaylistModal = ({ setPlaylistModal }) => {
     const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
+    const [newPlaylist, setNewPlaylist] = useState({
+        title: "",
+        description: ""
+    })
+    const { authState: { token } } = useAuth();
+    const { playlistsState: { playlists }, playlistsDispatch } = usePlaylists();
+
+    const playlistNameHandler = (event) => {
+        setNewPlaylist({ ...newPlaylist, title: event.target.value })
+    }
+
+    const callCreateNewPlaylistHandler = () => {
+        createNewPlaylistHandler(newPlaylist, playlistsDispatch, token);
+        setOpenCreatePlaylist(false);
+    }
 
     return (
         <div className="playlist-modal">
@@ -15,10 +32,12 @@ const CreatePlaylistModal = ({ setPlaylistModal }) => {
                     <input type="checkbox" id="watch-later" />
                     <label htmlFor="watch-later">Watch Later</label>
                 </div>
-                <div className="playlist-one">
-                    <input type="checkbox" id="playlist-one" />
-                    <label htmlFor="playlist-one">Playlist 1</label>
-                </div>
+                {playlists.map(({ _id, title }) => (
+                    <div className="playlist" key={_id}>
+                        <input type="checkbox" id={_id} />
+                        <label htmlFor={_id}>{title}</label>
+                    </div>
+                ))}
             </div>
             {!openCreatePlaylist ?
                 <button className="create-playlist-btn" onClick={() => setOpenCreatePlaylist(true)}>
@@ -26,8 +45,8 @@ const CreatePlaylistModal = ({ setPlaylistModal }) => {
                     <span> Create New Playlist</span>
                 </button> :
                 <div className="playlist-input-container">
-                    <input type="text" placeholder="Enter Playlist name..." className="new-playlist-name" />
-                    <button className="close-playlist-input" onClick={() => setOpenCreatePlaylist(false)}>Create</button>
+                    <input type="text" placeholder="Enter Playlist name..." className="new-playlist-name" onChange={playlistNameHandler} />
+                    <button className="close-playlist-input" onClick={callCreateNewPlaylistHandler}>Create</button>
                 </div>
             }
         </div>
