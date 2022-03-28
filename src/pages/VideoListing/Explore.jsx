@@ -1,12 +1,16 @@
 import "./Explore.css";
+import { useState } from "react"
 import { useVideos } from "../../hooks";
-import { Drawer, VideoCard } from "../../components";
+import { Drawer, VideoCard, Backdrop, CreatePlaylistModal } from "../../components";
 
 const Explore = () => {
+    const [playlistModal, setPlaylistModal] = useState(false);
     const videos = useVideos();
 
     return (
         <main>
+            {playlistModal ? <CreatePlaylistModal setPlaylistModal={setPlaylistModal} /> : null}
+            {playlistModal ? <Backdrop setPlaylistModal={setPlaylistModal} /> : null}
             <div className="explore-page">
                 <Drawer />
                 <section className="videos-section">
@@ -19,7 +23,7 @@ const Explore = () => {
                     </div>
                     <div className="videos-container">
                         {videos.map(video => (
-                            <VideoCard key={video._id} {...video} />
+                            <VideoCard key={video._id} {...video} setPlaylistModal={setPlaylistModal} />
                         ))}
                     </div>
                 </section>

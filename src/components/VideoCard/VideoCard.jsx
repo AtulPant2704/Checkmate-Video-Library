@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useLikes, useVideos, useAuth } from "../../hooks";
 import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
 
-const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {
+const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg, setPlaylistModal }) => {
   const navigate = useNavigate();
   const videos = useVideos();
   const { authState: { token } } = useAuth();
@@ -46,7 +46,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
             <button>
               <i className="fa-regular fa-bookmark"></i>
             </button>
-            <button>
+            <button onClick={() => setPlaylistModal(true)}>
               <i className="fa-solid fa-folder-plus"></i>
             </button>
           </div>
