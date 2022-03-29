@@ -6,3 +6,7 @@ export { addToLikesService } from "./likesServices/addToLikes.service";
 export { removeFromLikesService } from "./likesServices/removeFromLikes.service";
 export { getPlaylistsService } from "./playlistsServices/getPlaylists.service";
 export { createNewPlaylistService } from "./playlistsServices/createNewPlaylist.service";
+export { getSinglePlaylistService } from "./playlistsServices/getSinglePlaylist.service";
+export { deletePlaylistService } from "./playlistsServices/deletePlaylist.service";
+export { addVideoToPlaylistService } from "./playlistsServices/addVideoToPlaylist.service";
+export { deleteVideoFromPlaylistService } from "./playlistsServices/deleteVideoFromPlaylist.service";
