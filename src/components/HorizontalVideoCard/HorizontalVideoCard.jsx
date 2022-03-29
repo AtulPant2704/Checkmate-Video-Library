@@ -10,7 +10,8 @@ const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, s
     const { likesDispatch } = useLikes();
     const { playlistsDispatch } = usePlaylists();
 
-    const checkDeleteAction = () => {
+    const checkDeleteAction = (e) => {
+        e.stopPropagation();
         if (location.pathname === "/liked") {
             removeFromLikesHandler(_id, token, likesDispatch);
         }
