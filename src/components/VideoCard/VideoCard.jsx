@@ -24,11 +24,13 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
     return likes.find(item => item._id === _id);
   }
 
-  const checkLikesActionHandler = (_id) => {
+  const checkLikesActionHandler = (e, _id) => {
+    e.stopPropagation();
     return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
   }
 
-  const findPlaylistVideo = (_id) => {
+  const findPlaylistVideo = (e, _id) => {
+    e.stopPropagation();
     if (token) {
       const video = videos.find(item => item._id === _id);
       playlistModalDispatch({ type: "OPEN_MODAL", payload: { isActive: true, video: video } });
@@ -39,7 +41,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
   }
 
   return (
-    <div className="video-card">
+    <div className="video-card" onClick={() => navigate(`/explore/${_id}`)}>
       <div className="video-header">
         <img
           src={thumbnail}
@@ -51,13 +53,13 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
             <span>{videoLength}</span>
           </div>
           <div className="action-btns">
-            <button onClick={() => checkLikesActionHandler(_id)}>
+            <button onClick={(e) => checkLikesActionHandler(e, _id)}>
               <i className={`${checkLikesAction(_id) ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>
             </button>
             <button>
               <i className="fa-regular fa-bookmark"></i>
             </button>
-            <button onClick={() => findPlaylistVideo(_id)}>
+            <button onClick={(e) => findPlaylistVideo(e, _id)}>
               <i className="fa-solid fa-folder-plus"></i>
             </button>
           </div>

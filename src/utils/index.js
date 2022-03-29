@@ -1,4 +1,5 @@
 export { getVideos } from "./videosHandler/getVideos";
+export { getSingleVideoHandler } from "./videosHandler/getSingleVideoHandler";
 export { getLikesHandler } from "./likesHandler/getLikesHandler";
 export { addToLikesHandler } from "./likesHandler/addToLikesHandles";
 export { removeFromLikesHandler } from "./likesHandler/removeFromLikesHandler";
