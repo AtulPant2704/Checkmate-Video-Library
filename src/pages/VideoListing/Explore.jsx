@@ -2,7 +2,7 @@ import "./Explore.css";
 import { useVideos } from "../../hooks";
 import { Drawer, VideoCard } from "../../components";
 
-const Explore = ({ setPlaylistModal }) => {
+const Explore = () => {
     const videos = useVideos();
 
     return (
@@ -19,7 +19,7 @@ const Explore = ({ setPlaylistModal }) => {
                     </div>
                     <div className="videos-container">
                         {videos.map(video => (
-                            <VideoCard key={video._id} {...video} setPlaylistModal={setPlaylistModal} />
+                            <VideoCard key={video._id} {...video} />
                         ))}
                     </div>
                 </section>
