@@ -11,7 +11,7 @@ const getVideos = async (setVideos) => {
         }
     }
     catch (error) {
-        console.log(error);
+        alert(error);
     }
 }
 
