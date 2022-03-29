@@ -4,3 +4,7 @@ export { addToLikesHandler } from "./likesHandler/addToLikesHandles";
 export { removeFromLikesHandler } from "./likesHandler/removeFromLikesHandler";
 export { getPlaylistsHandler } from "./playlistsHandler/getPlaylistsHandler";
 export { createNewPlaylistHandler } from "./playlistsHandler/createNewPlaylistHandler";
+export { getSinglePlaylistHandler } from "./playlistsHandler/getSinglePlaylistHandler";
+export { deletePlaylistHandler } from "./playlistsHandler/deletePlaylistHandler";
+export { addVideoToPlaylistHandler } from "./playlistsHandler/addVideoToPlaylistHandler";
+export { deleteVideoFromPlaylistHandler } from "./playlistsHandler/deleteVideoFromPlaylistHandler";
