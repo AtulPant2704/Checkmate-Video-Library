@@ -17,9 +17,25 @@ const CreatePlaylistModal = () => {
         setNewPlaylist({ ...newPlaylist, title: event.target.value })
     }
 
+    const checkPlaylistName = (title) => {
+        if (playlists.find(item => item.title === title)) {
+            alert("Playlist with same title exists.")
+        }
+        else if (title === "") {
+            alert("Playlist name is required.")
+        }
+        else {
+            return true;
+        }
+    }
+
     const callCreateNewPlaylistHandler = () => {
-        createNewPlaylistHandler(newPlaylist, playlistsDispatch, token, video);
-        setOpenCreatePlaylist(false);
+        if (checkPlaylistName(newPlaylist.title)) {
+            createNewPlaylistHandler(newPlaylist, playlistsDispatch, token, video);
+            setOpenCreatePlaylist(false);
+            playlistModalDispatch({ type: "CLOSE_MODAL" })
+        }
+        setNewPlaylist({ ...newPlaylist, title: "" });
     }
 
     const checkVideoInPlaylist = (_id) => {
@@ -61,7 +77,7 @@ const CreatePlaylistModal = () => {
                     <span> Create New Playlist</span>
                 </button> :
                 <div className="playlist-input-container">
-                    <input type="text" placeholder="Enter Playlist name..." className="new-playlist-name" value={newPlaylist.title} onChange={playlistNameHandler} />
+                    <input type="text" placeholder="Enter Playlist name..." className="new-playlist-name" value={newPlaylist.title} onChange={playlistNameHandler} required />
                     <button className="close-playlist-input" onClick={callCreateNewPlaylistHandler}>Create</button>
                 </div>
             }
