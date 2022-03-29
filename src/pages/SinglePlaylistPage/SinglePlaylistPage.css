@@ -1,0 +1,41 @@
+.singlePlaylist-page {
+    display: flex;
+}
+
+.singlePlaylistVideo-section{
+    width: calc(100% - 20rem);;
+    display: flex;
+    gap: 2rem;
+    margin: 2rem auto;
+}
+
+.singlePlaylistVideo-section .singlePlaylistVideo-intro{
+    width: 20rem;
+}
+
+.singlePlaylistVideo-intro .delete-playlist-btn{
+    background-color: var(--secondary-color);
+}
+
+.singlePlaylistVideo-intro .delete-playlist-btn:hover{
+    background-color: var(--secondary-hover-color);
+}
+
+.singlePlaylistVideo-section .singlePlaylistVideos-container{
+    width: 95%;
+}
+
+@media screen and (max-width: 1000px){
+    .singlePlaylistVideo-section {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 750px){
+    .singlePlaylistVideo-section {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+}

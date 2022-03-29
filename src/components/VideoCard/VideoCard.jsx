@@ -1,6 +1,6 @@
 import "./VideoCard.css";
 import { useNavigate } from "react-router";
-import { useLikes, useVideos, useAuth } from "../../hooks";
+import { useLikes, useVideos, useAuth, usePlaylistModal } from "../../hooks";
 import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
 
 const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {
@@ -8,6 +8,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
   const videos = useVideos();
   const { authState: { token } } = useAuth();
   const { likesState: { likes }, likesDispatch } = useLikes();
+  const { playlistModalDispatch } = usePlaylistModal();
 
   const callAddToLikesHandler = (_id) => {
     if (token) {
@@ -25,6 +26,16 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
 
   const checkLikesActionHandler = (_id) => {
     return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
+  }
+
+  const findPlaylistVideo = (_id) => {
+    if (token) {
+      const video = videos.find(item => item._id === _id);
+      playlistModalDispatch({ type: "OPEN_MODAL", payload: { isActive: true, video: video } });
+    }
+    else {
+      navigate("/login");
+    }
   }
 
   return (
@@ -46,7 +57,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
             <button>
               <i className="fa-regular fa-bookmark"></i>
             </button>
-            <button>
+            <button onClick={() => findPlaylistVideo(_id)}>
               <i className="fa-solid fa-folder-plus"></i>
             </button>
           </div>

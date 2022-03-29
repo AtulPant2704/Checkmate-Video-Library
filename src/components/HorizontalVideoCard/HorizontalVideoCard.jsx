@@ -1,10 +1,24 @@
 import "./HorizontalVideoCard.css";
-import { useLikes, useAuth } from "../../hooks";
-import { removeFromLikesHandler } from "../../utils";
+import { useLocation } from "react-router-dom";
+import { useLikes, useAuth, usePlaylists } from "../../hooks";
+import { removeFromLikesHandler, deleteVideoFromPlaylistHandler, getSinglePlaylistHandler } from "../../utils";
 
-const HorizontalVideoCard = ({ _id, thumbnail, title, channelName }) => {
+const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, setPlaylist }) => {
+    const location = useLocation();
     const { authState: { token } } = useAuth();
     const { likesDispatch } = useLikes();
+    const { playlistsDispatch } = usePlaylists();
+
+    const checkDeleteAction = () => {
+        if (location === "/liked") {
+            removeFromLikesHandler(_id, token, likesDispatch);
+        }
+        else {
+            deleteVideoFromPlaylistHandler(playlistID, _id, token, playlistsDispatch);
+            getSinglePlaylistHandler(token, playlistID, setPlaylist);
+        }
+    }
+
     return (
         <div className="liked-video">
             <div className="video-description">
@@ -16,7 +30,7 @@ const HorizontalVideoCard = ({ _id, thumbnail, title, channelName }) => {
                     <small className="video-channel">{channelName}</small>
                 </div>
             </div>
-            <button className="btn-delete" onClick={() => removeFromLikesHandler(_id, token, likesDispatch)}><i className="fa-solid fa-trash-can"></i></button>
+            <button className="btn-delete" onClick={checkDeleteAction}><i className="fa-solid fa-trash-can"></i></button>
         </div>
     )
 }
