@@ -39,7 +39,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
   }
 
   return (
-    <div className="video-card">
+    <div className="video-card" onClick={() => navigate(`/explore/${_id}`)}>
       <div className="video-header">
         <img
           src={thumbnail}

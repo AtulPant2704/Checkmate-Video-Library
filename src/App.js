@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { usePlaylistModal } from "./hooks";
 import { Navbar, Footer, Backdrop, CreatePlaylistModal } from "./components";
-import { Login, SignUp, Explore, LikedVideos, WatchLater, History, Playlists, Profile, SinglePlaylistPage } from "./pages";
+import { Login, SignUp, Explore, LikedVideos, WatchLater, History, Playlists, Profile, SinglePlaylistPage, SingleVideoPage } from "./pages";
 
 function App() {
   const { playlistModalState: { isActive } } = usePlaylistModal();
@@ -23,6 +23,7 @@ function App() {
         <Route path="/playlists" element={<Playlists />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/playlists/:playlistID" element={<SinglePlaylistPage />} />
+        <Route path="/explore/:videoID" element={<SingleVideoPage />} />
       </Routes>
       <Footer />
     </div>
