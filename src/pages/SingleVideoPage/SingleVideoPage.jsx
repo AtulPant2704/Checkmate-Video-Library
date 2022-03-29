@@ -1,11 +1,42 @@
 import "./SingleVideoPage.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useLikes, useAuth, usePlaylistModal } from "../../hooks";
+import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
 import { getSingleVideoHandler } from "../../utils";
 
 const SingleVideoPage = () => {
     const [video, setVideo] = useState({});
     const { videoID } = useParams();
+    const { authState: { token } } = useAuth();
+    const { likesState: { likes }, likesDispatch } = useLikes();
+    const { playlistModalDispatch } = usePlaylistModal();
+
+    const callAddToLikesHandler = (_id) => {
+        if (token) {
+            addToLikesHandler(video, likesDispatch, token);
+        }
+        else {
+            navigate("/login");
+        }
+    }
+
+    const checkLikesAction = (_id) => {
+        return likes.find(item => item._id === _id);
+    }
+
+    const checkLikesActionHandler = (_id) => {
+        return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
+    }
+
+    const findPlaylistVideo = (_id) => {
+        if (token) {
+            playlistModalDispatch({ type: "OPEN_MODAL", payload: { isActive: true, video: video } });
+        }
+        else {
+            navigate("/login");
+        }
+    }
 
     useEffect(() => getSingleVideoHandler(videoID, setVideo), []);
 
@@ -20,9 +51,15 @@ const SingleVideoPage = () => {
                     <div className="video-info">
                         <small>{video.viewCount}</small>
                         <div className="action-btns">
-                            <button title="Like"><i className="fa-regular fa-thumbs-up"></i>Like</button>
+
+                            <button title="Like" onClick={() => checkLikesActionHandler(video._id)}>
+                                <i className={`${checkLikesAction(video._id) ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>Like</button>
+
                             <button title="Watch"><i className="fa-regular fa-bookmark"></i>Later</button>
-                            <button title="Playlist"><i className="fa-solid fa-folder-plus"></i>Save</button>
+
+                            <button title="Playlist" onClick={() => findPlaylistVideo(video._id)}>
+                                <i className="fa-solid fa-folder-plus"></i>Save</button>
+
                         </div>
                     </div>
                     <div className="channel-intro">
