@@ -1,4 +1,5 @@
 export { getVideosService } from "./videosServices/getVideos.service";
+export { getSingleVideoService } from "./videosServices/getSingleVideo.service";
 export { loginService } from "./authServices/login.service";
 export { signUpService } from "./authServices/signUp.service";
 export { getLikesService } from "./likesServices/getLikes.service";
