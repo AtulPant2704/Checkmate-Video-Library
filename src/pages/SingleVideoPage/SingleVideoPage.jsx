@@ -1,11 +1,12 @@
 import "./SingleVideoPage.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useLikes, useAuth, usePlaylistModal } from "../../hooks";
 import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
 import { getSingleVideoHandler } from "../../utils";
 
 const SingleVideoPage = () => {
+    const navigate = useNavigate();
     const [video, setVideo] = useState({});
     const { videoID } = useParams();
     const { authState: { token } } = useAuth();
