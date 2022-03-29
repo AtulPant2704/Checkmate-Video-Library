@@ -1,8 +1,11 @@
 import "./Backdrop.css";
+import { usePlaylistModal } from "../../hooks";
 
-const Backdrop = ({ setPlaylistModal }) => {
+const Backdrop = () => {
+    const { playlistModalDispatch } = usePlaylistModal();
+
     return (
-        <div className="backdrop" onClick={() => setPlaylistModal(false)}></div>
+        <div className="backdrop" onClick={() => playlistModalDispatch({ type: "CLOSE_MODAL" })}></div>
     )
 }
 
