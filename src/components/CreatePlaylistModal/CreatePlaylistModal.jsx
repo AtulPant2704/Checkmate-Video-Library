@@ -18,7 +18,7 @@ const CreatePlaylistModal = () => {
     }
 
     const callCreateNewPlaylistHandler = () => {
-        createNewPlaylistHandler(newPlaylist, playlistsDispatch, token);
+        createNewPlaylistHandler(newPlaylist, playlistsDispatch, token, video);
         setOpenCreatePlaylist(false);
     }
 
@@ -61,7 +61,7 @@ const CreatePlaylistModal = () => {
                     <span> Create New Playlist</span>
                 </button> :
                 <div className="playlist-input-container">
-                    <input type="text" placeholder="Enter Playlist name..." className="new-playlist-name" onChange={playlistNameHandler} />
+                    <input type="text" placeholder="Enter Playlist name..." className="new-playlist-name" value={newPlaylist.title} onChange={playlistNameHandler} />
                     <button className="close-playlist-input" onClick={callCreateNewPlaylistHandler}>Create</button>
                 </div>
             }

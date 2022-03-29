@@ -6,6 +6,7 @@ const getPlaylistsHandler = async (token, playlistsDispatch) => {
             const response = await getPlaylistsService(token);
             if (response.status === 200) {
                 playlistsDispatch({ type: "GET_PLAYLISTS", payload: response.data.playlists })
+                return response.data.playlists;
             } else {
                 throw new Error();
             }
