@@ -1,8 +1,11 @@
 import "./PlaylistTile.css";
+import { useNavigate } from "react-router";
 
-const PlaylistTile = ({ title, videos }) => {
+const PlaylistTile = ({ _id, title, videos }) => {
+    const navigate = useNavigate();
+
     return (
-        <div className="playlist-tile">
+        <div className="playlist-tile" onClick={() => navigate(`/playlists/${_id}`)}>
             <h2 className="playlist-name">{title}</h2>
             <div className="playlist-size">
                 <i className="fa-brands fa-youtube"></i>
