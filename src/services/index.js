@@ -15,3 +15,6 @@ export { getHistoryService } from "./historyServices/getHistory.service";
 export { addToHistoryService } from "./historyServices/addToHistory.service";
 export { removeFromHistoryService } from "./historyServices/removeFromHistory.service";
 export { deleteAllHistoryService } from "./historyServices/deleteAllHistory.service";
+export { getWatchLaterService } from "./watchLaterServices/getWatchLater.service";
+export { addToWatchLaterService } from "./watchLaterServices/addToWatchLater.service";
+export { removeFromWatchLaterService } from "./watchLaterServices/removeFromWatchLater.service";
