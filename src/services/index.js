@@ -11,3 +11,7 @@ export { getSinglePlaylistService } from "./playlistsServices/getSinglePlaylist.
 export { deletePlaylistService } from "./playlistsServices/deletePlaylist.service";
 export { addVideoToPlaylistService } from "./playlistsServices/addVideoToPlaylist.service";
 export { deleteVideoFromPlaylistService } from "./playlistsServices/deleteVideoFromPlaylist.service";
+export { getHistoryService } from "./historyServices/getHistory.service";
+export { addToHistoryService } from "./historyServices/addToHistory.service";
+export { removeFromHistoryService } from "./historyServices/removeFromHistory.service";
+export { deleteAllHistoryService } from "./historyServices/deleteAllHistory.service";

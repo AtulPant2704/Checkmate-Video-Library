@@ -9,3 +9,7 @@ export { getSinglePlaylistHandler } from "./playlistsHandler/getSinglePlaylistHa
 export { deletePlaylistHandler } from "./playlistsHandler/deletePlaylistHandler";
 export { addVideoToPlaylistHandler } from "./playlistsHandler/addVideoToPlaylistHandler";
 export { deleteVideoFromPlaylistHandler } from "./playlistsHandler/deleteVideoFromPlaylistHandler";
+export { getHistoryHandler } from "./historyHandler/getHistoryHandler";
+export { addToHistoryHandler } from "./historyHandler/addToHistoryHandler";
+export { removeFromHistoryHandler } from "./historyHandler/removeFromHistoryHandler";
+export { deleteAllHistoryHandler } from "./historyHandler/deleteAllHistoryHandler";
