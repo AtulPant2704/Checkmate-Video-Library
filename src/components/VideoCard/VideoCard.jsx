@@ -1,13 +1,14 @@
 import "./VideoCard.css";
 import { useNavigate } from "react-router";
-import { useLikes, useVideos, useAuth, usePlaylistModal } from "../../hooks";
-import { addToLikesHandler, removeFromLikesHandler, addToHistoryHandler } from "../../utils";
+import { useLikes, useVideos, useAuth, usePlaylistModal, useWatchLater } from "../../hooks";
+import { addToLikesHandler, removeFromLikesHandler, addToWatchLaterHandler, removeFromWatchLaterHandler } from "../../utils";
 
 const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {
   const navigate = useNavigate();
   const videos = useVideos();
   const { authState: { token } } = useAuth();
   const { likesState: { likes }, likesDispatch } = useLikes();
+  const { watchLaterState: { watchLater }, watchLaterDispatch } = useWatchLater();
   const { playlistModalDispatch } = usePlaylistModal();
 
   const callAddToLikesHandler = (_id) => {
@@ -27,6 +28,25 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
   const checkLikesActionHandler = (e, _id) => {
     e.stopPropagation();
     return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
+  }
+
+  const checkWatchLaterAction = (_id) => {
+    return watchLater.find(item => item._id === _id);
+  }
+
+  const callAddToWatchLaterHandler = (_id) => {
+    if (token) {
+      const video = videos.find(item => item._id === _id);
+      addToWatchLaterHandler(video, watchLaterDispatch, token);
+    }
+    else {
+      navigate("/login");
+    }
+  }
+
+  const checkWatchLaterActionHandler = (e, _id) => {
+    e.stopPropagation();
+    return checkWatchLaterAction(_id) ? removeFromWatchLaterHandler(_id, token, watchLaterDispatch) : callAddToWatchLaterHandler(_id);
   }
 
   const findPlaylistVideo = (e, _id) => {
@@ -56,8 +76,8 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
             <button onClick={(e) => checkLikesActionHandler(e, _id)}>
               <i className={`${checkLikesAction(_id) ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>
             </button>
-            <button>
-              <i className="fa-regular fa-bookmark"></i>
+            <button onClick={(e) => checkWatchLaterActionHandler(e, _id)}>
+              <i className={`${checkWatchLaterAction(_id) ? "fa-solid" : "fa-regular"} fa-bookmark`}></i>
             </button>
             <button onClick={(e) => findPlaylistVideo(e, _id)}>
               <i className="fa-solid fa-folder-plus"></i>
