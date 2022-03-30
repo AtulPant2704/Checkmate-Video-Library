@@ -1,7 +1,7 @@
 import "./HorizontalVideoCard.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLikes, useAuth, usePlaylists, useHistory } from "../../hooks";
-import { removeFromLikesHandler, deleteVideoFromPlaylistHandler, getSinglePlaylistHandler, removeFromHistoryHandler } from "../../utils";
+import { useLikes, useAuth, usePlaylists, useHistory, useWatchLater } from "../../hooks";
+import { removeFromLikesHandler, deleteVideoFromPlaylistHandler, getSinglePlaylistHandler, removeFromHistoryHandler, removeFromWatchLaterHandler } from "../../utils";
 
 const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, setPlaylist }) => {
     const location = useLocation();
@@ -10,6 +10,7 @@ const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, s
     const { likesDispatch } = useLikes();
     const { playlistsDispatch } = usePlaylists();
     const { historyDispatch } = useHistory();
+    const { watchLaterDispatch } = useWatchLater();
 
     const checkDeleteAction = (e) => {
         e.stopPropagation();
@@ -19,6 +20,9 @@ const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, s
                 break;
             case "/history":
                 removeFromHistoryHandler(_id, token, historyDispatch);
+                break;
+            case "/watchlater":
+                removeFromWatchLaterHandler(_id, token, watchLaterDispatch);
                 break;
             case `/playlists/${playlistID}`:
                 deleteVideoFromPlaylistHandler(playlistID, _id, token, playlistsDispatch);

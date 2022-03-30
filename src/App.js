@@ -9,8 +9,14 @@ function App() {
 
   return (
     <div className="App">
-      {isActive ? <CreatePlaylistModal /> : null}
-      {isActive ? <Backdrop /> : null}
+      {/* {isActive ? <CreatePlaylistModal /> : null}
+      {isActive ? <Backdrop /> : null} */}
+
+      {isActive ?
+        <>
+          <CreatePlaylistModal />
+          <Backdrop />
+        </> : null}
 
       <Navbar />
       <Routes>

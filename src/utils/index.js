@@ -13,3 +13,6 @@ export { getHistoryHandler } from "./historyHandler/getHistoryHandler";
 export { addToHistoryHandler } from "./historyHandler/addToHistoryHandler";
 export { removeFromHistoryHandler } from "./historyHandler/removeFromHistoryHandler";
 export { deleteAllHistoryHandler } from "./historyHandler/deleteAllHistoryHandler";
+export { getWatchLaterHandler } from "./watchLaterHandlers/getWatchLaterHandler";
+export { addToWatchLaterHandler } from "./watchLaterHandlers/addToWatchLaterHandler";
+export { removeFromWatchLaterHandler } from "./watchLaterHandlers/removeFromWatchLaterHandler";

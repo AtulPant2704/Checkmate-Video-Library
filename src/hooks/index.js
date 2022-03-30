@@ -4,3 +4,4 @@ export { LikesProvider, useLikes } from "./context/likes-context";
 export { PlaylistsProvider, usePlaylists } from "./context/playlists-context";
 export { PlaylistModalProvider, usePlaylistModal } from "./context/playlistModal-context";
 export { HistoryProvider, useHistory } from "./context/history-context";
+export { WatchLaterProvider, useWatchLater } from "./context/watchLater-context";
