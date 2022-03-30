@@ -2,14 +2,16 @@ import "./Authentication.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useAuth, useLikes } from "../../hooks";
+import { useAuth, useLikes, useHistory, usePlaylists } from "../../hooks";
 import { loginService } from "../../services";
-import { getLikesHandler } from "../../utils"
+import { getLikesHandler, getPlaylistsHandler, getHistoryHandler } from "../../utils"
 
 const Login = () => {
   const navigate = useNavigate();
   const { authDispatch } = useAuth();
   const { likesDispatch } = useLikes();
+  const { playlistsDispatch } = usePlaylists();
+  const { historyDispatch } = useHistory();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -42,6 +44,8 @@ const Login = () => {
             localStorage.setItem("user", JSON.stringify(response.data.foundUser));
             authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } });
             getLikesHandler(response.data.encodedToken, likesDispatch);
+            getPlaylistsHandler(response.data.encodedToken, playlistsDispatch);
+            getHistoryHandler(response.data.encodedToken, historyDispatch);
             navigate("/explore");
             break;
           case 404:
@@ -50,6 +54,8 @@ const Login = () => {
             throw new Error("Wrong Password");
           case 500:
             throw new Error("Server Error");
+          default:
+            break;
         }
       }
       catch (error) {
