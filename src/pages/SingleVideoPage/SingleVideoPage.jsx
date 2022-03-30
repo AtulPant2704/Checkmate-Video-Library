@@ -11,13 +11,15 @@ const SingleVideoPage = () => {
     const { authState: { token } } = useAuth();
     const { likesState: { likes }, likesDispatch } = useLikes();
     const { watchLaterState: { watchLater }, watchLaterDispatch } = useWatchLater();
-    const { historyDispatch } = useHistory();
+    const { historyState: { history }, historyDispatch } = useHistory();
     const { playlistModalDispatch } = usePlaylistModal();
 
     const callGetSingleVideoHandler = async () => {
         if (token) {
             const newVideo = await getSingleVideoHandler(videoID, setVideo);
-            addToHistoryHandler(newVideo, historyDispatch, token);
+            if (!history.some(item => item._id === videoID)) {
+                addToHistoryHandler(newVideo, historyDispatch, token);
+            }
         }
     }
 

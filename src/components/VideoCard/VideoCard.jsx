@@ -90,7 +90,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
           <h3 className="video-title">
             {title}
           </h3>
-          <small className="gray-text ">{channelName}</small>
+          <small className="gray-text">{channelName}</small>
         </div>
       </div>
     </div>
