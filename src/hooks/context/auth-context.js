@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { authReducer } from "../reducer/auth-reducer";
+import { authReducer } from "../reducer";
 
 const initialState = {
     user: "",

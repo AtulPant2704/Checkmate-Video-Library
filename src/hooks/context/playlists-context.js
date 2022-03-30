@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { playlistsReducer } from "../reducer/playlists-reducer";
+import { playlistsReducer } from "../reducer";
 
 const PlaylistsContext = createContext(null);
 

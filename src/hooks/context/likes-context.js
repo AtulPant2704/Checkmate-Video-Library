@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { likesReducer } from "../reducer/likes-reducer";
+import { likesReducer } from "../reducer";
 
 const LikesContext = createContext(null);
 

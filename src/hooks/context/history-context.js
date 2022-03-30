@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { historyReducer } from "../reducer/history-reducer";
+import { historyReducer } from "../reducer";
 
 const HistoryContext = createContext(null);
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { playlistModalReducer } from "../reducer/playlistModal-reducer";
+import { playlistModalReducer } from "../reducer";
 
 const PlaylistModalContext = createContext(null);
 
