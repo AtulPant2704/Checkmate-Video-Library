@@ -1,9 +1,9 @@
 import "./SingleVideoPage.css";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useLikes, useAuth, usePlaylistModal } from "../../hooks";
+import { useLikes, useAuth, usePlaylistModal, useHistory } from "../../hooks";
 import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
-import { getSingleVideoHandler } from "../../utils";
+import { getSingleVideoHandler, addToHistoryHandler } from "../../utils";
 
 const SingleVideoPage = () => {
     const navigate = useNavigate();
@@ -11,7 +11,15 @@ const SingleVideoPage = () => {
     const { videoID } = useParams();
     const { authState: { token } } = useAuth();
     const { likesState: { likes }, likesDispatch } = useLikes();
+    const { historyDispatch } = useHistory();
     const { playlistModalDispatch } = usePlaylistModal();
+
+    const callGetSingleVideoHandler = async () => {
+        if (token) {
+            const newVideo = await getSingleVideoHandler(videoID, setVideo);
+            addToHistoryHandler(newVideo, historyDispatch, token);
+        }
+    }
 
     const callAddToLikesHandler = (_id) => {
         if (token) {
@@ -39,7 +47,7 @@ const SingleVideoPage = () => {
         }
     }
 
-    useEffect(() => getSingleVideoHandler(videoID, setVideo), []);
+    useEffect(() => callGetSingleVideoHandler(), []);
 
     return (
         <main>

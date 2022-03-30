@@ -5,6 +5,7 @@ const getSingleVideoHandler = async (videoId, setVideo) => {
         const response = await getSingleVideoService(videoId);
         if (response.status === 200) {
             setVideo(response.data.video);
+            return response.data.video;
         }
         else {
             throw new Error();

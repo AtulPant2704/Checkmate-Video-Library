@@ -1,7 +1,7 @@
 import "./HorizontalVideoCard.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLikes, useAuth, usePlaylists } from "../../hooks";
-import { removeFromLikesHandler, deleteVideoFromPlaylistHandler, getSinglePlaylistHandler } from "../../utils";
+import { useLikes, useAuth, usePlaylists, useHistory } from "../../hooks";
+import { removeFromLikesHandler, deleteVideoFromPlaylistHandler, getSinglePlaylistHandler, removeFromHistoryHandler } from "../../utils";
 
 const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, setPlaylist }) => {
     const location = useLocation();
@@ -9,15 +9,23 @@ const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, s
     const { authState: { token } } = useAuth();
     const { likesDispatch } = useLikes();
     const { playlistsDispatch } = usePlaylists();
+    const { historyDispatch } = useHistory();
 
     const checkDeleteAction = (e) => {
         e.stopPropagation();
-        if (location.pathname === "/liked") {
-            removeFromLikesHandler(_id, token, likesDispatch);
-        }
-        else {
-            deleteVideoFromPlaylistHandler(playlistID, _id, token, playlistsDispatch);
-            getSinglePlaylistHandler(token, playlistID, setPlaylist);
+        switch (location.pathname) {
+            case "/liked":
+                removeFromLikesHandler(_id, token, likesDispatch);
+                break;
+            case "/history":
+                removeFromHistoryHandler(_id, token, historyDispatch);
+                break;
+            case `/playlists/${playlistID}`:
+                deleteVideoFromPlaylistHandler(playlistID, _id, token, playlistsDispatch);
+                getSinglePlaylistHandler(token, playlistID, setPlaylist);
+                break;
+            default:
+                break;
         }
     }
 
