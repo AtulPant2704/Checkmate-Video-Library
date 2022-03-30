@@ -1,7 +1,7 @@
 import "./CreatePlaylistModal.css";
 import { useState } from "react";
-import { useAuth, usePlaylists, usePlaylistModal } from "../../hooks";
-import { createNewPlaylistHandler, addVideoToPlaylistHandler, deleteVideoFromPlaylistHandler } from "../../utils";
+import { useAuth, usePlaylists, usePlaylistModal, useWatchLater } from "../../hooks";
+import { createNewPlaylistHandler, addVideoToPlaylistHandler, deleteVideoFromPlaylistHandler, addToWatchLaterHandler, removeFromWatchLaterHandler } from "../../utils";
 
 const CreatePlaylistModal = () => {
     const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
@@ -12,6 +12,7 @@ const CreatePlaylistModal = () => {
     const { authState: { token } } = useAuth();
     const { playlistsState: { playlists }, playlistsDispatch } = usePlaylists();
     const { playlistModalState: { video }, playlistModalDispatch } = usePlaylistModal();
+    const { watchLaterState: { watchLater }, watchLaterDispatch } = useWatchLater();
 
     const playlistNameHandler = (event) => {
         setNewPlaylist({ ...newPlaylist, title: event.target.value })
@@ -44,12 +45,26 @@ const CreatePlaylistModal = () => {
         return isExist ? true : false;
     }
 
-    const callVideoAction = (_id) => {
+    const callVideoPlaylistAction = (_id) => {
         if (checkVideoInPlaylist(_id)) {
             deleteVideoFromPlaylistHandler(_id, video._id, token, playlistsDispatch);
         }
         else {
             addVideoToPlaylistHandler(token, _id, video, playlistsDispatch);
+        }
+    }
+
+    const checkVideoInWatchLater = () => {
+        const isExist = watchLater.find(item => item._id === video._id);
+        return isExist ? true : false;
+    }
+
+    const callVideoWatchLaterAction = () => {
+        if (checkVideoInWatchLater()) {
+            removeFromWatchLaterHandler(video._id, token, watchLaterDispatch);
+        }
+        else {
+            addToWatchLaterHandler(video, watchLaterDispatch, token);
         }
     }
 
@@ -61,12 +76,16 @@ const CreatePlaylistModal = () => {
             </div>
             <div className="playlist-container">
                 <div className="playlist-one">
-                    <input type="checkbox" id="watch-later" />
+                    <input type="checkbox" id="watch-later"
+                        checked={checkVideoInWatchLater()}
+                        onChange={callVideoWatchLaterAction} />
                     <label htmlFor="watch-later">Watch Later</label>
                 </div>
                 {playlists.map(({ _id, title }) => (
                     <div className="playlist" key={_id}>
-                        <input type="checkbox" id={title} checked={checkVideoInPlaylist(_id)} onChange={() => callVideoAction(_id)} />
+                        <input type="checkbox" id={title}
+                            checked={checkVideoInPlaylist(_id)}
+                            onChange={() => callVideoPlaylistAction(_id)} />
                         <label htmlFor={title}>{title}</label>
                     </div>
                 ))}
