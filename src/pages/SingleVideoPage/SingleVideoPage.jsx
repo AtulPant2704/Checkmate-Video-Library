@@ -30,9 +30,7 @@ const SingleVideoPage = () => {
         }
     }
 
-    const checkLikesAction = (_id) => {
-        return likes.find(item => item._id === _id);
-    }
+    const checkLikesAction = (_id) => likes.some(item => item._id === _id);
 
     const checkLikesActionHandler = (_id) => {
         return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
@@ -47,9 +45,7 @@ const SingleVideoPage = () => {
         }
     }
 
-    const checkWatchLaterAction = (_id) => {
-        return watchLater.find(item => item._id === _id);
-    }
+    const checkWatchLaterAction = (_id) => watchLater.some(item => item._id === _id);
 
     const checkWatchLaterActionHandler = (_id) => {
         return checkWatchLaterAction(_id) ? removeFromWatchLaterHandler(_id, token, watchLaterDispatch) : callAddToWatchLaterHandler(_id);
