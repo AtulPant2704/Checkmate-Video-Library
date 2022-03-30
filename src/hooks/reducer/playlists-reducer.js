@@ -17,7 +17,7 @@ const playlistsReducer = (state, action) => {
             };
         case "REMOVE_VIDEO_FROM_PLAYLISTS":
             return { ...state, playlists: getNewPlaylist(action.payload.playlistId, state.playlists, action.payload.playlistData) };
-        case "EMPTY_PLAYLISTS":
+        case "CLEAR_PLAYLISTS":
             return { ...state, playlists: [] };
         default:
             return state;
