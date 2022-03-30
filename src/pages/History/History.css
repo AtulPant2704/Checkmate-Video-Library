@@ -17,6 +17,14 @@
     width: 95%;
 }
 
+.history-intro .delete-history-btn{
+    background-color: var(--secondary-color);
+}
+
+.history-intro .delete-history-btn:hover{
+    background-color: var(--secondary-hover-color);
+}
+
 @media screen and (max-width: 1000px){
     .history-section {
         width: 80%;
