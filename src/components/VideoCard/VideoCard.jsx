@@ -1,19 +1,31 @@
 import "./VideoCard.css";
 import { useNavigate } from "react-router";
-import { useLikes, useVideos, useAuth, usePlaylistModal } from "../../hooks";
-import { addToLikesHandler, removeFromLikesHandler } from "../../utils";
+import { useLikes, useVideos, useAuth, usePlaylistModal, useHistory } from "../../hooks";
+import { addToLikesHandler, removeFromLikesHandler, addToHistoryHandler } from "../../utils";
 
 const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {
   const navigate = useNavigate();
   const videos = useVideos();
   const { authState: { token } } = useAuth();
   const { likesState: { likes }, likesDispatch } = useLikes();
+  const { historyDispatch } = useHistory();
   const { playlistModalDispatch } = usePlaylistModal();
 
   const callAddToLikesHandler = (_id) => {
     if (token) {
       const video = videos.find(item => item._id === _id);
       addToLikesHandler(video, likesDispatch, token);
+    }
+    else {
+      navigate("/login");
+    }
+  }
+
+  const callAddToHistoryHandler = () => {
+    if (token) {
+      const video = videos.find(item => item._id === _id);
+      addToHistoryHandler(video, historyDispatch, token);
+      navigate(`/explore/${_id}`);
     }
     else {
       navigate("/login");
@@ -41,7 +53,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
   }
 
   return (
-    <div className="video-card" onClick={() => navigate(`/explore/${_id}`)}>
+    <div className="video-card" onClick={callAddToHistoryHandler}>
       <div className="video-header">
         <img
           src={thumbnail}
