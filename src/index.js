@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { VideosProvider, AuthProvider, LikesProvider, PlaylistsProvider, PlaylistModalProvider } from "./hooks";
+import { VideosProvider, AuthProvider, LikesProvider, PlaylistsProvider, PlaylistModalProvider, HistoryProvider } from "./hooks";
 
 // Call make Server
 makeServer();
@@ -16,7 +16,9 @@ ReactDOM.render(
           <PlaylistModalProvider>
             <PlaylistsProvider>
               <LikesProvider>
-                <App />
+                <HistoryProvider>
+                  <App />
+                </HistoryProvider>
               </LikesProvider>
             </PlaylistsProvider>
           </PlaylistModalProvider>
