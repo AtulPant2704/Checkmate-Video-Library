@@ -30,10 +30,6 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
     return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
   }
 
-  const checkWatchLaterAction = (_id) => {
-    return watchLater.find(item => item._id === _id);
-  }
-
   const callAddToWatchLaterHandler = (_id) => {
     if (token) {
       const video = videos.find(item => item._id === _id);
@@ -42,6 +38,10 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
     else {
       navigate("/login");
     }
+  }
+
+  const checkWatchLaterAction = (_id) => {
+    return watchLater.find(item => item._id === _id);
   }
 
   const checkWatchLaterActionHandler = (e, _id) => {
