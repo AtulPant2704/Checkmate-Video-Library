@@ -41,8 +41,7 @@ const CreatePlaylistModal = () => {
 
     const checkVideoInPlaylist = (_id) => {
         const playlist = playlists.find(item => item._id === _id);
-        const isExist = playlist.videos.find(item => item._id === video._id)
-        return isExist ? true : false;
+        return playlist.videos.some(item => item._id === video._id)
     }
 
     const callVideoPlaylistAction = (_id) => {
@@ -54,10 +53,7 @@ const CreatePlaylistModal = () => {
         }
     }
 
-    const checkVideoInWatchLater = () => {
-        const isExist = watchLater.find(item => item._id === video._id);
-        return isExist ? true : false;
-    }
+    const checkVideoInWatchLater = () => watchLater.some(item => item._id === video._id);
 
     const callVideoWatchLaterAction = () => {
         if (checkVideoInWatchLater()) {

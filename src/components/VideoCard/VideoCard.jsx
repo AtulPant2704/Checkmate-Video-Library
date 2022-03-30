@@ -21,9 +21,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
     }
   }
 
-  const checkLikesAction = (_id) => {
-    return likes.find(item => item._id === _id);
-  }
+  const checkLikesAction = (_id) => likes.some(item => item._id === _id);
 
   const checkLikesActionHandler = (e, _id) => {
     e.stopPropagation();
@@ -40,9 +38,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
     }
   }
 
-  const checkWatchLaterAction = (_id) => {
-    return watchLater.find(item => item._id === _id);
-  }
+  const checkWatchLaterAction = (_id) => watchLater.some(item => item._id === _id);
 
   const checkWatchLaterActionHandler = (e, _id) => {
     e.stopPropagation();
