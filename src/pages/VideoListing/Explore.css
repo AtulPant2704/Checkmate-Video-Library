@@ -24,7 +24,7 @@
   color: white;
 }
 
-.video-categories button:nth-child(1) {
+.video-categories .active{
   background-color: var(--secondary-color);
   color: white;
 }

@@ -1,5 +1,5 @@
 import "./Playlists.css";
-import { useEffect, useDebugValue } from "react";
+import { useEffect } from "react";
 import { usePlaylists, useAuth } from "../../hooks";
 import { Drawer } from "../../components";
 import { PlaylistTile } from "./components/PlaylistTile";
