@@ -1,3 +1,4 @@
+export { categoryReducer } from "./category-reducer";
 export { authReducer } from "./auth-reducer";
 export { historyReducer } from "./history-reducer";
 export { likesReducer } from "./likes-reducer";

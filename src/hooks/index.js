@@ -1,4 +1,5 @@
 export { VideosProvider, useVideos } from "./context/videos-context";
+export { CategoryProvider, useCategory } from "./context/category-context";
 export { AuthProvider, useAuth } from "./context/auth-context";
 export { LikesProvider, useLikes } from "./context/likes-context";
 export { PlaylistsProvider, usePlaylists } from "./context/playlists-context";
