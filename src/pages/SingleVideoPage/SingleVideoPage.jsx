@@ -1,7 +1,7 @@
 import "./SingleVideoPage.css";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useLikes, useAuth, usePlaylistModal, useHistory, useWatchLater } from "../../hooks";
+import { useLikes, useAuth, usePlaylistModal, useHistory, useWatchLater } from "../../context";
 import { getSingleVideoHandler, addToHistoryHandler, addToWatchLaterHandler, removeFromWatchLaterHandler, addToLikesHandler, removeFromLikesHandler } from "../../utils";
 
 const SingleVideoPage = () => {

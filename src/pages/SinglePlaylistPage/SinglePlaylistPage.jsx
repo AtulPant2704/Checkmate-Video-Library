@@ -2,11 +2,9 @@ import "./SinglePlaylistPage.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { usePlaylists } from "../../hooks";
 import { playlistImage } from "../../assets";
-import { HorizontalVideoCard } from "../../components/index";
-import { Drawer } from "../../components";
-import { useAuth } from "../../hooks";
+import { HorizontalVideoCard, Drawer } from "../../components";
+import { useAuth, usePlaylists } from "../../context";
 import { getSinglePlaylistHandler, deletePlaylistHandler } from "../../utils";
 
 const SinglePlaylistPage = () => {

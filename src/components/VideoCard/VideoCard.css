@@ -50,7 +50,7 @@
 
 .video-card .video-body {
   display: flex;
-  margin-top: 0.5rem;
+  align-items: center;
 }
 
 .video-body .video-body-img {

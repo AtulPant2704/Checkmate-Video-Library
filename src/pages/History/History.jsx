@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { playlistImage } from "../../assets";
 import { HorizontalVideoCard } from "../../components/index";
 import { Drawer } from "../../components";
-import { useHistory, useAuth } from "../../hooks";
+import { useHistory, useAuth } from "../../context";
 import { getHistoryHandler, deleteAllHistoryHandler } from "../../utils";
 
 const History = () => {

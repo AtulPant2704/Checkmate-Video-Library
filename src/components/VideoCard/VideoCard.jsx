@@ -1,6 +1,6 @@
 import "./VideoCard.css";
 import { useNavigate } from "react-router";
-import { useLikes, useVideos, useAuth, usePlaylistModal, useWatchLater } from "../../hooks";
+import { useLikes, useVideos, useAuth, usePlaylistModal, useWatchLater } from "../../context";
 import { addToLikesHandler, removeFromLikesHandler, addToWatchLaterHandler, removeFromWatchLaterHandler } from "../../utils";
 
 const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {

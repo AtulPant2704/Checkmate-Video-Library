@@ -1,7 +1,7 @@
 import "./Drawer.css"
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks";
+import { useAuth } from "../../context";
 
 const Drawer = () => {
   const navigate = useNavigate();

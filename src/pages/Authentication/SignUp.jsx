@@ -2,7 +2,7 @@ import "./Authentication.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { useAuth } from "../../hooks";
+import { useAuth } from "../../context";
 import { signUpService } from "../../services";
 
 const SignUp = () => {

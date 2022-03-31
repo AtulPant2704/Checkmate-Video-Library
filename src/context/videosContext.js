@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getVideos } from "../../utils";
+import { getVideos } from "../utils";
 
 const VideosContext = createContext(null);
 

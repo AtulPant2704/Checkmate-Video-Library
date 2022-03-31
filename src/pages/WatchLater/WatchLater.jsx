@@ -1,7 +1,7 @@
 import "./WatchLater.css";
 import { useEffect } from "react";
 import { playlistImage } from "../../assets";
-import { useWatchLater, useAuth } from "../../hooks";
+import { useWatchLater, useAuth } from "../../context";
 import { Drawer, HorizontalVideoCard } from "../../components";
 import { getWatchLaterHandler } from "../../utils";
 

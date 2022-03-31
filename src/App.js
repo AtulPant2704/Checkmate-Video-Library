@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { usePlaylistModal } from "./hooks";
+import { usePlaylistModal } from "./context";
 import { Navbar, Footer, Backdrop, CreatePlaylistModal } from "./components";
 import { Login, SignUp, Explore, LikedVideos, WatchLater, History, Playlists, Profile, SinglePlaylistPage, SingleVideoPage } from "./pages";
 
@@ -9,8 +9,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* {isActive ? <CreatePlaylistModal /> : null}
-      {isActive ? <Backdrop /> : null} */}
 
       {isActive ?
         <>

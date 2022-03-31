@@ -1,9 +1,17 @@
 import "./Explore.css";
-import { useVideos } from "../../hooks";
+import { useState, useEffect } from "react";
+import { useVideos, useCategory } from "../../context";
 import { Drawer, VideoCard } from "../../components";
+import { getCategoriesHandler, filterVideos } from "../../utils";
 
 const Explore = () => {
+    const [categories, setCategories] = useState([]);
     const videos = useVideos();
+    const { categoryState: { category }, categoryDispatch } = useCategory();
+
+    useEffect(() => getCategoriesHandler(setCategories), []);
+
+    const filteredVideos = filterVideos(category, videos);
 
     return (
         <main>
@@ -11,14 +19,20 @@ const Explore = () => {
                 <Drawer />
                 <section className="videos-section">
                     <div className="video-categories">
-                        <button className="btn btn-outline-primary">All</button>
-                        <button className="btn btn-outline-primary">Openings</button>
-                        <button className="btn btn-outine-primary">Endgames</button>
-                        <button className="btn btn-outline-primary">Middle Games</button>
-                        <button className="btn btn-outline-primary">Classics</button>
+                        <button
+                            className={`btn btn-outline-primary ${category === "" ? "active" : ""}`}
+                            onClick={() => categoryDispatch({ type: "CLEAR_CATEGORY" })}>All
+                        </button>
+                        {categories.map(curr => (
+                            <button
+                                className={`btn btn-outline-primary ${category === curr.categoryName ? "active" : ""}`}
+                                key={curr._id}
+                                onClick={() => categoryDispatch({ type: "SELECT_CATEGORY", payload: curr.categoryName })}>{curr.categoryName}
+                            </button>
+                        ))}
                     </div>
                     <div className="videos-container">
-                        {videos.map(video => (
+                        {filteredVideos.map(video => (
                             <VideoCard key={video._id} {...video} />
                         ))}
                     </div>

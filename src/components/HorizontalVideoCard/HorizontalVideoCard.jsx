@@ -1,6 +1,6 @@
 import "./HorizontalVideoCard.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLikes, useAuth, usePlaylists, useHistory, useWatchLater } from "../../hooks";
+import { useLikes, useAuth, usePlaylists, useHistory, useWatchLater } from "../../context";
 import { removeFromLikesHandler, deleteVideoFromPlaylistHandler, getSinglePlaylistHandler, removeFromHistoryHandler, removeFromWatchLaterHandler } from "../../utils";
 
 const HorizontalVideoCard = ({ _id, thumbnail, title, channelName, playlistID, setPlaylist }) => {

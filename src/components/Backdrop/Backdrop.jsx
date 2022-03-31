@@ -1,5 +1,5 @@
 import "./Backdrop.css";
-import { usePlaylistModal } from "../../hooks";
+import { usePlaylistModal } from "../../context";
 
 const Backdrop = () => {
     const { playlistModalDispatch } = usePlaylistModal();

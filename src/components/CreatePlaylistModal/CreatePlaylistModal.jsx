@@ -1,6 +1,6 @@
 import "./CreatePlaylistModal.css";
 import { useState } from "react";
-import { useAuth, usePlaylists, usePlaylistModal, useWatchLater } from "../../hooks";
+import { useAuth, usePlaylists, usePlaylistModal, useWatchLater } from "../../context";
 import { createNewPlaylistHandler, addVideoToPlaylistHandler, deleteVideoFromPlaylistHandler, addToWatchLaterHandler, removeFromWatchLaterHandler } from "../../utils";
 
 const CreatePlaylistModal = () => {
