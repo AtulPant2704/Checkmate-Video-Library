@@ -1,7 +1,7 @@
 import "./LikedVideos.css";
 import { useEffect } from "react";
 import { playlistImage } from "../../assets";
-import { useLikes, useAuth } from "../../hooks";
+import { useLikes, useAuth } from "../../context";
 import { Drawer, HorizontalVideoCard } from "../../components";
 import { getLikesHandler } from "../../utils";
 

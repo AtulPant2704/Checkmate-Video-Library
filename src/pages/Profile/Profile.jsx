@@ -1,6 +1,6 @@
 import "./Profile.css";
 import { useNavigate } from "react-router";
-import { useAuth, useLikes, usePlaylists, useHistory } from "../../hooks";
+import { useAuth, useLikes, usePlaylists, useHistory } from "../../context";
 
 const Profile = () => {
     const navigate = useNavigate();

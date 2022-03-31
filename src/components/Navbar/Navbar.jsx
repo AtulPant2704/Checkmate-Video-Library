@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks";
+import { useAuth } from "../../context";
 
 const Navbar = () => {
   const navigate = useNavigate();

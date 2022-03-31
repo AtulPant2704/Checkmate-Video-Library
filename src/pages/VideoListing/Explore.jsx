@@ -1,6 +1,6 @@
 import "./Explore.css";
 import { useState, useEffect } from "react";
-import { useVideos, useCategory } from "../../hooks";
+import { useVideos, useCategory } from "../../context";
 import { Drawer, VideoCard } from "../../components";
 import { getCategoriesHandler, filterVideos } from "../../utils";
 
