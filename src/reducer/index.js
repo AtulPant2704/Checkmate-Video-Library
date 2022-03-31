@@ -1,7 +1,7 @@
-export { categoryReducer } from "./category-reducer";
-export { authReducer } from "./auth-reducer";
-export { historyReducer } from "./history-reducer";
-export { likesReducer } from "./likes-reducer";
-export { playlistModalReducer } from "./playlistModal-reducer";
-export { playlistsReducer } from "./playlists-reducer";
-export { watchLaterReducer } from "./watchLater-reducer";
+export { categoryReducer } from "./categoryReducer";
+export { authReducer } from "./authReducer";
+export { historyReducer } from "./historyReducer";
+export { likesReducer } from "./likesReducer";
+export { playlistModalReducer } from "./playlistModalReducer";
+export { playlistsReducer } from "./playlistsReducer";
+export { watchLaterReducer } from "./watchLaterReducer";
