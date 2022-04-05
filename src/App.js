@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { usePlaylistModal } from "./context";
-import { Navbar, Footer, Backdrop, CreatePlaylistModal } from "./components";
+import { Navbar, Footer, CreatePlaylistModal } from "./components";
 import {
   Login,
   SignUp,
@@ -24,12 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      {isActive ? (
-        <>
-          <CreatePlaylistModal />
-          <Backdrop />
-        </>
-      ) : null}
+      {isActive ? <CreatePlaylistModal /> : null}
 
       <ToastContainer
         position="top-right"

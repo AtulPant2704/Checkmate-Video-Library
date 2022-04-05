@@ -85,65 +85,71 @@ const CreatePlaylistModal = () => {
   };
 
   return (
-    <div className="playlist-modal">
-      <div className="playlist-header">
-        <h3>Save to...</h3>
-        <button
-          className="playlist-modal-close"
-          onClick={() => playlistModalDispatch({ type: "CLOSE_MODAL" })}
-        >
-          <i className="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div className="playlist-container">
-        <div className="playlist-one">
-          <input
-            type="checkbox"
-            id="watch-later"
-            checked={checkVideoInWatchLater()}
-            onChange={callVideoWatchLaterAction}
-          />
-          <label htmlFor="watch-later">Watch Later</label>
-        </div>
-        {playlists.map(({ _id, title }) => (
-          <div className="playlist" key={_id}>
-            <input
-              type="checkbox"
-              id={title}
-              checked={checkVideoInPlaylist(_id)}
-              onChange={() => callVideoPlaylistAction(_id)}
-            />
-            <label htmlFor={title}>{title}</label>
-          </div>
-        ))}
-      </div>
-      {!openCreatePlaylist ? (
-        <button
-          className="create-playlist-btn"
-          onClick={() => setOpenCreatePlaylist(true)}
-        >
-          <i className="fa-solid fa-plus"></i>
-          <span> Create New Playlist</span>
-        </button>
-      ) : (
-        <div className="playlist-input-container">
-          <input
-            type="text"
-            placeholder="Enter Playlist name..."
-            className="new-playlist-name"
-            value={newPlaylist.title}
-            onChange={playlistNameHandler}
-            required
-          />
+    <section>
+      <div
+        className="backdrop"
+        onClick={() => playlistModalDispatch({ type: "CLOSE_MODAL" })}
+      ></div>
+      <div className="playlist-modal">
+        <div className="playlist-header">
+          <h3>Save to...</h3>
           <button
-            className="close-playlist-input"
-            onClick={callCreateNewPlaylistHandler}
+            className="playlist-modal-close"
+            onClick={() => playlistModalDispatch({ type: "CLOSE_MODAL" })}
           >
-            Create
+            <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
-      )}
-    </div>
+        <div className="playlist-container">
+          <div className="playlist-one">
+            <input
+              type="checkbox"
+              id="watch-later"
+              checked={checkVideoInWatchLater()}
+              onChange={callVideoWatchLaterAction}
+            />
+            <label htmlFor="watch-later">Watch Later</label>
+          </div>
+          {playlists.map(({ _id, title }) => (
+            <div className="playlist" key={_id}>
+              <input
+                type="checkbox"
+                id={title}
+                checked={checkVideoInPlaylist(_id)}
+                onChange={() => callVideoPlaylistAction(_id)}
+              />
+              <label htmlFor={title}>{title}</label>
+            </div>
+          ))}
+        </div>
+        {!openCreatePlaylist ? (
+          <button
+            className="create-playlist-btn"
+            onClick={() => setOpenCreatePlaylist(true)}
+          >
+            <i className="fa-solid fa-plus"></i>
+            <span> Create New Playlist</span>
+          </button>
+        ) : (
+          <div className="playlist-input-container">
+            <input
+              type="text"
+              placeholder="Enter Playlist name..."
+              className="new-playlist-name"
+              value={newPlaylist.title}
+              onChange={playlistNameHandler}
+              required
+            />
+            <button
+              className="close-playlist-input"
+              onClick={callCreateNewPlaylistHandler}
+            >
+              Create
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 
