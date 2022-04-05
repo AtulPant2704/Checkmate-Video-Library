@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { usePlaylistModal } from "./context";
-import { Navbar, Footer, CreatePlaylistModal } from "./components";
+import { CreatePlaylistModal } from "./components";
 import {
   Login,
   SignUp,
@@ -39,7 +39,6 @@ function App() {
         pauseOnHover
       />
 
-      <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
@@ -52,7 +51,6 @@ function App() {
         <Route path="/playlists/:playlistID" element={<SinglePlaylistPage />} />
         <Route path="/explore/:videoID" element={<SingleVideoPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

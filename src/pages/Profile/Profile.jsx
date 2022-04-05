@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useLikes, usePlaylists, useHistory } from "../../context";
+import { Navbar, Footer } from "../../components";
 import "./Profile.css";
 
 const Profile = () => {
@@ -22,16 +23,20 @@ const Profile = () => {
   };
 
   return (
-    <main>
-      <div className="logout-page">
-        <button
-          className="btn btn-solid-primary btn-logout"
-          onClick={logoutHandler}
-        >
-          Logout
-        </button>
-      </div>
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <div className="logout-page">
+          <button
+            className="btn btn-solid-primary btn-logout"
+            onClick={logoutHandler}
+          >
+            Logout
+          </button>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 };
 

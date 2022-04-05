@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useCategory } from "../../context";
 import { getVideos, getCategoriesHandler, filterVideos } from "../../utils";
-import { Drawer, VideoCard } from "../../components";
+import { Navbar, Footer, Drawer, VideoCard } from "../../components";
 import "./Explore.css";
 import "./loaders.css";
 
@@ -24,57 +24,61 @@ const Explore = () => {
   const filteredVideos = filterVideos(category, videos);
 
   return (
-    <main>
-      <div className="explore-page">
-        <Drawer />
-        <section className="videos-section">
-          <div className="video-categories">
-            <button
-              className={`btn btn-outline-primary ${
-                category === "" ? "active" : ""
-              }`}
-              onClick={() => categoryDispatch({ type: "CLEAR_CATEGORY" })}
-            >
-              All
-            </button>
-            {categories.map((curr) => (
+    <>
+      <Navbar />
+      <main>
+        <div className="explore-page">
+          <Drawer />
+          <section className="videos-section">
+            <div className="video-categories">
               <button
                 className={`btn btn-outline-primary ${
-                  category === curr.categoryName ? "active" : ""
+                  category === "" ? "active" : ""
                 }`}
-                key={curr._id}
-                onClick={() =>
-                  categoryDispatch({
-                    type: "SELECT_CATEGORY",
-                    payload: curr.categoryName,
-                  })
-                }
+                onClick={() => categoryDispatch({ type: "CLEAR_CATEGORY" })}
               >
-                {curr.categoryName}
+                All
               </button>
-            ))}
-          </div>
-          <div className="videos-container">
-            {videosLoader ? (
-              <div className="lds-roller">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            ) : (
-              filteredVideos.map((video) => (
-                <VideoCard key={video._id} {...video} videos={videos} />
-              ))
-            )}
-          </div>
-        </section>
-      </div>
-    </main>
+              {categories.map((curr) => (
+                <button
+                  className={`btn btn-outline-primary ${
+                    category === curr.categoryName ? "active" : ""
+                  }`}
+                  key={curr._id}
+                  onClick={() =>
+                    categoryDispatch({
+                      type: "SELECT_CATEGORY",
+                      payload: curr.categoryName,
+                    })
+                  }
+                >
+                  {curr.categoryName}
+                </button>
+              ))}
+            </div>
+            <div className="videos-container">
+              {videosLoader ? (
+                <div className="lds-roller">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              ) : (
+                filteredVideos.map((video) => (
+                  <VideoCard key={video._id} {...video} videos={videos} />
+                ))
+              )}
+            </div>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 };
 
