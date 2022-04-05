@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import {
   useLikes,
-  useVideos,
   useAuth,
   usePlaylistModal,
   useWatchLater,
@@ -22,9 +21,9 @@ const VideoCard = ({
   videoLength,
   channelName,
   channelImg,
+  videos,
 }) => {
   const navigate = useNavigate();
-  const videos = useVideos();
   const {
     authState: { token },
   } = useAuth();

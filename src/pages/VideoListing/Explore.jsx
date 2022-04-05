@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
-import { useVideos, useCategory } from "../../context";
-import { getCategoriesHandler, filterVideos } from "../../utils";
+import { useCategory } from "../../context";
+import { getVideos, getCategoriesHandler, filterVideos } from "../../utils";
 import { Drawer, VideoCard } from "../../components";
 import "./Explore.css";
 
 const Explore = () => {
+  const [videos, setVideos] = useState([]);
   const [categories, setCategories] = useState([]);
-  const videos = useVideos();
   const {
     categoryState: { category },
     categoryDispatch,
   } = useCategory();
 
-  useEffect(() => getCategoriesHandler(setCategories), []);
+  const getVideosAndCategories = () => {
+    getVideos(setVideos);
+    getCategoriesHandler(setCategories);
+  };
+
+  useEffect(() => getVideosAndCategories(), []);
 
   const filteredVideos = filterVideos(category, videos);
 
@@ -49,7 +54,7 @@ const Explore = () => {
           </div>
           <div className="videos-container">
             {filteredVideos.map((video) => (
-              <VideoCard key={video._id} {...video} />
+              <VideoCard key={video._id} {...video} videos={videos} />
             ))}
           </div>
         </section>
