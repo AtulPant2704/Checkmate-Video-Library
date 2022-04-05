@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const {
-    authState: { token, userName },
+    authState: { token, user },
   } = useAuth();
 
   const openMenuBar = () => {
@@ -23,12 +23,12 @@ const Navbar = () => {
     toast.warning("You're not logged in");
   };
 
-  const checkStatus = (userName) => {
-    return userName ? `Hi, ${userName.firstName}` : "Login";
+  const checkStatus = (user) => {
+    return user ? `Hi, ${user.firstName}` : "Login";
   };
 
   const userHandler = async (type) => {
-    type === "Login" ? navigateLogin() : navigate("/profile");
+    type === "Login" ? navigate("/login") : navigate("/profile");
   };
 
   const checkToken = (path) => {
@@ -65,11 +65,11 @@ const Navbar = () => {
         <div className="user-action">
           <button
             className="btn btn-text-primary btn-user"
-            onClick={() => userHandler(checkStatus(userName))}
+            onClick={() => userHandler(checkStatus(user))}
           >
             <i className="fa-solid fa-user"></i>
           </button>
-          <p>{checkStatus(userName)}</p>
+          <p>{checkStatus(user)}</p>
         </div>
       </div>
 
