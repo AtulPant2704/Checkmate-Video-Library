@@ -9,7 +9,9 @@ const addToWatchLaterHandler = async (video, watchLaterDispatch, token) => {
         type: "ADD_TO_WATCHLATER",
         payload: response.data.watchlater,
       });
-      toast.info(`${video.title} added to WatchLater`);
+      toast.info(
+        `${video.title.slice(0, 20).trim() + "..."} added to WatchLater`
+      );
     } else {
       throw new Error();
     }

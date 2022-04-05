@@ -22,7 +22,9 @@ const addVideoToPlaylistHandler = async (
             playlistData: response.data.playlist,
           },
         });
-        toast.info(`${video.title} added to playlist`);
+        toast.info(
+          `${video.title.slice(0, 20).trim() + "..."} added to playlist`
+        );
       } else {
         throw new Error();
       }
