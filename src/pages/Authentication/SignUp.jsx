@@ -1,9 +1,9 @@
-import "./Authentication.css";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import { useAuth } from "../../context";
 import { signUpService } from "../../services";
+import "./Authentication.css";
 
 const SignUp = () => {
   const navigate = useNavigate();

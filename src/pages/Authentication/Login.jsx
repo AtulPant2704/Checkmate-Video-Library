@@ -1,4 +1,3 @@
-import "./Authentication.css";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,6 +8,7 @@ import {
   getPlaylistsHandler,
   getHistoryHandler,
 } from "../../utils";
+import "./Authentication.css";
 
 const Login = () => {
   const navigate = useNavigate();

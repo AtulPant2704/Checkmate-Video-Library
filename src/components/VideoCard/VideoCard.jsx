@@ -1,60 +1,91 @@
-import "./VideoCard.css";
 import { useNavigate } from "react-router";
-import { useLikes, useVideos, useAuth, usePlaylistModal, useWatchLater } from "../../context";
-import { addToLikesHandler, removeFromLikesHandler, addToWatchLaterHandler, removeFromWatchLaterHandler } from "../../utils";
+import {
+  useLikes,
+  useVideos,
+  useAuth,
+  usePlaylistModal,
+  useWatchLater,
+} from "../../context";
+import {
+  addToLikesHandler,
+  removeFromLikesHandler,
+  addToWatchLaterHandler,
+  removeFromWatchLaterHandler,
+} from "../../utils";
+import "./VideoCard.css";
 
-const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg }) => {
+const VideoCard = ({
+  _id,
+  thumbnail,
+  title,
+  videoLength,
+  channelName,
+  channelImg,
+}) => {
   const navigate = useNavigate();
   const videos = useVideos();
-  const { authState: { token } } = useAuth();
-  const { likesState: { likes }, likesDispatch } = useLikes();
-  const { watchLaterState: { watchLater }, watchLaterDispatch } = useWatchLater();
+  const {
+    authState: { token },
+  } = useAuth();
+  const {
+    likesState: { likes },
+    likesDispatch,
+  } = useLikes();
+  const {
+    watchLaterState: { watchLater },
+    watchLaterDispatch,
+  } = useWatchLater();
   const { playlistModalDispatch } = usePlaylistModal();
 
   const callAddToLikesHandler = (_id) => {
     if (token) {
-      const video = videos.find(item => item._id === _id);
+      const video = videos.find((item) => item._id === _id);
       addToLikesHandler(video, likesDispatch, token);
-    }
-    else {
+    } else {
       navigate("/login");
     }
-  }
+  };
 
-  const checkLikesAction = (_id) => likes.some(item => item._id === _id);
+  const checkLikesAction = (_id) => likes.some((item) => item._id === _id);
 
   const checkLikesActionHandler = (e, _id) => {
     e.stopPropagation();
-    return checkLikesAction(_id) ? removeFromLikesHandler(_id, token, likesDispatch) : callAddToLikesHandler(_id);
-  }
+    return checkLikesAction(_id)
+      ? removeFromLikesHandler(_id, token, likesDispatch)
+      : callAddToLikesHandler(_id);
+  };
 
   const callAddToWatchLaterHandler = (_id) => {
     if (token) {
-      const video = videos.find(item => item._id === _id);
+      const video = videos.find((item) => item._id === _id);
       addToWatchLaterHandler(video, watchLaterDispatch, token);
-    }
-    else {
+    } else {
       navigate("/login");
     }
-  }
+  };
 
-  const checkWatchLaterAction = (_id) => watchLater.some(item => item._id === _id);
+  const checkWatchLaterAction = (_id) =>
+    watchLater.some((item) => item._id === _id);
 
   const checkWatchLaterActionHandler = (e, _id) => {
     e.stopPropagation();
-    return checkWatchLaterAction(_id) ? removeFromWatchLaterHandler(_id, token, watchLaterDispatch) : callAddToWatchLaterHandler(_id);
-  }
+    return checkWatchLaterAction(_id)
+      ? removeFromWatchLaterHandler(_id, token, watchLaterDispatch)
+      : callAddToWatchLaterHandler(_id);
+  };
 
   const findPlaylistVideo = (e, _id) => {
     e.stopPropagation();
     if (token) {
-      const video = videos.find(item => item._id === _id);
-      playlistModalDispatch({ type: "OPEN_MODAL", payload: { isActive: true, video: video } });
-    }
-    else {
+      const video = videos.find((item) => item._id === _id);
+      playlistModalDispatch({
+        type: "OPEN_MODAL",
+        payload: { isActive: true, video: video },
+      });
+    } else {
       navigate("/login");
     }
-  }
+  };
 
   return (
     <div className="video-card" onClick={() => navigate(`/explore/${_id}`)}>
@@ -70,10 +101,18 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
           </div>
           <div className="action-btns">
             <button onClick={(e) => checkLikesActionHandler(e, _id)}>
-              <i className={`${checkLikesAction(_id) ? "fa-solid" : "fa-regular"} fa-thumbs-up`}></i>
+              <i
+                className={`${
+                  checkLikesAction(_id) ? "fa-solid" : "fa-regular"
+                } fa-thumbs-up`}
+              ></i>
             </button>
             <button onClick={(e) => checkWatchLaterActionHandler(e, _id)}>
-              <i className={`${checkWatchLaterAction(_id) ? "fa-solid" : "fa-regular"} fa-bookmark`}></i>
+              <i
+                className={`${
+                  checkWatchLaterAction(_id) ? "fa-solid" : "fa-regular"
+                } fa-bookmark`}
+              ></i>
             </button>
             <button onClick={(e) => findPlaylistVideo(e, _id)}>
               <i className="fa-solid fa-folder-plus"></i>
@@ -87,9 +126,7 @@ const VideoCard = ({ _id, thumbnail, title, videoLength, channelName, channelImg
           className="img-responsive img-circle video-body-img"
         ></img>
         <div>
-          <h3 className="video-title">
-            {title}
-          </h3>
+          <h3 className="video-title">{title}</h3>
           <small className="gray-text">{channelName}</small>
         </div>
       </div>
