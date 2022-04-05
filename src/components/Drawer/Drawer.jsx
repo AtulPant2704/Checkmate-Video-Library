@@ -1,20 +1,22 @@
-import "./Drawer.css"
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import "./Drawer.css";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../../context";
 
 const Drawer = () => {
   const navigate = useNavigate();
-  const { authState: { token } } = useAuth();
+  const {
+    authState: { token },
+  } = useAuth();
 
   const checkToken = (path) => {
     if (token) {
       navigate(`/${path}`);
-    }
-    else {
+    } else {
       navigate("/login");
+      toast.warning("You're not logged in");
     }
-  }
+  };
 
   return (
     <div className="drawer-page-routes">
@@ -49,7 +51,7 @@ const Drawer = () => {
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export { Drawer };

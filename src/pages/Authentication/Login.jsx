@@ -1,10 +1,14 @@
 import "./Authentication.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth, useLikes, useHistory, usePlaylists } from "../../context";
 import { loginService } from "../../services";
-import { getLikesHandler, getPlaylistsHandler, getHistoryHandler } from "../../utils"
+import {
+  getLikesHandler,
+  getPlaylistsHandler,
+  getHistoryHandler,
+} from "../../utils";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,22 +19,22 @@ const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-  })
+  });
 
   const guestUser = {
     email: "test@gmail.com",
-    password: "test123"
-  }
+    password: "test123",
+  };
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value })
-  }
+    setUser({ ...user, [name]: value });
+  };
 
   const guestUserHandler = (event) => {
     event.preventDefault();
     setUser(guestUser);
-  }
+  };
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -38,34 +42,31 @@ const Login = () => {
     if (user.email !== "" && user.password !== "") {
       try {
         const response = await loginService(user);
-        switch (response.status) {
-          case 200:
-            localStorage.setItem("token", response.data.encodedToken);
-            localStorage.setItem("user", JSON.stringify(response.data.foundUser));
-            authDispatch({ type: "LOGIN", payload: { user: response.data.foundUser, token: response.data.encodedToken } });
-            getLikesHandler(response.data.encodedToken, likesDispatch);
-            getPlaylistsHandler(response.data.encodedToken, playlistsDispatch);
-            getHistoryHandler(response.data.encodedToken, historyDispatch);
-            navigate("/explore");
-            break;
-          case 404:
-            throw new Error("Email not found");
-          case 401:
-            throw new Error("Wrong Password");
-          case 500:
-            throw new Error("Server Error");
-          default:
-            break;
+        if (response.status === 200) {
+          navigate(-1);
+          localStorage.setItem("token", response.data.encodedToken);
+          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          authDispatch({
+            type: "LOGIN",
+            payload: {
+              user: response.data.foundUser,
+              token: response.data.encodedToken,
+            },
+          });
+          getLikesHandler(response.data.encodedToken, likesDispatch);
+          getPlaylistsHandler(response.data.encodedToken, playlistsDispatch);
+          getHistoryHandler(response.data.encodedToken, historyDispatch);
+          toast.success("Successfully Logged In");
+        } else {
+          throw new Error("Something went wrong! Please try again later");
         }
+      } catch (error) {
+        toast.error(error.response.data.errors[0]);
       }
-      catch (error) {
-        alert(error);
-      }
+    } else {
+      toast.warning("Both the fields need to be entered");
     }
-    else {
-      alert("Both of the fields need to be entered");
-    }
-  }
+  };
 
   return (
     <section className="form-section">
@@ -99,9 +100,16 @@ const Login = () => {
           <div className="user-history">
             <input type="checkbox" id="user-save" />
             <label htmlFor="user-save">Remember me</label>
-            <Link to="./Put route to forgot password">Forgot your Password?</Link>
+            <Link to="./Put route to forgot password">
+              Forgot your Password?
+            </Link>
           </div>
-          <button className="btn btn-text-primary text-underline btn-guest" onClick={guestUserHandler}>Add Guest credentials</button>
+          <button
+            className="btn btn-text-primary text-underline btn-guest"
+            onClick={guestUserHandler}
+          >
+            Add Guest credentials
+          </button>
           <button type="submit" className="btn-submit" onClick={loginHandler}>
             Submit
           </button>
