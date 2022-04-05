@@ -3,9 +3,11 @@ import { useCategory } from "../../context";
 import { getVideos, getCategoriesHandler, filterVideos } from "../../utils";
 import { Drawer, VideoCard } from "../../components";
 import "./Explore.css";
+import "./loaders.css";
 
 const Explore = () => {
   const [videos, setVideos] = useState([]);
+  const [videosLoader, setVideosLoader] = useState(false);
   const [categories, setCategories] = useState([]);
   const {
     categoryState: { category },
@@ -13,7 +15,7 @@ const Explore = () => {
   } = useCategory();
 
   const getVideosAndCategories = () => {
-    getVideos(setVideos);
+    getVideos(setVideos, setVideosLoader);
     getCategoriesHandler(setCategories);
   };
 
@@ -53,9 +55,22 @@ const Explore = () => {
             ))}
           </div>
           <div className="videos-container">
-            {filteredVideos.map((video) => (
-              <VideoCard key={video._id} {...video} videos={videos} />
-            ))}
+            {videosLoader ? (
+              <div className="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            ) : (
+              filteredVideos.map((video) => (
+                <VideoCard key={video._id} {...video} videos={videos} />
+              ))
+            )}
           </div>
         </section>
       </div>
