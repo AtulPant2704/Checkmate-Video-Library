@@ -1,3 +1,10 @@
+:root {
+  --toastify-color-info: #202528;
+  --toastify-color-success: #558d14;
+  --toastify-color-warning: #ff9204;
+  --toastify-color-error: #d61010;
+}
+
 #root {
   height: 100%;
 }

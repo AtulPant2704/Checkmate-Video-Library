@@ -1,45 +1,81 @@
-import "./Explore.css";
 import { useState, useEffect } from "react";
-import { useVideos, useCategory } from "../../context";
+import { useCategory } from "../../context";
+import { getVideos, getCategoriesHandler, filterVideos } from "../../utils";
 import { Drawer, VideoCard } from "../../components";
-import { getCategoriesHandler, filterVideos } from "../../utils";
+import "./Explore.css";
+import "./loaders.css";
 
 const Explore = () => {
-    const [categories, setCategories] = useState([]);
-    const videos = useVideos();
-    const { categoryState: { category }, categoryDispatch } = useCategory();
+  const [videos, setVideos] = useState([]);
+  const [videosLoader, setVideosLoader] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const {
+    categoryState: { category },
+    categoryDispatch,
+  } = useCategory();
 
-    useEffect(() => getCategoriesHandler(setCategories), []);
+  const getVideosAndCategories = () => {
+    getVideos(setVideos, setVideosLoader);
+    getCategoriesHandler(setCategories);
+  };
 
-    const filteredVideos = filterVideos(category, videos);
+  useEffect(() => getVideosAndCategories(), []);
 
-    return (
-        <main>
-            <div className="explore-page">
-                <Drawer />
-                <section className="videos-section">
-                    <div className="video-categories">
-                        <button
-                            className={`btn btn-outline-primary ${category === "" ? "active" : ""}`}
-                            onClick={() => categoryDispatch({ type: "CLEAR_CATEGORY" })}>All
-                        </button>
-                        {categories.map(curr => (
-                            <button
-                                className={`btn btn-outline-primary ${category === curr.categoryName ? "active" : ""}`}
-                                key={curr._id}
-                                onClick={() => categoryDispatch({ type: "SELECT_CATEGORY", payload: curr.categoryName })}>{curr.categoryName}
-                            </button>
-                        ))}
-                    </div>
-                    <div className="videos-container">
-                        {filteredVideos.map(video => (
-                            <VideoCard key={video._id} {...video} />
-                        ))}
-                    </div>
-                </section>
-            </div>
-        </main>
-    )
-}
+  const filteredVideos = filterVideos(category, videos);
+
+  return (
+    <main>
+      <div className="explore-page">
+        <Drawer />
+        <section className="videos-section">
+          <div className="video-categories">
+            <button
+              className={`btn btn-outline-primary ${
+                category === "" ? "active" : ""
+              }`}
+              onClick={() => categoryDispatch({ type: "CLEAR_CATEGORY" })}
+            >
+              All
+            </button>
+            {categories.map((curr) => (
+              <button
+                className={`btn btn-outline-primary ${
+                  category === curr.categoryName ? "active" : ""
+                }`}
+                key={curr._id}
+                onClick={() =>
+                  categoryDispatch({
+                    type: "SELECT_CATEGORY",
+                    payload: curr.categoryName,
+                  })
+                }
+              >
+                {curr.categoryName}
+              </button>
+            ))}
+          </div>
+          <div className="videos-container">
+            {videosLoader ? (
+              <div className="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            ) : (
+              filteredVideos.map((video) => (
+                <VideoCard key={video._id} {...video} videos={videos} />
+              ))
+            )}
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+};
 
 export { Explore };

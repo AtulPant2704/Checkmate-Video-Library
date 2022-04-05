@@ -1,20 +1,43 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { usePlaylistModal } from "./context";
-import { Navbar, Footer, Backdrop, CreatePlaylistModal } from "./components";
-import { Login, SignUp, Explore, LikedVideos, WatchLater, History, Playlists, Profile, SinglePlaylistPage, SingleVideoPage } from "./pages";
+import { Navbar, Footer, CreatePlaylistModal } from "./components";
+import {
+  Login,
+  SignUp,
+  Explore,
+  LikedVideos,
+  WatchLater,
+  History,
+  Playlists,
+  Profile,
+  SinglePlaylistPage,
+  SingleVideoPage,
+} from "./pages";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
-  const { playlistModalState: { isActive } } = usePlaylistModal();
+  const {
+    playlistModalState: { isActive },
+  } = usePlaylistModal();
 
   return (
     <div className="App">
+      {isActive ? <CreatePlaylistModal /> : null}
 
-      {isActive ?
-        <>
-          <CreatePlaylistModal />
-          <Backdrop />
-        </> : null}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        theme="colored"
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
       <Navbar />
       <Routes>

@@ -44,8 +44,14 @@
   position: fixed;
 }
 
+.user-profile {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .page-routes li {
   color: var(--secondary-hover-color);
+  cursor: pointer;
 }
 
 .page-routes li i {
