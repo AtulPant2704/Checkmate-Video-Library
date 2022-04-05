@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useCategory } from "../../context";
-import { getVideos, getCategoriesHandler, filterVideos } from "../../utils";
+import {
+  getVideos,
+  getCategoriesHandler,
+  filterVideos,
+  searchFilter,
+} from "../../utils";
 import { Navbar, Footer, Drawer, VideoCard } from "../../components";
 import "./Explore.css";
 import "./loaders.css";
@@ -9,6 +14,7 @@ const Explore = () => {
   const [videos, setVideos] = useState([]);
   const [videosLoader, setVideosLoader] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const {
     categoryState: { category },
     categoryDispatch,
@@ -21,11 +27,15 @@ const Explore = () => {
 
   useEffect(() => getVideosAndCategories(), []);
 
-  const filteredVideos = filterVideos(category, videos);
+  const categoryFilteredVideos = filterVideos(category, videos);
+  const searchFilteredVideos = searchFilter(
+    categoryFilteredVideos,
+    searchQuery
+  );
 
   return (
     <>
-      <Navbar />
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <main>
         <div className="explore-page">
           <Drawer />
@@ -68,10 +78,12 @@ const Explore = () => {
                   <div></div>
                   <div></div>
                 </div>
-              ) : (
-                filteredVideos.map((video) => (
+              ) : searchFilteredVideos.length > 0 ? (
+                searchFilteredVideos.map((video) => (
                   <VideoCard key={video._id} {...video} videos={videos} />
                 ))
+              ) : (
+                <h2>No such Videos Exist</h2>
               )}
             </div>
           </section>

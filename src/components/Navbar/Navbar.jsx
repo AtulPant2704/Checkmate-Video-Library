@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../context";
+import { useAuth, useCategory } from "../../context";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ searchQuery, setSearchQuery }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const {
     authState: { token, user },
   } = useAuth();
+  const { categoryDispatch } = useCategory();
 
   const openMenuBar = () => {
     setMenuOpen(true);
@@ -40,6 +42,11 @@ const Navbar = () => {
     }
   };
 
+  const searchInput = (event) => {
+    categoryDispatch({ type: "CLEAR_CATEGORY" });
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <header>
       <div className="nav-header">
@@ -56,12 +63,20 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div className="search">
-          <span className="btn-search">
-            <i className="fas fa-search"></i>
-          </span>
-          <input type="text" placeholder="Search" className="input-search" />
-        </div>
+        {location.pathname === "/explore" ? (
+          <div className="search">
+            <span className="btn-search">
+              <i className="fas fa-search"></i>
+            </span>
+            <input
+              type="text"
+              placeholder="Search"
+              className="input-search"
+              value={searchQuery}
+              onChange={searchInput}
+            />
+          </div>
+        ) : null}
         <div className="user-action">
           <button
             className="btn btn-text-primary btn-user"
