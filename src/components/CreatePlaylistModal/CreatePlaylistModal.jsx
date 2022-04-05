@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   useAuth,
   usePlaylists,
@@ -42,9 +43,9 @@ const CreatePlaylistModal = () => {
 
   const checkPlaylistName = (title) => {
     if (playlists.find((item) => item.title === title)) {
-      alert("Playlist with same title exists.");
+      toast.warning("Playlist with same title exists.");
     } else if (title === "") {
-      alert("Playlist name is required.");
+      toast.warning("Playlist name is required.");
     } else {
       return true;
     }

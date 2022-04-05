@@ -44,7 +44,7 @@ const VideoCard = ({
       addToLikesHandler(video, likesDispatch, token);
     } else {
       navigate("/login");
-      toast.info("You're not logged in");
+      toast.warning("You're not logged in");
     }
   };
 
@@ -63,7 +63,7 @@ const VideoCard = ({
       addToWatchLaterHandler(video, watchLaterDispatch, token);
     } else {
       navigate("/login");
-      toast.info("You're not logged in");
+      toast.warning("You're not logged in");
     }
   };
 
@@ -87,7 +87,7 @@ const VideoCard = ({
       });
     } else {
       navigate("/login");
-      toast.info("You're not logged in");
+      toast.warning("You're not logged in");
     }
   };
 

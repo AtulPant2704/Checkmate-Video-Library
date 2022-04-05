@@ -52,7 +52,7 @@ const SingleVideoPage = () => {
       addToLikesHandler(video, likesDispatch, token);
     } else {
       navigate("/login");
-      toast.info("You're not logged in");
+      toast.warning("You're not logged in");
     }
   };
 
@@ -69,7 +69,7 @@ const SingleVideoPage = () => {
       addToWatchLaterHandler(video, watchLaterDispatch, token);
     } else {
       navigate("/login");
-      toast.info("You're not logged in");
+      toast.warning("You're not logged in");
     }
   };
 
@@ -90,7 +90,7 @@ const SingleVideoPage = () => {
       });
     } else {
       navigate("/login");
-      toast.info("You're not logged in");
+      toast.warning("You're not logged in");
     }
   };
 
