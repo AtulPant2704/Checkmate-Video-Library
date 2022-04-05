@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { usePlaylists, useAuth } from "../../context";
 import { getPlaylistsHandler } from "../../utils";
-import { Drawer } from "../../components";
+import { Navbar, Footer, Drawer } from "../../components";
 import { PlaylistTile } from "./components/PlaylistTile";
 import "./Playlists.css";
 
@@ -17,19 +17,23 @@ const Playlists = () => {
   useEffect(() => getPlaylistsHandler(token, playlistsDispatch), []);
 
   return (
-    <main>
-      <div className="playlists-page">
-        <Drawer />
-        <div className="user-playlists">
-          <h2>My Playlists ({playlists.length} Playlist)</h2>
-          <div className="playlist-container">
-            {playlists.map((item) => (
-              <PlaylistTile key={item._id} {...item} />
-            ))}
+    <>
+      <Navbar />
+      <main>
+        <div className="playlists-page">
+          <Drawer />
+          <div className="user-playlists">
+            <h2>My Playlists ({playlists.length} Playlist)</h2>
+            <div className="playlist-container">
+              {playlists.map((item) => (
+                <PlaylistTile key={item._id} {...item} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 };
 
