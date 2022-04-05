@@ -1,5 +1,3 @@
-import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { usePlaylistModal } from "./context";
@@ -16,6 +14,8 @@ import {
   SinglePlaylistPage,
   SingleVideoPage,
 } from "./pages";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
   const {
