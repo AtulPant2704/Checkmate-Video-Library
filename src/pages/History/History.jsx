@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { useHistory, useAuth } from "../../context";
 import { getHistoryHandler, deleteAllHistoryHandler } from "../../utils";
 import { Navbar, Footer, Drawer, HorizontalVideoCard } from "../../components";
@@ -15,7 +16,11 @@ const History = () => {
   } = useHistory();
 
   const callDeleteAllHistoryHandler = () => {
-    deleteAllHistoryHandler(token, historyDispatch);
+    if (history.length > 0) {
+      deleteAllHistoryHandler(token, historyDispatch);
+    } else {
+      toast.info("Nothing to delete");
+    }
   };
 
   useEffect(() => getHistoryHandler(token, historyDispatch), []);
