@@ -2,6 +2,7 @@
   height: 100%;
   width: 100%;
   cursor: pointer;
+  max-width: 20rem;
 }
 
 .video-card .video-header {
@@ -21,7 +22,7 @@
   margin: 0 1rem;
 }
 
-.video-controls .video-time span{
+.video-controls .video-time span {
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
   font-size: 0.8rem;
@@ -39,7 +40,7 @@
   cursor: pointer;
 }
 
-.action-btns button:nth-child(2){
+.action-btns button:nth-child(2) {
   margin: 0 5px;
 }
 
