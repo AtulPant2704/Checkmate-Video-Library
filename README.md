@@ -1,10 +1,10 @@
-# CheckMate Store
+# CheckMate Video Library
 
 CheckMate Video is an online video library for chess lovers to view videos related to chess. It contains videos related to many chess openings, endgames and gambits for learning and also some great games from the past to learn from.
 
-![Forks](https://img.shields.io/github/forks/AtulPant2704/checkmate-store)
-![Stars](https://img.shields.io/github/stars/AtulPant2704/checkmate-store)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4e609252-5780-4434-97a1-dfa72abb19eb/deploy-status)](https://app.netlify.com/sites/checkmate-store/deploys)
+![Forks](https://img.shields.io/github/forks/AtulPant2704/Checkmate-Video-Library)
+![Stars](https://img.shields.io/github/stars/AtulPant2704/Checkmate-Video-Library)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4e609252-5780-4434-97a1-dfa72abb19eb/deploy-status)](https://app.netlify.com/sites/checkmate-stream/deploys)
 
 ---
 
@@ -91,7 +91,7 @@ CheckMate Video is an online video library for chess lovers to view videos relat
 ## Desktop Version
 
 <p align="center">
-  <img width="100%" src="./src/assets/checkmateStore.gif" alt="CheckMate Store"/>
+  <img width="100%" src="./src/assets/checkmateVideo.gif" alt="CheckMate Video"/>
 </p>
 
 ---
