@@ -3,6 +3,7 @@
   width: 100%;
   cursor: pointer;
   max-width: 20rem;
+  margin: 0 auto;
 }
 
 .video-card .video-header {

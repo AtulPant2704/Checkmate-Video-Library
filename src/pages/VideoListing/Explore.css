@@ -24,7 +24,7 @@
   color: white;
 }
 
-.video-categories .active{
+.video-categories .active {
   background-color: var(--secondary-color);
   color: white;
 }
@@ -37,6 +37,11 @@
 
 @media screen and (max-width: 750px) {
   .explore-page .videos-section {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .videos-section .video-categories {
     width: 90%;
+    margin: 1rem auto;
   }
 }
