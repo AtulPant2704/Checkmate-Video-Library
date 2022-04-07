@@ -90,7 +90,9 @@ CheckMate Video is an online video library for chess lovers to view videos relat
 
 ## Desktop Version
 
-![Checkmate Store gif](./assets/checkmateStore.gif)
+<p align="center">
+  <img width="100%" src="./src/assets/checkmateStore.gif" alt="CheckMate Store"/>
+</p>
 
 ---
 
