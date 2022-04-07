@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useLikes, useHistory, usePlaylists } from "../../context";
 import { loginService } from "../../services";
@@ -13,6 +13,7 @@ import "./Authentication.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { authDispatch } = useAuth();
   const { likesDispatch } = useLikes();
   const { playlistsDispatch } = usePlaylists();
@@ -44,7 +45,6 @@ const Login = () => {
       try {
         const response = await loginService(user);
         if (response.status === 200) {
-          navigate(-1);
           localStorage.setItem("token", response.data.encodedToken);
           localStorage.setItem("user", JSON.stringify(response.data.foundUser));
           authDispatch({
@@ -57,6 +57,7 @@ const Login = () => {
           getLikesHandler(response.data.encodedToken, likesDispatch);
           getPlaylistsHandler(response.data.encodedToken, playlistsDispatch);
           getHistoryHandler(response.data.encodedToken, historyDispatch);
+          navigate(location?.state?.from?.pathname || -1, { replace: true });
           toast.success("Successfully Logged In");
         } else {
           throw new Error("Something went wrong! Please try again later");
@@ -68,6 +69,8 @@ const Login = () => {
       toast.warning("Both the fields need to be entered");
     }
   };
+
+  console.log(location);
 
   return (
     <>

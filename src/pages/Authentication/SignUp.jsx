@@ -47,7 +47,7 @@ const SignUp = () => {
         try {
           const response = await signUpService(user);
           if (response.status === 201) {
-            navigate("/explore");
+            navigate(-2);
             localStorage.setItem("token", response.data.encodedToken);
             localStorage.setItem(
               "user",
