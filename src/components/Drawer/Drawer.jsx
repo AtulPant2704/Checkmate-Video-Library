@@ -10,10 +10,8 @@ const Drawer = () => {
   } = useAuth();
 
   const checkToken = (path) => {
-    if (token) {
-      navigate(`/${path}`);
-    } else {
-      navigate("/login");
+    navigate(`/${path}`);
+    if (!token) {
       toast.warning("You're not logged in");
     }
   };

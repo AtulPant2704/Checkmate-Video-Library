@@ -13,17 +13,9 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
   } = useAuth();
   const { categoryDispatch } = useCategory();
 
-  const openMenuBar = () => {
-    setMenuOpen(true);
-  };
-  const closeMenuBar = () => {
-    setMenuOpen(false);
-  };
+  const openMenuBar = () => setMenuOpen(true);
 
-  const navigateLogin = () => {
-    navigate("/login");
-    toast.warning("You're not logged in");
-  };
+  const closeMenuBar = () => setMenuOpen(false);
 
   const checkStatus = (user) => {
     return user ? `Hi, ${user.firstName}` : "Login";
@@ -33,12 +25,11 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
     type === "Login" ? navigate("/login") : navigate("/profile");
   };
 
-  const checkToken = (path) => {
+  const routeHandler = (path) => {
     closeMenuBar();
-    if (token) {
-      navigate(`/${path}`);
-    } else {
-      navigateLogin();
+    navigate(`/${path}`);
+    if (!token) {
+      toast.warning("You're not logged in");
     }
   };
 
@@ -112,23 +103,23 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                 <span>Explore</span>
               </li>
             </Link>
-            <li onClick={() => checkToken("playlists")}>
+            <li onClick={() => routeHandler("playlists")}>
               <i className="fa-solid fa-folder-plus"></i>
               <span>Playlists</span>
             </li>
-            <li onClick={() => checkToken("liked")}>
+            <li onClick={() => routeHandler("liked")}>
               <i className="fa-solid fa-thumbs-up"></i>
               <span>Liked</span>
             </li>
-            <li onClick={() => checkToken("watchlater")}>
+            <li onClick={() => routeHandler("watchlater")}>
               <i className="fa-solid fa-bookmark"></i>
               <span>Watch Later</span>
             </li>
-            <li onClick={() => checkToken("history")}>
+            <li onClick={() => routeHandler("history")}>
               <i className="fa-solid fa-clock"></i>
               <span>History</span>
             </li>
-            <li onClick={() => checkToken("profile")}>
+            <li onClick={() => routeHandler("profile")}>
               <i className="fa-solid fa-right-to-bracket"></i>
               <span>Profile</span>
             </li>

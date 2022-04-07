@@ -8,3 +8,4 @@ export { Playlists } from "./Playlists/Playlists";
 export { Profile } from "./Profile/Profile";
 export { SinglePlaylistPage } from "./SinglePlaylistPage/SinglePlaylistPage";
 export { SingleVideoPage } from "./SingleVideoPage/SingleVideoPage";
+export { Error404 } from "./Error404/Error404";
