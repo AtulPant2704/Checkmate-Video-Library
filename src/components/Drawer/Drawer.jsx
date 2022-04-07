@@ -21,12 +21,6 @@ const Drawer = () => {
       <ul>
         <Link to="/">
           <li>
-            <i className="fa-solid fa-house-chimney"></i>
-            <p>Home</p>
-          </li>
-        </Link>
-        <Link to="/explore">
-          <li>
             <i className="fa-solid fa-compass"></i>
             <p>Explore</p>
           </li>

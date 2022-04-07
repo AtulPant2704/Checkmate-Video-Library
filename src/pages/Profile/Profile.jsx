@@ -12,7 +12,7 @@ const Profile = () => {
   const { historyDispatch } = useHistory();
 
   const logoutHandler = () => {
-    navigate("/explore");
+    navigate("/");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     authDispatch({ type: "LOGOUT" });

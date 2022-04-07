@@ -14,7 +14,7 @@ const Error404 = () => {
         />
         <button
           className="btn btn-solid-primary home-btn"
-          onClick={() => navigate("/explore")}
+          onClick={() => navigate("/")}
         >
           Return to Explore
         </button>

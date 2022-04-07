@@ -49,12 +49,12 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             </Link>
           </div>
           <div className="explore-tab">
-            <Link to="/explore">
+            <Link to="/">
               <h3>Explore</h3>
             </Link>
           </div>
         </div>
-        {location.pathname === "/explore" ? (
+        {location.pathname === "/" ? (
           <div className="search">
             <span className="btn-search">
               <i className="fas fa-search"></i>
@@ -92,12 +92,6 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
         <div className="page-routes">
           <ul>
             <Link to="/" onClick={closeMenuBar}>
-              <li>
-                <i className="fa-solid fa-house-chimney"></i>
-                <span>Home</span>
-              </li>
-            </Link>
-            <Link to="/explore" onClick={closeMenuBar}>
               <li>
                 <i className="fa-solid fa-compass"></i>
                 <span>Explore</span>
