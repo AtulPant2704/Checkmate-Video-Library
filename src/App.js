@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { RequiresAuth } from "./RequiresAuth";
 import { usePlaylistModal } from "./context";
 import { CreatePlaylistModal } from "./components";
 import {
@@ -43,13 +44,55 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/liked" element={<LikedVideos />} />
-        <Route path="/watchlater" element={<WatchLater />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/playlists" element={<Playlists />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/playlists/:playlistID" element={<SinglePlaylistPage />} />
         <Route path="/explore/:videoID" element={<SingleVideoPage />} />
+        <Route
+          path="/liked"
+          element={
+            <RequiresAuth>
+              <LikedVideos />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/watchlater"
+          element={
+            <RequiresAuth>
+              <WatchLater />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <RequiresAuth>
+              <History />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/playlists"
+          element={
+            <RequiresAuth>
+              <Playlists />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/playlists/:playlistID"
+          element={
+            <RequiresAuth>
+              <SinglePlaylistPage />
+            </RequiresAuth>
+          }
+        />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
