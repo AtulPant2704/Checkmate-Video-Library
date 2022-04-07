@@ -13,6 +13,7 @@ import {
   Profile,
   SinglePlaylistPage,
   SingleVideoPage,
+  Error404,
 } from "./pages";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -38,7 +39,6 @@ function App() {
         draggable
         pauseOnHover
       />
-
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
@@ -50,6 +50,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/playlists/:playlistID" element={<SinglePlaylistPage />} />
         <Route path="/explore/:videoID" element={<SingleVideoPage />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
