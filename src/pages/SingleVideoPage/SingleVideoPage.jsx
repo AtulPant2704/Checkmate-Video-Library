@@ -116,7 +116,6 @@ const SingleVideoPage = () => {
                 url={`https://www.youtube.com/embed/${video.youtubeID}`}
                 controls="true"
                 onStart={callAddToHistoryHandler}
-                playing="true"
               />
             </div>
             <h2 className="video-title">{video.title}</h2>
