@@ -9,7 +9,6 @@ const removeFromHistoryHandler = async (_id, token, historyDispatch) => {
         type: "REMOVE_FROM_HISTORY",
         payload: response.data.history,
       });
-      toast.info("Video removed from History");
     } else {
       throw new Error();
     }

@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   useLikes,
   useAuth,
@@ -41,6 +42,7 @@ const HorizontalVideoCard = ({
         break;
       case "/history":
         removeFromHistoryHandler(_id, token, historyDispatch);
+        toast.info("Video removed from History");
         break;
       case "/watchlater":
         removeFromWatchLaterHandler(_id, token, watchLaterDispatch);
