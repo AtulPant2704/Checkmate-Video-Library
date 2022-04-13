@@ -103,6 +103,7 @@ const SingleVideoPage = () => {
 
   useEffect(() => getSingleVideoHandler(videoID, setVideo), []);
 
+
   return (
     <>
       <Navbar />
