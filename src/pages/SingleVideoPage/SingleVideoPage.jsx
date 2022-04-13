@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
 import {
   useLikes,
@@ -11,6 +12,7 @@ import {
 import {
   getSingleVideoHandler,
   addToHistoryHandler,
+  removeFromHistoryHandler,
   addToWatchLaterHandler,
   removeFromWatchLaterHandler,
   addToLikesHandler,
@@ -40,14 +42,17 @@ const SingleVideoPage = () => {
   } = useHistory();
   const { playlistModalDispatch } = usePlaylistModal();
 
-  const callGetSingleVideoHandler = async () => {
+  const callAddToHistoryHandler = () => {
     if (token) {
-      const newVideo = await getSingleVideoHandler(videoID, setVideo);
       if (!history.some((item) => item._id === videoID)) {
-        addToHistoryHandler(newVideo, historyDispatch, token);
+        addToHistoryHandler(video, historyDispatch, token);
+      }
+      else {
+        removeFromHistoryHandler(video._id, token, historyDispatch);
+        addToHistoryHandler(video, historyDispatch, token);
       }
     }
-  };
+  }
 
   const callAddToLikesHandler = (_id) => {
     if (token) {
@@ -96,7 +101,7 @@ const SingleVideoPage = () => {
     }
   };
 
-  useEffect(() => callGetSingleVideoHandler(), []);
+  useEffect(() => getSingleVideoHandler(videoID, setVideo), []);
 
   return (
     <>
@@ -105,15 +110,14 @@ const SingleVideoPage = () => {
         <div className="singleVideo-page">
           <div className="video-section">
             <div className="video-player">
-              <iframe
+              <ReactPlayer
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${video.youtubeID}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+                url={`https://www.youtube.com/embed/${video.youtubeID}`}
+                controls="true"
+                onStart={callAddToHistoryHandler}
+                playing="true"
+              />
             </div>
             <h2 className="video-title">{video.title}</h2>
             <div className="video-info">
@@ -126,7 +130,7 @@ const SingleVideoPage = () => {
                   <i
                     className={`${
                       checkLikesAction(video._id) ? "fa-solid" : "fa-regular"
-                    } fa-thumbs-up`}
+                      } fa-thumbs-up`}
                   ></i>
                   Like
                 </button>
@@ -140,7 +144,7 @@ const SingleVideoPage = () => {
                       checkWatchLaterAction(video._id)
                         ? "fa-solid"
                         : "fa-regular"
-                    } fa-bookmark`}
+                      } fa-bookmark`}
                   ></i>
                   Later
                 </button>
