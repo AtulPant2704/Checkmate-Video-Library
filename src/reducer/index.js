@@ -5,3 +5,5 @@ export { likesReducer } from "./likesReducer";
 export { playlistModalReducer } from "./playlistModalReducer";
 export { playlistsReducer } from "./playlistsReducer";
 export { watchLaterReducer } from "./watchLaterReducer";
+export { notesReducer } from "./notesReducer";
+
