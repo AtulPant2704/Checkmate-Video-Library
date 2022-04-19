@@ -19,6 +19,7 @@ import {
 } from "../../utils";
 import { Navbar, Footer } from "../../components";
 import { VideoSection } from "./components/VideoSection";
+import { NotesSection } from "./components/NotesSection"
 import "./SingleVideoPage.css";
 
 const SingleVideoPage = () => {
@@ -118,7 +119,7 @@ const SingleVideoPage = () => {
             checkWatchLaterAction={checkWatchLaterAction}
             findPlaylistVideo={findPlaylistVideo}
           />
-          <div className="notes-section">Notes will be added here.</div>
+          <NotesSection />
         </div>
       </main>
       <Footer />

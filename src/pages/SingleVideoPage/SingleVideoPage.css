@@ -11,9 +11,10 @@
 }
 
 .singleVideo-page .notes-section{
-    background-color: gray;
     width: 25%;
     height: 500px;
+    padding: 0.5rem 1.5rem;
+    overflow-y: auto;
 }
 
 /* Video Section Styling */
@@ -61,6 +62,67 @@
 }
 
 /* Notes Section Styling */
+.notes-section h2{
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.note-input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border-color: var(--row-color);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.note-input-description {
+    resize: none;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.note-action-btns {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.note-action-btns .btn {
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+.note-action-btns .save-btn {
+    background-color: var(--secondary-color);
+}
+
+.note-action-btns .save-btn:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+.note-action-btns .discard-btn {
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.note-action-btns .discard-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.note{
+    background-color: var(--row-color);
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 1rem;
+}
+
+.note-btns {
+    margin-top: 5px;
+    display: flex;
+    gap: 0.5rem;
+}
 
 
 /* Responsiveness */
@@ -79,7 +141,7 @@
         margin: auto;
     }
     .singleVideo-page .notes-section{
-        height: 10rem;
+        /* height: 10rem; */
         width: 90%;
         margin: 0 2rem;
     }

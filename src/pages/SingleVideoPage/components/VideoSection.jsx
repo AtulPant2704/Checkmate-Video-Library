@@ -2,7 +2,7 @@ import ReactPlayer from "react-player";
 
 const VideoSection = ({ video, callAddToHistoryHandler, checkLikesActionHandler, checkLikesAction, checkWatchLaterActionHandler, checkWatchLaterAction, findPlaylistVideo }) => {
     return (
-        <div className="video-section">
+        <section className="video-section">
             <div className="video-player">
                 <ReactPlayer
                     width="100%"
@@ -60,7 +60,7 @@ const VideoSection = ({ video, callAddToHistoryHandler, checkLikesActionHandler,
                     <small>{video.channelName}</small>
                 </strong>
             </div>
-        </div>
+        </section>
     )
 }
 
