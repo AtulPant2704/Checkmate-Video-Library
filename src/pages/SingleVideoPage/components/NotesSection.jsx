@@ -68,13 +68,15 @@ const NotesSection = ({ videoID }) => {
                 </button>
             </div>
             <div className="notes-container">
-                {videoNotes.map(note => (
-                    <SingleNote
-                        key={note._id}
-                        videoID={videoID}
-                        note={note}
-                    />
-                ))}
+                {videoNotes.length > 0 ?
+                    videoNotes.map(note => (
+                        <SingleNote
+                            key={note._id}
+                            videoID={videoID}
+                            note={note}
+                        />
+                    ))
+                    : <p>No notes Added</p>}
             </div>
         </section>
     )
