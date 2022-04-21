@@ -21,5 +21,7 @@ export { addToWatchLaterService } from "./watchLaterServices/addToWatchLater.ser
 export { removeFromWatchLaterService } from "./watchLaterServices/removeFromWatchLater.service";
 export { addNoteService } from "./notesServices/addNote.service";
 export { removeNoteService } from "./notesServices/removeNote.service";
+export { updateNoteService } from "./notesServices/updateNote.service";
+
 
 

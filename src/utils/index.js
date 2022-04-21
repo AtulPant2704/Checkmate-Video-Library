@@ -21,5 +21,6 @@ export { addToWatchLaterHandler } from "./watchLaterHandlers/addToWatchLaterHand
 export { removeFromWatchLaterHandler } from "./watchLaterHandlers/removeFromWatchLaterHandler";
 export { addNoteHandler } from "./notesHandler/addNoteHandler";
 export { removeNoteHandler } from "./notesHandler/removeNoteHandler";
+export { updateNoteHandler } from "./notesHandler/updateNoteHandler";
 
 
