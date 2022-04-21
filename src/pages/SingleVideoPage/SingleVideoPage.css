@@ -15,6 +15,17 @@
     height: 500px;
     padding: 0.5rem 1.5rem;
     overflow-y: auto;
+    scrollbar-width: thin;
+	scrollbar-color: var(--row-color) transparent;
+}
+
+.singleVideo-page .notes-section::-webkit-scrollbar {
+	width: 6px;
+}
+
+.singleVideo-page .notes-section::-webkit-scrollbar-thumb {
+	border-radius: 50px;
+	background-color: var(--row-color);
 }
 
 /* Video Section Styling */
@@ -71,7 +82,7 @@
     width: 100%;
     padding: 0.5rem;
     border-radius: 5px;
-    border-color: var(--row-color);
+    border: 2px solid var(--row-color);
     margin-bottom: 1rem;
     font-size: 1rem;
 }
@@ -80,6 +91,11 @@
     resize: none;
     height: 100px;
     overflow-y: auto;
+    text-decoration: none;
+}
+
+.note-input-description::placeholder{
+    font-family: "Nunito Sans", sans-serif;
 }
 
 .note-action-btns {

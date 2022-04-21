@@ -119,7 +119,9 @@ const SingleVideoPage = () => {
             checkWatchLaterAction={checkWatchLaterAction}
             findPlaylistVideo={findPlaylistVideo}
           />
-          <NotesSection />
+          <NotesSection
+            videoID={videoID}
+          />
         </div>
       </main>
       <Footer />
