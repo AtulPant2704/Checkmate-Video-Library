@@ -38,6 +38,11 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
+import {
+  addItemToNotesHandler,
+  removeItemFromNotesHandler,
+  updateNoteHandler,
+} from "./backend/controllers/NotesController";
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -53,6 +58,7 @@ export function makeServer({ environment = "development" } = {}) {
       history: Model,
       playlist: Model,
       watchlater: Model,
+      notes: Model
     },
 
     // Runs on the start of the server
@@ -69,6 +75,7 @@ export function makeServer({ environment = "development" } = {}) {
           watchlater: [],
           history: [],
           playlists: [],
+          notes: []
         })
       );
     },
@@ -131,6 +138,14 @@ export function makeServer({ environment = "development" } = {}) {
         removeVideoFromHistoryHandler.bind(this)
       );
       this.delete("/user/history/all", clearHistoryHandler.bind(this));
+
+      // notes routes (private)
+      this.post("/user/notes/:videoId", addItemToNotesHandler.bind(this));
+      this.post(
+        "/user/notes/delete/:videoId",
+        removeItemFromNotesHandler.bind(this)
+      );
+      this.post("/user/notes/update/:videoId", updateNoteHandler.bind(this));
     },
   });
 }
