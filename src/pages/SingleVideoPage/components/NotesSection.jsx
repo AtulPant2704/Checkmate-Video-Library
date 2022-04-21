@@ -71,9 +71,8 @@ const NotesSection = ({ videoID }) => {
                 {videoNotes.map(note => (
                     <SingleNote
                         key={note._id}
-                        title={note.title}
-                        description={note.description}
-                        videoTime="03:51"
+                        videoID={videoID}
+                        note={note}
                     />
                 ))}
             </div>

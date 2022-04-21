@@ -140,6 +140,9 @@
     gap: 0.5rem;
 }
 
+.note-btns i {
+    cursor: pointer;
+}
 
 /* Responsiveness */
 @media screen and (max-width: 1200px){
