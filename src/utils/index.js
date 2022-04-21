@@ -19,3 +19,5 @@ export { deleteAllHistoryHandler } from "./historyHandler/deleteAllHistoryHandle
 export { getWatchLaterHandler } from "./watchLaterHandlers/getWatchLaterHandler";
 export { addToWatchLaterHandler } from "./watchLaterHandlers/addToWatchLaterHandler";
 export { removeFromWatchLaterHandler } from "./watchLaterHandlers/removeFromWatchLaterHandler";
+export { addNoteHandler } from "./notesHandler/addNoteHandler";
+
