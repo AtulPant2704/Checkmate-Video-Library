@@ -31,6 +31,18 @@ import { v4 as uuid } from "uuid";
 //     }
 // };
 
+export const getNotesHandler = function (schema, request) {
+    const user = requiresAuth.call(this, request);
+    if (user) {
+        return new Response(200, {}, { notes: user.notes });
+    }
+    return new Response(
+        404,
+        {},
+        { errors: ["The user you request does not exist. Not Found error."] }
+    );
+};
+
 export const addItemToNotesHandler = function (schema, request) {
     const user = requiresAuth.call(this, request);
     if (user) {

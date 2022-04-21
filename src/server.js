@@ -39,6 +39,7 @@ import {
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
 import {
+  getNotesHandler,
   addItemToNotesHandler,
   removeItemFromNotesHandler,
   updateNoteHandler,
@@ -140,6 +141,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.delete("/user/history/all", clearHistoryHandler.bind(this));
 
       // notes routes (private)
+      this.get("user/notes", getNotesHandler.bind(this));
       this.post("/user/notes/:videoId", addItemToNotesHandler.bind(this));
       this.post(
         "/user/notes/delete/:videoId",
