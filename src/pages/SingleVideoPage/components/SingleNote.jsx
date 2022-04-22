@@ -62,8 +62,8 @@ const SingleNote = ({ videoID, note }) => {
                 </>
                 :
                 <>
-                    <h3>{note.title}</h3>
-                    <p>{note.description}</p>
+                    <h3 className="note-title">{note.title}</h3>
+                    <p className="note-description">{note.description}</p>
                     <small><i className="fa-regular fa-clock"></i> {getTime()}</small>
                     <div className="note-btns">
                         <i

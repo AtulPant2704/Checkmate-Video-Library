@@ -134,6 +134,16 @@
     border-radius: 1rem;
 }
 
+.note-title {
+    word-break: break-word;
+	white-space: normal;
+}
+
+.note-description {
+    word-break: break-word;
+	white-space: normal;
+}
+
 .note-btns {
     margin-top: 5px;
     display: flex;
