@@ -148,6 +148,11 @@
     margin-bottom: 0;
 }
 
+.empty-notes {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
 /* Responsiveness */
 @media screen and (max-width: 1200px){
     .singleVideo-page{

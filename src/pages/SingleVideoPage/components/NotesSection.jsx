@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { getNotesHandler } from "../../../backend/controllers/NotesController";
 import axios from "axios";
 
-const NotesSection = ({ videoID }) => {
+const NotesSection = ({ videoID, videoRef }) => {
     const navigate = useNavigate();
     const [newNote, setNewNote] = useState({ title: "", description: "" });
     const [videoNotes, setVideoNotes] = useState([]);
@@ -21,7 +21,9 @@ const NotesSection = ({ videoID }) => {
 
     const callAddNoteHandler = () => {
         if (token) {
-            addNoteHandler(token, videoID, newNote, notesDispatch);
+            const noteTime = videoRef.current.getCurrentTime();
+            const note = { ...newNote, noteTime }
+            addNoteHandler(token, videoID, note, notesDispatch);
             setNewNote({ title: "", description: "" });
         }
         else {
@@ -76,7 +78,7 @@ const NotesSection = ({ videoID }) => {
                             note={note}
                         />
                     ))
-                    : <p>No notes Added</p>}
+                    : <p className="empty-notes">No notes Added</p>}
             </div>
         </section>
     )

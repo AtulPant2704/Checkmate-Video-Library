@@ -18,6 +18,19 @@ const SingleNote = ({ videoID, note }) => {
         setIsEdit(false);
     }
 
+    const getTime = () => {
+        const videoTimeInSeconds = Math.floor(note.noteTime);
+        let minutes = Math.floor(videoTimeInSeconds / 60);
+        let seconds = Math.floor(videoTimeInSeconds - minutes * 60);
+        if (Math.floor(minutes / 10) === 0) {
+            minutes = "0" + minutes;
+        }
+        if (Math.floor(seconds / 10) === 0) {
+            seconds = "0" + seconds;
+        }
+        return `${minutes} : ${seconds}`;
+    }
+
     return (
         <div className="note">
             {isEdit ?
@@ -51,7 +64,7 @@ const SingleNote = ({ videoID, note }) => {
                 <>
                     <h3>{note.title}</h3>
                     <p>{note.description}</p>
-                    <small><i className="fa-regular fa-clock"></i> {note.videoTime}</small>
+                    <small><i className="fa-regular fa-clock"></i> {getTime()}</small>
                     <div className="note-btns">
                         <i
                             onClick={() => setIsEdit(true)}

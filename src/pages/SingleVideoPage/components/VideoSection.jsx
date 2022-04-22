@@ -1,6 +1,6 @@
 import ReactPlayer from "react-player";
 
-const VideoSection = ({ video, callAddToHistoryHandler, checkLikesActionHandler, checkLikesAction, checkWatchLaterActionHandler, checkWatchLaterAction, findPlaylistVideo }) => {
+const VideoSection = ({ video, callAddToHistoryHandler, checkLikesActionHandler, checkLikesAction, checkWatchLaterActionHandler, checkWatchLaterAction, findPlaylistVideo, videoRef }) => {
     return (
         <section className="video-section">
             <div className="video-player">
@@ -10,6 +10,7 @@ const VideoSection = ({ video, callAddToHistoryHandler, checkLikesActionHandler,
                     url={`https://www.youtube.com/embed/${video.youtubeID}`}
                     controls={true}
                     onStart={callAddToHistoryHandler}
+                    ref={videoRef}
                 />
             </div>
             <h2 className="video-title">{video.title}</h2>

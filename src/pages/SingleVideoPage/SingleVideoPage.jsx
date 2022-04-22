@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -26,6 +26,7 @@ const SingleVideoPage = () => {
   const navigate = useNavigate();
   const [video, setVideo] = useState({});
   const { videoID } = useParams();
+  const videoRef = useRef();
   const {
     authState: { token },
   } = useAuth();
@@ -118,9 +119,11 @@ const SingleVideoPage = () => {
             checkWatchLaterActionHandler={checkWatchLaterActionHandler}
             checkWatchLaterAction={checkWatchLaterAction}
             findPlaylistVideo={findPlaylistVideo}
+            videoRef={videoRef}
           />
           <NotesSection
             videoID={videoID}
+            videoRef={videoRef}
           />
         </div>
       </main>
