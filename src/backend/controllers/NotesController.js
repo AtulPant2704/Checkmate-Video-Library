@@ -2,35 +2,6 @@ import { Response } from "miragejs";
 import { requiresAuth, formatDate } from "../utils/authUtils";
 import { v4 as uuid } from "uuid";
 
-// export const getNotesHandler = function (schema, request) {
-//     const user = requiresAuth.call(this, request);
-//     try {
-//         if (!user) {
-//             return new Response(
-//                 404,
-//                 {},
-//                 {
-//                     errors: ["The email you entered is not Registered. Not Found error"],
-//                 }
-//             );
-//         }
-//         console.log("200");
-//         const { videoId } = request.params;
-//         console.log(videoId);
-//         const video = schema.videos.findBy({ _id: videoId }).attrs;
-//         console.log(video);
-//         return new Response(200, {}, { notes: ["hello"] });
-//     } catch (error) {
-//         return new Response(
-//             500,
-//             {},
-//             {
-//                 error,
-//             }
-//         );
-//     }
-// };
-
 export const getNotesHandler = function (schema, request) {
     const user = requiresAuth.call(this, request);
     if (user) {
