@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useLikes, usePlaylists, useHistory } from "../../context";
+import { useAuth, useLikes, usePlaylists, useHistory, useNotes } from "../../context";
 import { Navbar, Footer } from "../../components";
 import "./Profile.css";
 
@@ -10,6 +10,7 @@ const Profile = () => {
   const { likesDispatch } = useLikes();
   const { playlistsDispatch } = usePlaylists();
   const { historyDispatch } = useHistory();
+  const { notesDispatch } = useNotes();
 
   const logoutHandler = () => {
     navigate("/");
@@ -19,6 +20,7 @@ const Profile = () => {
     likesDispatch({ type: "CLEAR_LIKES" });
     playlistsDispatch({ type: "CLEAR_PLAYLISTS" });
     historyDispatch({ type: "CLEAR_HISTORY" });
+    notesDispatch({ type: "CLEAR_NOTES" });
     toast.success("Successfully Logged Out");
   };
 

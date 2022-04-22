@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
 import {
   useLikes,
@@ -19,12 +18,15 @@ import {
   removeFromLikesHandler,
 } from "../../utils";
 import { Navbar, Footer } from "../../components";
+import { VideoSection } from "./components/VideoSection";
+import { NotesSection } from "./components/NotesSection"
 import "./SingleVideoPage.css";
 
 const SingleVideoPage = () => {
   const navigate = useNavigate();
   const [video, setVideo] = useState({});
   const { videoID } = useParams();
+  const videoRef = useRef();
   const {
     authState: { token },
   } = useAuth();
@@ -109,66 +111,20 @@ const SingleVideoPage = () => {
       <Navbar />
       <main>
         <div className="singleVideo-page">
-          <div className="video-section">
-            <div className="video-player">
-              <ReactPlayer
-                width="100%"
-                height="100%"
-                url={`https://www.youtube.com/embed/${video.youtubeID}`}
-                controls="true"
-                onStart={callAddToHistoryHandler}
-              />
-            </div>
-            <h2 className="video-title">{video.title}</h2>
-            <div className="video-info">
-              <small>{video.viewCount}</small>
-              <div className="action-btns">
-                <button
-                  title="Like"
-                  onClick={() => checkLikesActionHandler(video._id)}
-                >
-                  <i
-                    className={`${
-                      checkLikesAction(video._id) ? "fa-solid" : "fa-regular"
-                      } fa-thumbs-up`}
-                  ></i>
-                  Like
-                </button>
-
-                <button
-                  title="Watch-Later"
-                  onClick={() => checkWatchLaterActionHandler(video._id)}
-                >
-                  <i
-                    className={`${
-                      checkWatchLaterAction(video._id)
-                        ? "fa-solid"
-                        : "fa-regular"
-                      } fa-bookmark`}
-                  ></i>
-                  Later
-                </button>
-
-                <button
-                  title="Playlist"
-                  onClick={() => findPlaylistVideo(video._id)}
-                >
-                  <i className="fa-solid fa-folder-plus"></i>Save
-                </button>
-              </div>
-            </div>
-            <div className="channel-intro">
-              <img
-                src={video.channelImg}
-                alt="channel-image"
-                className="img-responsive img-circle"
-              />
-              <strong>
-                <small>{video.channelName}</small>
-              </strong>
-            </div>
-          </div>
-          <div className="notes-section">Notes will be added here.</div>
+          <VideoSection
+            video={video}
+            callAddToHistoryHandler={callAddToHistoryHandler}
+            checkLikesActionHandler={checkLikesActionHandler}
+            checkLikesAction={checkLikesAction}
+            checkWatchLaterActionHandler={checkWatchLaterActionHandler}
+            checkWatchLaterAction={checkWatchLaterAction}
+            findPlaylistVideo={findPlaylistVideo}
+            videoRef={videoRef}
+          />
+          <NotesSection
+            videoID={videoID}
+            videoRef={videoRef}
+          />
         </div>
       </main>
       <Footer />

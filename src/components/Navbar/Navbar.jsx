@@ -68,11 +68,8 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             />
           </div>
         ) : null}
-        <div className="user-action">
-          <button
-            className="btn btn-text-primary btn-user"
-            onClick={() => userHandler(checkStatus(user))}
-          >
+        <div className="user-action" onClick={() => userHandler(checkStatus(user))}>
+          <button className="btn btn-text-primary btn-user">
             <i className="fa-solid fa-user"></i>
           </button>
           <p>{checkStatus(user)}</p>

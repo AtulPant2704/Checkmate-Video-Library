@@ -8,3 +8,4 @@ export {
 } from "./playlistModalContext";
 export { HistoryProvider, useHistory } from "./historyContext";
 export { WatchLaterProvider, useWatchLater } from "./watchLaterContext";
+export { NotesProvider, useNotes } from "./notesContext";

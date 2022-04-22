@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useLikes, useHistory, usePlaylists } from "../../context";
+import { useAuth, useLikes, useHistory, usePlaylists, useNotes } from "../../context";
 import { loginService } from "../../services";
 import {
   getLikesHandler,
   getPlaylistsHandler,
   getHistoryHandler,
+  getNotesHandler
 } from "../../utils";
 import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
@@ -18,6 +19,7 @@ const Login = () => {
   const { likesDispatch } = useLikes();
   const { playlistsDispatch } = usePlaylists();
   const { historyDispatch } = useHistory();
+  const { notesDispatch } = useNotes();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -54,6 +56,7 @@ const Login = () => {
               token: response.data.encodedToken,
             },
           });
+          getNotesHandler(response.data.encodedToken, notesDispatch);
           getLikesHandler(response.data.encodedToken, likesDispatch);
           getPlaylistsHandler(response.data.encodedToken, playlistsDispatch);
           getHistoryHandler(response.data.encodedToken, historyDispatch);
