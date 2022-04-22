@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useNotes, useAuth } from "../../../context";
 import { addNoteHandler } from "../../../utils";
 import { SingleNote } from "./SingleNote";
-import { toast } from "react-toastify";
-import { getNotesHandler } from "../../../backend/controllers/NotesController";
-import axios from "axios";
 
 const NotesSection = ({ videoID, videoRef }) => {
     const navigate = useNavigate();
@@ -19,12 +17,23 @@ const NotesSection = ({ videoID, videoRef }) => {
         setNewNote(prev => ({ ...prev, [name]: value }));
     }
 
+    const checkNoteInputs = () => {
+        if (!newNote.title && !newNote.description) {
+            toast.warning("Note is empty");
+        }
+        else {
+            return true;
+        }
+    }
+
     const callAddNoteHandler = () => {
         if (token) {
-            const noteTime = videoRef.current.getCurrentTime();
-            const note = { ...newNote, noteTime }
-            addNoteHandler(token, videoID, note, notesDispatch);
-            setNewNote({ title: "", description: "" });
+            if (checkNoteInputs()) {
+                const noteTime = videoRef.current.getCurrentTime();
+                const note = { ...newNote, noteTime }
+                addNoteHandler(token, videoID, note, notesDispatch);
+                setNewNote({ title: "", description: "" });
+            }
         }
         else {
             navigate("/login");
