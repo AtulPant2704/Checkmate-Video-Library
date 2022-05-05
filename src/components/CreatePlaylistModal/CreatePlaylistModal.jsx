@@ -17,6 +17,7 @@ import "./CreatePlaylistModal.css";
 
 const CreatePlaylistModal = () => {
   const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
+  const [watchLaterBtnDisable, setWatchLaterBtnDisable] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState({
     title: "",
     description: "haha",
@@ -78,9 +79,19 @@ const CreatePlaylistModal = () => {
 
   const callVideoWatchLaterAction = () => {
     if (checkVideoInWatchLater()) {
-      removeFromWatchLaterHandler(video._id, token, watchLaterDispatch);
+      removeFromWatchLaterHandler(
+        video._id,
+        token,
+        watchLaterDispatch,
+        setWatchLaterBtnDisable
+      );
     } else {
-      addToWatchLaterHandler(video, watchLaterDispatch, token);
+      addToWatchLaterHandler(
+        video,
+        watchLaterDispatch,
+        token,
+        setWatchLaterBtnDisable
+      );
     }
   };
 
@@ -105,6 +116,7 @@ const CreatePlaylistModal = () => {
             <input
               type="checkbox"
               id="watch-later"
+              disabled={watchLaterBtnDisable}
               checked={checkVideoInWatchLater()}
               onChange={callVideoWatchLaterAction}
             />

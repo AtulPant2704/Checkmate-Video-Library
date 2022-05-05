@@ -19,10 +19,12 @@ import {
 } from "../../utils";
 import { Navbar, Footer } from "../../components";
 import { VideoSection } from "./components/VideoSection";
-import { NotesSection } from "./components/NotesSection"
+import { NotesSection } from "./components/NotesSection";
 import "./SingleVideoPage.css";
 
 const SingleVideoPage = () => {
+  const [likeBtnDisable, setLikeBtnDisable] = useState(false);
+  const [watchLaterBtnDisable, setWatchLaterBtnDisable] = useState(false);
   const navigate = useNavigate();
   const [video, setVideo] = useState({});
   const { videoID } = useParams();
@@ -48,17 +50,16 @@ const SingleVideoPage = () => {
     if (token) {
       if (!history.some((item) => item._id === videoID)) {
         addToHistoryHandler(video, historyDispatch, token);
-      }
-      else {
+      } else {
         removeFromHistoryHandler(video._id, token, historyDispatch);
         addToHistoryHandler(video, historyDispatch, token);
       }
     }
-  }
+  };
 
   const callAddToLikesHandler = (_id) => {
     if (token) {
-      addToLikesHandler(video, likesDispatch, token);
+      addToLikesHandler(video, likesDispatch, token, setLikeBtnDisable);
     } else {
       navigate("/login");
       toast.warning("You're not logged in");
@@ -69,13 +70,18 @@ const SingleVideoPage = () => {
 
   const checkLikesActionHandler = (_id) => {
     return checkLikesAction(_id)
-      ? removeFromLikesHandler(_id, token, likesDispatch)
+      ? removeFromLikesHandler(_id, token, likesDispatch, setLikeBtnDisable)
       : callAddToLikesHandler(_id);
   };
 
   const callAddToWatchLaterHandler = (_id) => {
     if (token) {
-      addToWatchLaterHandler(video, watchLaterDispatch, token);
+      addToWatchLaterHandler(
+        video,
+        watchLaterDispatch,
+        token,
+        setWatchLaterBtnDisable
+      );
     } else {
       navigate("/login");
       toast.warning("You're not logged in");
@@ -87,7 +93,12 @@ const SingleVideoPage = () => {
 
   const checkWatchLaterActionHandler = (_id) => {
     return checkWatchLaterAction(_id)
-      ? removeFromWatchLaterHandler(_id, token, watchLaterDispatch)
+      ? removeFromWatchLaterHandler(
+          _id,
+          token,
+          watchLaterDispatch,
+          setWatchLaterBtnDisable
+        )
       : callAddToWatchLaterHandler(_id);
   };
 
@@ -105,7 +116,6 @@ const SingleVideoPage = () => {
 
   useEffect(() => getSingleVideoHandler(videoID, setVideo), []);
 
-
   return (
     <>
       <Navbar />
@@ -120,11 +130,10 @@ const SingleVideoPage = () => {
             checkWatchLaterAction={checkWatchLaterAction}
             findPlaylistVideo={findPlaylistVideo}
             videoRef={videoRef}
+            likeBtnDisable={likeBtnDisable}
+            watchLaterBtnDisable={watchLaterBtnDisable}
           />
-          <NotesSection
-            videoID={videoID}
-            videoRef={videoRef}
-          />
+          <NotesSection videoID={videoID} videoRef={videoRef} />
         </div>
       </main>
       <Footer />
