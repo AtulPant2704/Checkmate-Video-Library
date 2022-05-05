@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import {
@@ -24,6 +25,7 @@ const VideoCard = ({
   videos,
 }) => {
   const navigate = useNavigate();
+  const [likeBtnDisable, setLikeBtnDisable] = useState(false);
   const {
     authState: { token },
   } = useAuth();
@@ -40,7 +42,7 @@ const VideoCard = ({
   const callAddToLikesHandler = (_id) => {
     if (token) {
       const video = videos.find((item) => item._id === _id);
-      addToLikesHandler(video, likesDispatch, token);
+      addToLikesHandler(video, likesDispatch, token, setLikeBtnDisable);
     } else {
       navigate("/login");
       toast.warning("You're not logged in");
@@ -52,7 +54,7 @@ const VideoCard = ({
   const checkLikesActionHandler = (e, _id) => {
     e.stopPropagation();
     return checkLikesAction(_id)
-      ? removeFromLikesHandler(_id, token, likesDispatch)
+      ? removeFromLikesHandler(_id, token, likesDispatch, setLikeBtnDisable)
       : callAddToLikesHandler(_id);
   };
 
@@ -103,8 +105,12 @@ const VideoCard = ({
             <span>{videoLength}</span>
           </div>
           <div className="action-btns">
-            <button onClick={(e) => checkLikesActionHandler(e, _id)}>
+            <button
+              disabled={likeBtnDisable}
+              onClick={(e) => checkLikesActionHandler(e, _id)}
+            >
               <i
+                onClick={likeBtnDisable ? (e) => e.stopPropagation() : null}
                 className={`${
                   checkLikesAction(_id) ? "fa-solid" : "fa-regular"
                 } fa-thumbs-up`}
