@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -24,8 +25,10 @@ const HorizontalVideoCard = ({
   playlistID,
   setPlaylist,
 }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [likeBtnDisable, setLikeBtnDisable] = useState(false);
+  const [watchlaterBtnDisable, setWatchLaterBtnDisable] = useState(false);
   const {
     authState: { token },
   } = useAuth();
@@ -36,16 +39,21 @@ const HorizontalVideoCard = ({
 
   const checkDeleteAction = (e) => {
     e.stopPropagation();
-    switch (location.pathname) {
+    switch (pathname) {
       case "/liked":
-        removeFromLikesHandler(_id, token, likesDispatch);
+        removeFromLikesHandler(_id, token, likesDispatch, setLikeBtnDisable);
         break;
       case "/history":
         removeFromHistoryHandler(_id, token, historyDispatch);
         toast.info("Video removed from History");
         break;
       case "/watchlater":
-        removeFromWatchLaterHandler(_id, token, watchLaterDispatch);
+        removeFromWatchLaterHandler(
+          _id,
+          token,
+          watchLaterDispatch,
+          setWatchLaterBtnDisable
+        );
         break;
       case `/playlists/${playlistID}`:
         deleteVideoFromPlaylistHandler(

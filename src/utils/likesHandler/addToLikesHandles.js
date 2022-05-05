@@ -12,7 +12,9 @@ const addToLikesHandler = async (
     const response = await addToLikesService(video, token);
     if (response.status === 201) {
       likesDispatch({ type: "ADD_TO_LIKES", payload: response.data.likes });
-      toast.info(`${video.title.slice(0, 20).trim() + "..."} added to likes`);
+      toast.success(
+        `${video.title.slice(0, 20).trim() + "..."} added to likes`
+      );
     } else {
       throw new Error();
     }

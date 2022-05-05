@@ -16,7 +16,7 @@ const createNewPlaylistHandler = async (
         type: "CREATE_NEW_PLAYLISTS",
         payload: response.data.playlists,
       });
-      toast.info("Playlist created");
+      toast.success("Playlist created");
       const playlists = await getPlaylistsHandler(token, playlistsDispatch);
       const newPlaylist = playlists.find(
         (item) => item.title === playlist.title

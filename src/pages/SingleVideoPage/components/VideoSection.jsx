@@ -10,6 +10,7 @@ const VideoSection = ({
   findPlaylistVideo,
   videoRef,
   likeBtnDisable,
+  watchLaterBtnDisable,
 }) => {
   return (
     <section className="video-section">
@@ -42,9 +43,11 @@ const VideoSection = ({
 
           <button
             title="Watch-Later"
+            disabled={watchLaterBtnDisable}
             onClick={() => checkWatchLaterActionHandler(video._id)}
           >
             <i
+              onClick={watchLaterBtnDisable ? (e) => e.stopPropagation() : null}
               className={`${
                 checkWatchLaterAction(video._id) ? "fa-solid" : "fa-regular"
               } fa-bookmark`}
