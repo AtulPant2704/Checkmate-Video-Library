@@ -12,6 +12,7 @@ import {
 import {
   getAllVideosHandler,
   getVideoHandler,
+  getSlicedVideosHandler,
 } from "./backend/controllers/VideoController";
 import { videos } from "./backend/db/videos";
 import { categories } from "./backend/db/categories";
@@ -59,7 +60,7 @@ export function makeServer({ environment = "development" } = {}) {
       history: Model,
       playlist: Model,
       watchlater: Model,
-      notes: Model
+      notes: Model,
     },
 
     // Runs on the start of the server
@@ -76,7 +77,7 @@ export function makeServer({ environment = "development" } = {}) {
           watchlater: [],
           history: [],
           playlists: [],
-          notes: []
+          notes: [],
         })
       );
     },
@@ -89,6 +90,7 @@ export function makeServer({ environment = "development" } = {}) {
 
       // video routes (public)
       this.get("/videos", getAllVideosHandler.bind(this));
+      this.get("/videos/:limit/:pageNumber", getSlicedVideosHandler.bind(this));
       this.get("video/:videoId", getVideoHandler.bind(this));
 
       // TODO: POST VIDEO TO DB
