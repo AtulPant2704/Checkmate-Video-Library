@@ -4,7 +4,6 @@
  * */
 import { chessbase, chessTalk, ericRosen, gothamChess } from "../../assets";
 
-
 export const videos = [
   {
     _id: "Wo5dMEP_BbA",
@@ -12,12 +11,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "xfa3PXq2-sU",
     thumbnail: "http://i3.ytimg.com/vi/xfa3PXq2-sU/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "428k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Gambit",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbP",
@@ -25,12 +22,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "4_brAnORWGw",
     thumbnail: "http://i3.ytimg.com/vi/4_brAnORWGw/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "149k views",
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Opening",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbQ",
@@ -38,12 +33,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "65VWIFlc4C4",
     thumbnail: "http://i3.ytimg.com/vi/65VWIFlc4C4/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "545k views",
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Opening",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbD",
@@ -51,12 +44,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "tqgoxsfHoK0",
     thumbnail: "http://i3.ytimg.com/vi/tqgoxsfHoK0/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "845k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Gambit",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbE",
@@ -64,12 +55,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "iznr0F-zY-4",
     thumbnail: "http://i3.ytimg.com/vi/iznr0F-zY-4/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "18k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Endgame",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbF",
@@ -77,12 +66,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "1ffXBrZnbyw",
     thumbnail: "http://i3.ytimg.com/vi/1ffXBrZnbyw/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "741k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbG",
@@ -90,12 +77,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "-r3aclHSNsw",
     thumbnail: "http://i3.ytimg.com/vi/-r3aclHSNsw/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "329k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbM",
@@ -103,12 +88,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "2q-TjB6YYRI",
     thumbnail: "http://i3.ytimg.com/vi/2q-TjB6YYRI/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "248k views",
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Endgame",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbN",
@@ -120,8 +103,6 @@ export const videos = [
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Endgame",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbJ",
@@ -129,12 +110,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "mZquhq8Nz94",
     thumbnail: "http://i3.ytimg.com/vi/mZquhq8Nz94/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "129k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Endgame",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbK",
@@ -142,12 +121,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "yzasukqyE1I",
     thumbnail: "http://i3.ytimg.com/vi/yzasukqyE1I/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "443k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Endgame",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbL",
@@ -155,12 +132,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "mCsc24k-Q8M",
     thumbnail: "http://i3.ytimg.com/vi/mCsc24k-Q8M/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "549k views",
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Endgame",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbH",
@@ -168,12 +143,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "Gjoxxg0c4MA",
     thumbnail: "http://i3.ytimg.com/vi/Gjoxxg0c4MA/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "143k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbI",
@@ -181,12 +154,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "OTRnnUPcZCE",
     thumbnail: "http://i3.ytimg.com/vi/OTRnnUPcZCE/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "178k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbO",
@@ -194,12 +165,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "rmbU97iftC8",
     thumbnail: "http://i3.ytimg.com/vi/rmbU97iftC8/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "485k views",
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Opening",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbB",
@@ -207,12 +176,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "geJfIY2DhcA",
     thumbnail: "http://i3.ytimg.com/vi/geJfIY2DhcA/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "387k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Gambit",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbC",
@@ -220,12 +187,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "5SYR4oThgh8",
     thumbnail: "http://i3.ytimg.com/vi/5SYR4oThgh8/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "24k views",
     channelName: "Chessbase India",
     channelImg: chessbase,
     category: "Gambit",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbR",
@@ -233,12 +198,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "va0s92praEM",
     thumbnail: "http://i3.ytimg.com/vi/hLFSufXxtuI/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "349k views",
     channelName: "GothamChess",
     channelImg: gothamChess,
     category: "Opening",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbS",
@@ -246,12 +209,10 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "ztOW6VZlrxQ",
     thumbnail: "http://i3.ytimg.com/vi/ztOW6VZlrxQ/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "445k views",
     channelName: "Eric Rosen",
     channelImg: ericRosen,
     category: "Gambit",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbT",
@@ -259,29 +220,27 @@ export const videos = [
     videoLength: "10:29",
     youtubeID: "vBhnjG-sIRU",
     thumbnail: "http://i3.ytimg.com/vi/vBhnjG-sIRU/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "97k views",
     channelName: "Chess Talk",
     channelImg: chessTalk,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbU",
-    title: "MIND-BLOWING GAME || Magnus Carlsen vs Ian Nepomniachtchi || FIDE World Chess Championship 2021",
+    title:
+      "MIND-BLOWING GAME || Magnus Carlsen vs Ian Nepomniachtchi || FIDE World Chess Championship 2021",
     videoLength: "10:29",
     youtubeID: "RtKPc-e9tUw",
     thumbnail: "http://i3.ytimg.com/vi/RtKPc-e9tUw/hqdefault.jpg",
-    viewCount: "245k views",
+    viewCount: "125k views",
     channelName: "Chess Talk",
     channelImg: chessTalk,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
   {
     _id: "Wo5dMEP_BbV",
-    title: "Bobby Fischer’s Best Chess Game Ever! | Fischer vs R. Byrne - US, 1963 | The Brilliancy Prize",
+    title:
+      "Bobby Fischer’s Best Chess Game Ever! | Fischer vs R. Byrne - US, 1963 | The Brilliancy Prize",
     videoLength: "10:29",
     youtubeID: "EMDJebpc4oQ",
     thumbnail: "http://i3.ytimg.com/vi/EMDJebpc4oQ/hqdefault.jpg",
@@ -289,7 +248,5 @@ export const videos = [
     channelName: "Chess Talk",
     channelImg: chessTalk,
     category: "Classic",
-    description:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
   },
 ];
