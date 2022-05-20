@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getSlicedVideosService = (pageNumber) => {
-  const limit = 4;
+  const limit = 8;
   return axios.get(`/api/videos/${limit}/${pageNumber}`);
 };
 
