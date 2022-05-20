@@ -116,8 +116,8 @@ const Explore = () => {
                     <VideoCard key={video._id} {...video} videos={videos} />
                   ))
                 : null}
+              <div ref={loader}></div>
             </div>
-            <div ref={loader}></div>
             {videosLoader ? <Loader /> : null}
           </section>
         </div>
