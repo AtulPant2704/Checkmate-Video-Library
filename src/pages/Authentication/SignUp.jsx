@@ -48,11 +48,6 @@ const SignUp = () => {
           const response = await signUpService(user);
           if (response.status === 201) {
             navigate(-2);
-            localStorage.setItem("token", response.data.encodedToken);
-            localStorage.setItem(
-              "user",
-              JSON.stringify(response.data.createdUser)
-            );
             authDispatch({
               type: "SIGN_UP",
               payload: {
@@ -137,12 +132,6 @@ const SignUp = () => {
                 required
                 onChange={changeHandler}
               />
-            </div>
-            <div className="user-history">
-              <input type="checkbox" id="user-request" />
-              <label htmlFor="user-request">
-                I accept all Terms & Conditions
-              </label>
             </div>
             <button
               type="submit"
