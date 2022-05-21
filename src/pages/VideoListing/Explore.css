@@ -5,6 +5,7 @@
 .explore-page .videos-section {
   width: calc(100% - 10rem);
   margin: 1rem auto;
+  max-width: 1400px;
 }
 
 .videos-section .video-categories {

@@ -5,7 +5,8 @@ const addVideoToPlaylistHandler = async (
   token,
   playlistID,
   video,
-  playlistsDispatch
+  playlistsDispatch,
+  type = "default"
 ) => {
   if (token) {
     try {
@@ -22,9 +23,11 @@ const addVideoToPlaylistHandler = async (
             playlistData: response.data.playlist,
           },
         });
-        toast.success(
-          `${video.title.slice(0, 20).trim() + "..."} added to playlist`
-        );
+        if (type === "default") {
+          toast.success(
+            `${video.title.slice(0, 20).trim() + "..."} added to playlist`
+          );
+        }
       } else {
         throw new Error();
       }
