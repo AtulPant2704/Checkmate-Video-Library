@@ -400,7 +400,7 @@ export const videos = [
     category: "Tutorials",
   },
   {
-    _id: "Wo15cdabEP_BbV",
+    _id: "Wo24cdabEP_BbV",
     title:
       "Chess Masterclass: 5 Step Thinking Strategy | Best Tips, Tactics, Moves & Ideas for Beginners",
     videoLength: "10:35",
