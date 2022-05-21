@@ -97,19 +97,17 @@ const Explore = () => {
                     ))
                 : null}
 
-              {searchQuery !== "" ? (
-                searchFilteredVideos.length > 0 ? (
-                  searchFilteredVideos
-                    .slice(0, 8)
-                    .map((video) => (
-                      <VideoCard key={video._id} {...video} videos={videos} />
-                    ))
-                ) : (
-                  <div>
-                    <h2>No such video exists</h2>
-                  </div>
-                )
-              ) : null}
+              {searchQuery === "" ? null : searchFilteredVideos.length > 0 ? (
+                searchFilteredVideos
+                  .slice(0, 8)
+                  .map((video) => (
+                    <VideoCard key={video._id} {...video} videos={videos} />
+                  ))
+              ) : (
+                <div>
+                  <h2>No such video exists</h2>
+                </div>
+              )}
 
               {category === "" && searchQuery === "" && slicedVideos?.length > 0
                 ? slicedVideos.map((video) => (
