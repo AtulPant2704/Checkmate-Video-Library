@@ -12,6 +12,7 @@ import {
 import {
   getAllVideosHandler,
   getVideoHandler,
+  getSlicedVideosHandler,
 } from "./backend/controllers/VideoController";
 import { videos } from "./backend/db/videos";
 import { categories } from "./backend/db/categories";
@@ -38,6 +39,12 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
+import {
+  getNotesHandler,
+  addItemToNotesHandler,
+  removeItemFromNotesHandler,
+  updateNoteHandler,
+} from "./backend/controllers/NotesController";
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -53,6 +60,7 @@ export function makeServer({ environment = "development" } = {}) {
       history: Model,
       playlist: Model,
       watchlater: Model,
+      notes: Model,
     },
 
     // Runs on the start of the server
@@ -69,6 +77,7 @@ export function makeServer({ environment = "development" } = {}) {
           watchlater: [],
           history: [],
           playlists: [],
+          notes: [],
         })
       );
     },
@@ -81,6 +90,7 @@ export function makeServer({ environment = "development" } = {}) {
 
       // video routes (public)
       this.get("/videos", getAllVideosHandler.bind(this));
+      this.get("/videos/:limit/:pageNumber", getSlicedVideosHandler.bind(this));
       this.get("video/:videoId", getVideoHandler.bind(this));
 
       // TODO: POST VIDEO TO DB
@@ -131,6 +141,15 @@ export function makeServer({ environment = "development" } = {}) {
         removeVideoFromHistoryHandler.bind(this)
       );
       this.delete("/user/history/all", clearHistoryHandler.bind(this));
+
+      // notes routes (private)
+      this.get("user/notes", getNotesHandler.bind(this));
+      this.post("/user/notes/:videoId", addItemToNotesHandler.bind(this));
+      this.post(
+        "/user/notes/delete/:videoId",
+        removeItemFromNotesHandler.bind(this)
+      );
+      this.post("/user/notes/update/:videoId", updateNoteHandler.bind(this));
     },
   });
 }

@@ -24,6 +24,25 @@ export const getAllVideosHandler = function () {
   }
 };
 
+export const getSlicedVideosHandler = function (schema, request) {
+  const { limit, pageNumber } = request.params;
+  try {
+    return new Response(
+      200,
+      {},
+      { videos: this.db.videos.slice(0, pageNumber * limit) }
+    );
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
 /**
  * This handler handles uploads a new video to the db.
  * send POST Request at /api/user/videos/

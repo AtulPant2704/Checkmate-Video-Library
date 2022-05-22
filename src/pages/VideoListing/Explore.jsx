@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useCategory } from "../../context";
 import {
   getVideos,
+  getSlicedVideosHandler,
   getCategoriesHandler,
   filterVideos,
   searchFilter,
 } from "../../utils";
-import { Navbar, Footer, Drawer, VideoCard } from "../../components";
+import { Navbar, Footer, Drawer, VideoCard, Loader } from "../../components";
 import "./Explore.css";
 import "./loaders.css";
 
 const Explore = () => {
   const [videos, setVideos] = useState([]);
+  const [slicedVideos, setSliceVideos] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
   const [videosLoader, setVideosLoader] = useState(false);
+  const loader = useRef(null);
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const {
@@ -21,17 +25,35 @@ const Explore = () => {
   } = useCategory();
 
   const getVideosAndCategories = () => {
-    getVideos(setVideos, setVideosLoader);
+    getVideos(setVideos);
     getCategoriesHandler(setCategories);
   };
 
   useEffect(() => getVideosAndCategories(), []);
 
+  useEffect(() => {
+    const elementRef = loader.current;
+    const handleObserver = (entries) => {
+      const target = entries[0];
+      if (target.isIntersecting) {
+        setPageNumber((prev) => ++prev);
+      }
+    };
+    const observer = new IntersectionObserver(handleObserver);
+    if (elementRef) {
+      observer.observe(elementRef);
+    }
+    return () => {
+      observer.unobserve(elementRef);
+    };
+  }, []);
+
+  useEffect(() => {
+    getSlicedVideosHandler(setSliceVideos, setVideosLoader, pageNumber);
+  }, [pageNumber]);
+
   const categoryFilteredVideos = filterVideos(category, videos);
-  const searchFilteredVideos = searchFilter(
-    categoryFilteredVideos,
-    searchQuery
-  );
+  const searchFilteredVideos = searchFilter(videos, searchQuery);
 
   return (
     <>
@@ -67,25 +89,34 @@ const Explore = () => {
               ))}
             </div>
             <div className="videos-container">
-              {videosLoader ? (
-                <div className="lds-roller">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              ) : searchFilteredVideos.length > 0 ? (
-                searchFilteredVideos.map((video) => (
-                  <VideoCard key={video._id} {...video} videos={videos} />
-                ))
+              {category !== "" && categoryFilteredVideos.length > 0
+                ? categoryFilteredVideos
+                    .slice(0, 8)
+                    .map((video) => (
+                      <VideoCard key={video._id} {...video} videos={videos} />
+                    ))
+                : null}
+
+              {searchQuery === "" ? null : searchFilteredVideos.length > 0 ? (
+                searchFilteredVideos
+                  .slice(0, 8)
+                  .map((video) => (
+                    <VideoCard key={video._id} {...video} videos={videos} />
+                  ))
               ) : (
-                <h2>No such Videos Exist</h2>
+                <div>
+                  <h2>No such video exists</h2>
+                </div>
               )}
+
+              {category === "" && searchQuery === "" && slicedVideos?.length > 0
+                ? slicedVideos.map((video) => (
+                    <VideoCard key={video._id} {...video} videos={videos} />
+                  ))
+                : null}
+              <div ref={loader}></div>
             </div>
+            {videosLoader ? <Loader /> : null}
           </section>
         </div>
       </main>

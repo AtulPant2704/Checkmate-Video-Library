@@ -1,4 +1,5 @@
 export { getVideosService } from "./videosServices/getVideos.service";
+export { getSlicedVideosService } from "./videosServices/getSlicedVideos.service";
 export { getCategoriesService } from "./videosServices/getCategories.service";
 export { getSingleVideoService } from "./videosServices/getSingleVideo.service";
 export { loginService } from "./authServices/login.service";
@@ -19,3 +20,7 @@ export { deleteAllHistoryService } from "./historyServices/deleteAllHistory.serv
 export { getWatchLaterService } from "./watchLaterServices/getWatchLater.service";
 export { addToWatchLaterService } from "./watchLaterServices/addToWatchLater.service";
 export { removeFromWatchLaterService } from "./watchLaterServices/removeFromWatchLater.service";
+export { getNotesService } from "./notesServices/getNotes.service";
+export { addNoteService } from "./notesServices/addNote.service";
+export { removeNoteService } from "./notesServices/removeNote.service";
+export { updateNoteService } from "./notesServices/updateNote.service";

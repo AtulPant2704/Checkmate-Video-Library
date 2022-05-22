@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ReactPlayer from "react-player";
 import { toast } from "react-toastify";
 import {
   useLikes,
@@ -19,12 +18,17 @@ import {
   removeFromLikesHandler,
 } from "../../utils";
 import { Navbar, Footer } from "../../components";
+import { VideoSection } from "./components/VideoSection";
+import { NotesSection } from "./components/NotesSection";
 import "./SingleVideoPage.css";
 
 const SingleVideoPage = () => {
+  const [likeBtnDisable, setLikeBtnDisable] = useState(false);
+  const [watchLaterBtnDisable, setWatchLaterBtnDisable] = useState(false);
   const navigate = useNavigate();
   const [video, setVideo] = useState({});
   const { videoID } = useParams();
+  const videoRef = useRef();
   const {
     authState: { token },
   } = useAuth();
@@ -46,17 +50,16 @@ const SingleVideoPage = () => {
     if (token) {
       if (!history.some((item) => item._id === videoID)) {
         addToHistoryHandler(video, historyDispatch, token);
-      }
-      else {
+      } else {
         removeFromHistoryHandler(video._id, token, historyDispatch);
         addToHistoryHandler(video, historyDispatch, token);
       }
     }
-  }
+  };
 
   const callAddToLikesHandler = (_id) => {
     if (token) {
-      addToLikesHandler(video, likesDispatch, token);
+      addToLikesHandler(video, likesDispatch, token, setLikeBtnDisable);
     } else {
       navigate("/login");
       toast.warning("You're not logged in");
@@ -67,13 +70,18 @@ const SingleVideoPage = () => {
 
   const checkLikesActionHandler = (_id) => {
     return checkLikesAction(_id)
-      ? removeFromLikesHandler(_id, token, likesDispatch)
+      ? removeFromLikesHandler(_id, token, likesDispatch, setLikeBtnDisable)
       : callAddToLikesHandler(_id);
   };
 
   const callAddToWatchLaterHandler = (_id) => {
     if (token) {
-      addToWatchLaterHandler(video, watchLaterDispatch, token);
+      addToWatchLaterHandler(
+        video,
+        watchLaterDispatch,
+        token,
+        setWatchLaterBtnDisable
+      );
     } else {
       navigate("/login");
       toast.warning("You're not logged in");
@@ -85,7 +93,12 @@ const SingleVideoPage = () => {
 
   const checkWatchLaterActionHandler = (_id) => {
     return checkWatchLaterAction(_id)
-      ? removeFromWatchLaterHandler(_id, token, watchLaterDispatch)
+      ? removeFromWatchLaterHandler(
+          _id,
+          token,
+          watchLaterDispatch,
+          setWatchLaterBtnDisable
+        )
       : callAddToWatchLaterHandler(_id);
   };
 
@@ -103,72 +116,24 @@ const SingleVideoPage = () => {
 
   useEffect(() => getSingleVideoHandler(videoID, setVideo), []);
 
-
   return (
     <>
       <Navbar />
       <main>
         <div className="singleVideo-page">
-          <div className="video-section">
-            <div className="video-player">
-              <ReactPlayer
-                width="100%"
-                height="100%"
-                url={`https://www.youtube.com/embed/${video.youtubeID}`}
-                controls="true"
-                onStart={callAddToHistoryHandler}
-              />
-            </div>
-            <h2 className="video-title">{video.title}</h2>
-            <div className="video-info">
-              <small>{video.viewCount}</small>
-              <div className="action-btns">
-                <button
-                  title="Like"
-                  onClick={() => checkLikesActionHandler(video._id)}
-                >
-                  <i
-                    className={`${
-                      checkLikesAction(video._id) ? "fa-solid" : "fa-regular"
-                      } fa-thumbs-up`}
-                  ></i>
-                  Like
-                </button>
-
-                <button
-                  title="Watch-Later"
-                  onClick={() => checkWatchLaterActionHandler(video._id)}
-                >
-                  <i
-                    className={`${
-                      checkWatchLaterAction(video._id)
-                        ? "fa-solid"
-                        : "fa-regular"
-                      } fa-bookmark`}
-                  ></i>
-                  Later
-                </button>
-
-                <button
-                  title="Playlist"
-                  onClick={() => findPlaylistVideo(video._id)}
-                >
-                  <i className="fa-solid fa-folder-plus"></i>Save
-                </button>
-              </div>
-            </div>
-            <div className="channel-intro">
-              <img
-                src={video.channelImg}
-                alt="channel-image"
-                className="img-responsive img-circle"
-              />
-              <strong>
-                <small>{video.channelName}</small>
-              </strong>
-            </div>
-          </div>
-          <div className="notes-section">Notes will be added here.</div>
+          <VideoSection
+            video={video}
+            callAddToHistoryHandler={callAddToHistoryHandler}
+            checkLikesActionHandler={checkLikesActionHandler}
+            checkLikesAction={checkLikesAction}
+            checkWatchLaterActionHandler={checkWatchLaterActionHandler}
+            checkWatchLaterAction={checkWatchLaterAction}
+            findPlaylistVideo={findPlaylistVideo}
+            videoRef={videoRef}
+            likeBtnDisable={likeBtnDisable}
+            watchLaterBtnDisable={watchLaterBtnDisable}
+          />
+          <NotesSection videoID={videoID} videoRef={videoRef} />
         </div>
       </main>
       <Footer />
