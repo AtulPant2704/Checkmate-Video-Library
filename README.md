@@ -35,6 +35,8 @@ CheckMate Video is an online video library for chess lovers to view videos relat
 - Filter Videos by Categories
 - Search Videos by Title
 - View a Single Video
+- Add Notes to a Video
+- Infinite Scroll
 
 ---
 
