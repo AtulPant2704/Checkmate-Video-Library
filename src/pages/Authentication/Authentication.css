@@ -59,3 +59,19 @@
 .user-history label {
   margin-left: 5px;
 }
+
+.form-wrapper label span {
+  color: var(--danger-color);
+}
+
+.form-wrapper .input-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.form-wrapper .password-icon {
+  position: absolute;
+  right: 3%;
+  top: 43%;
+  cursor: pointer;
+}

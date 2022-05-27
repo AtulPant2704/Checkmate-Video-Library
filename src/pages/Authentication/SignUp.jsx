@@ -16,6 +16,8 @@ const SignUp = () => {
     lastName: "",
     confirmPassword: "",
   });
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -76,7 +78,9 @@ const SignUp = () => {
           <h2 className="form-heading">Signup</h2>
           <form action="" method="post">
             <div className="form-username">
-              <label htmlFor="first-name">First Name</label>
+              <label htmlFor="first-name">
+                First Name <span>*</span>
+              </label>
               <input
                 id="first-name"
                 type="text"
@@ -86,7 +90,9 @@ const SignUp = () => {
                 required
                 onChange={changeHandler}
               />
-              <label htmlFor="last-name">Last Name</label>
+              <label htmlFor="last-name">
+                Last Name <span>*</span>
+              </label>
               <input
                 id="last-name"
                 type="text"
@@ -98,7 +104,9 @@ const SignUp = () => {
               />
             </div>
             <div className="form-email">
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="email">
+                Email address <span>*</span>
+              </label>
               <input
                 id="email"
                 type="email"
@@ -109,29 +117,55 @@ const SignUp = () => {
                 onChange={changeHandler}
               />
             </div>
-            <div className="form-password">
-              <label htmlFor="password">Password</label>
+            <div className="form-password input-wrapper">
+              <label htmlFor="password">
+                Password <span>*</span>
+              </label>
               <input
                 id="password"
-                type="password"
+                type={passwordType}
                 placeholder="********"
                 name="password"
                 value={user.password}
                 required
                 onChange={changeHandler}
               />
+              {passwordType === "password" ? (
+                <i
+                  className="fa-solid fa-eye password-icon"
+                  onClick={() => setPasswordType("text")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-solid fa-eye-slash password-icon"
+                  onClick={() => setPasswordType("password")}
+                ></i>
+              )}
             </div>
-            <div className="form-confirm-password">
-              <label htmlFor="confirm-password">Confirm Password</label>
+            <div className="form-confirm-password input-wrapper">
+              <label htmlFor="confirm-password">
+                Confirm Password <span>*</span>
+              </label>
               <input
                 id="confirm-password"
-                type="password"
+                type={confirmPasswordType}
                 placeholder="********"
                 name="confirmPassword"
                 value={user.confirmPassword}
                 required
                 onChange={changeHandler}
               />
+              {confirmPasswordType === "password" ? (
+                <i
+                  className="fa-solid fa-eye password-icon"
+                  onClick={() => setConfirmPasswordType("text")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-solid fa-eye-slash password-icon"
+                  onClick={() => setConfirmPasswordType("password")}
+                ></i>
+              )}
             </div>
             <button
               type="submit"
