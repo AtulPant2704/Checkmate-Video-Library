@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useLikes, useHistory, usePlaylists, useNotes } from "../../context";
+import {
+  useAuth,
+  useLikes,
+  useHistory,
+  usePlaylists,
+  useNotes,
+} from "../../context";
 import { loginService } from "../../services";
 import {
   getLikesHandler,
   getPlaylistsHandler,
   getHistoryHandler,
-  getNotesHandler
+  getNotesHandler,
 } from "../../utils";
 import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
@@ -79,7 +85,7 @@ const Login = () => {
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Login</h2>
-          <form action="" method="post">
+          <form className="login">
             <div className="form-email">
               <label htmlFor="email">Email address</label>
               <input
@@ -107,9 +113,6 @@ const Login = () => {
             <div className="user-history">
               <input type="checkbox" id="user-save" />
               <label htmlFor="user-save">Remember me</label>
-              <Link to="./Put route to forgot password">
-                Forgot your Password?
-              </Link>
             </div>
             <button
               className="btn btn-text-primary text-underline btn-guest"
