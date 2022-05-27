@@ -24,3 +24,6 @@ export { getNotesHandler } from "./notesHandler/getNotesHandler";
 export { addNoteHandler } from "./notesHandler/addNoteHandler";
 export { removeNoteHandler } from "./notesHandler/removeNoteHandler";
 export { updateNoteHandler } from "./notesHandler/updateNoteHandler";
+export { confirmPassword } from "./formValidation/confirmPassword";
+export { emailValidation } from "./formValidation/emailValidation";
+export { passwordValidation } from "./formValidation/passwordValidation";

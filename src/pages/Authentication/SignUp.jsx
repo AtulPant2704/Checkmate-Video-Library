@@ -2,6 +2,11 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context";
+import {
+  confirmPassword,
+  emailValidation,
+  passwordValidation,
+} from "../../utils";
 import { signUpService } from "../../services";
 import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
@@ -24,49 +29,31 @@ const SignUp = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const checkPasswordHandler = () => {
-    if (user.password !== user.confirmPassword) {
-      toast.error("Your confirm password does not matches the real password");
-    } else {
-      return true;
-    }
-  };
-
-  const checkInputFields = () => {
-    return (
-      user.email !== "" &&
-      user.password !== "" &&
-      user.firstName !== "" &&
-      user.lastName !== "" &&
-      user.confirmPassword !== ""
-    );
-  };
-
   const signUpHandler = async (event) => {
     event.preventDefault();
-    if (checkInputFields()) {
-      if (checkPasswordHandler()) {
-        try {
-          const response = await signUpService(user);
-          if (response.status === 201) {
-            navigate(-2);
-            authDispatch({
-              type: "SIGN_UP",
-              payload: {
-                user: response.data.createdUser,
-                token: response.data.encodedToken,
-              },
-            });
-            toast.success("Successfuly Signed In");
-          } else {
-            throw new Error("Something went wrong! Please try again later");
-          }
-        } catch (error) {
-          toast.error(error.response.data.errors[0]);
+    if (
+      emailValidation(user.email) &&
+      passwordValidation(user.password) &&
+      confirmPassword(user.password, user.confirmPassword)
+    ) {
+      try {
+        const response = await signUpService(user);
+        if (response.status === 201) {
+          navigate("/");
+          authDispatch({
+            type: "SIGN_UP",
+            payload: {
+              user: response.data.createdUser,
+              token: response.data.encodedToken,
+            },
+          });
+          toast.success("Successfuly Signed In");
+        } else {
+          throw new Error("Something went wrong! Please try again later");
         }
+      } catch (error) {
+        toast.error(error.response.data.errors[0]);
       }
-    } else {
-      toast.warning("All the fields need to be entered");
     }
   };
 
@@ -76,7 +63,7 @@ const SignUp = () => {
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Signup</h2>
-          <form action="" method="post">
+          <form onSubmit={signUpHandler}>
             <div className="form-username">
               <label htmlFor="first-name">
                 First Name <span>*</span>
@@ -84,7 +71,8 @@ const SignUp = () => {
               <input
                 id="first-name"
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Enter your First name"
+                minLength="3"
                 name="firstName"
                 value={user.firstName}
                 required
@@ -96,7 +84,8 @@ const SignUp = () => {
               <input
                 id="last-name"
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Enter your Last name"
+                minLength="3"
                 name="lastName"
                 value={user.lastName}
                 required
@@ -125,6 +114,9 @@ const SignUp = () => {
                 id="password"
                 type={passwordType}
                 placeholder="********"
+                autoComplete="off"
+                minLength="8"
+                maxLength="16"
                 name="password"
                 value={user.password}
                 required
@@ -150,6 +142,7 @@ const SignUp = () => {
                 id="confirm-password"
                 type={confirmPasswordType}
                 placeholder="********"
+                autoComplete="off"
                 name="confirmPassword"
                 value={user.confirmPassword}
                 required
@@ -167,11 +160,7 @@ const SignUp = () => {
                 ></i>
               )}
             </div>
-            <button
-              type="submit"
-              className="btn-submit"
-              onClick={signUpHandler}
-            >
+            <button type="submit" className="btn-submit">
               Create New Account
             </button>
           </form>

@@ -116,6 +116,7 @@ const Login = () => {
                 id="password"
                 type={passwordType}
                 placeholder="********"
+                autoComplete="off"
                 name="password"
                 value={user.password}
                 required
