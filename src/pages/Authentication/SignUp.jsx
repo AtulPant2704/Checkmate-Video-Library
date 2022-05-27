@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context";
@@ -13,7 +13,10 @@ import "./Authentication.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { authDispatch } = useAuth();
+  const {
+    authState: { token },
+    authDispatch,
+  } = useAuth();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -56,6 +59,12 @@ const SignUp = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>

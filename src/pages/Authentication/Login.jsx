@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -21,7 +21,10 @@ import "./Authentication.css";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { authDispatch } = useAuth();
+  const {
+    authState: { token },
+    authDispatch,
+  } = useAuth();
   const { likesDispatch } = useLikes();
   const { playlistsDispatch } = usePlaylists();
   const { historyDispatch } = useHistory();
@@ -34,8 +37,8 @@ const Login = () => {
   const [passwordType, setPasswordType] = useState("password");
 
   const guestUser = {
-    email: "test@gmail.com",
-    password: "test123",
+    email: "guest@gmail.com",
+    password: "Guest@1234",
   };
 
   const changeHandler = (event) => {
@@ -86,6 +89,12 @@ const Login = () => {
       toast.warning("Both the fields need to be entered");
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>

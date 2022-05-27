@@ -19,9 +19,9 @@ export const users = [
   {
     _id: uuid(),
     firstName: "Guest",
-    lastName: "Profile",
-    email: "test@gmail.com",
-    password: "test123",
+    lastName: "User",
+    email: "guest@gmail.com",
+    password: "Guest@1234",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
