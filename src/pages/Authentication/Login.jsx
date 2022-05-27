@@ -30,6 +30,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [rememberMe, setRememberMe] = useState(false);
 
   const guestUser = {
     email: "test@gmail.com",
@@ -44,6 +45,7 @@ const Login = () => {
   const guestUserHandler = (event) => {
     event.preventDefault();
     setUser(guestUser);
+    setRememberMe(true);
   };
 
   const loginHandler = async (event) => {
@@ -53,8 +55,13 @@ const Login = () => {
       try {
         const response = await loginService(user);
         if (response.status === 200) {
-          localStorage.setItem("token", response.data.encodedToken);
-          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          if (rememberMe) {
+            localStorage.setItem("token", response.data.encodedToken);
+            localStorage.setItem(
+              "user",
+              JSON.stringify(response.data.foundUser)
+            );
+          }
           authDispatch({
             type: "LOGIN",
             payload: {
@@ -111,7 +118,14 @@ const Login = () => {
               />
             </div>
             <div className="user-history">
-              <input type="checkbox" id="user-save" />
+              <input
+                type="checkbox"
+                id="user-save"
+                checked={rememberMe}
+                onChange={(e) =>
+                  e.target.checked ? setRememberMe(true) : setRememberMe(false)
+                }
+              />
               <label htmlFor="user-save">Remember me</label>
             </div>
             <button
