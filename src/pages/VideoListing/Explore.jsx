@@ -7,7 +7,7 @@ import {
   filterVideos,
   searchFilter,
 } from "../../utils";
-import { Navbar, Footer, Drawer, VideoCard, Loader } from "../../components";
+import { Drawer, VideoCard, Loader } from "../../components";
 import "./Explore.css";
 import "./loaders.css";
 
@@ -18,7 +18,6 @@ const Explore = () => {
   const [videosLoader, setVideosLoader] = useState(false);
   const loader = useRef(null);
   const [categories, setCategories] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const {
     categoryState: { category },
     categoryDispatch,
@@ -53,11 +52,9 @@ const Explore = () => {
   }, [pageNumber]);
 
   const categoryFilteredVideos = filterVideos(category, videos);
-  const searchFilteredVideos = searchFilter(videos, searchQuery);
 
   return (
     <>
-      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <main>
         <div className="explore-page">
           <Drawer />
@@ -88,6 +85,7 @@ const Explore = () => {
                 </button>
               ))}
             </div>
+
             <div className="videos-container">
               {category !== "" && categoryFilteredVideos.length > 0
                 ? categoryFilteredVideos
@@ -97,19 +95,7 @@ const Explore = () => {
                     ))
                 : null}
 
-              {searchQuery === "" ? null : searchFilteredVideos.length > 0 ? (
-                searchFilteredVideos
-                  .slice(0, 8)
-                  .map((video) => (
-                    <VideoCard key={video._id} {...video} videos={videos} />
-                  ))
-              ) : (
-                <div>
-                  <h2>No such video exists</h2>
-                </div>
-              )}
-
-              {category === "" && searchQuery === "" && slicedVideos?.length > 0
+              {category === "" && slicedVideos?.length > 0
                 ? slicedVideos.map((video) => (
                     <VideoCard key={video._id} {...video} videos={videos} />
                   ))
@@ -120,7 +106,6 @@ const Explore = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

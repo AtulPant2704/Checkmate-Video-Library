@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth, usePlaylists } from "../../context";
 import { getSinglePlaylistHandler, deletePlaylistHandler } from "../../utils";
-import { Navbar, Footer, HorizontalVideoCard, Drawer } from "../../components";
+import { HorizontalVideoCard, Drawer } from "../../components";
 import { playlistImage } from "../../assets";
 import "./SinglePlaylistPage.css";
 
@@ -24,7 +24,6 @@ const SinglePlaylistPage = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <div className="singlePlaylist-page">
           <Drawer />
@@ -59,7 +58,6 @@ const SinglePlaylistPage = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

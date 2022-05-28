@@ -8,7 +8,6 @@ import {
   passwordValidation,
 } from "../../utils";
 import { signUpService } from "../../services";
-import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
 
 const SignUp = () => {
@@ -68,7 +67,6 @@ const SignUp = () => {
 
   return (
     <>
-      <Navbar />
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Signup</h2>
@@ -178,7 +176,6 @@ const SignUp = () => {
           </Link>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

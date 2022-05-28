@@ -15,7 +15,6 @@ import {
   getHistoryHandler,
   getNotesHandler,
 } from "../../utils";
-import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
 
 const Login = () => {
@@ -98,7 +97,6 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Login</h2>
@@ -169,7 +167,6 @@ const Login = () => {
           </Link>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

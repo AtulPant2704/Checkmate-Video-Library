@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { RequiresAuth } from "./RequiresAuth";
 import { usePlaylistModal } from "./context";
-import { CreatePlaylistModal } from "./components";
+import { Navbar, Footer, CreatePlaylistModal } from "./components";
 import {
   Login,
   SignUp,
@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
+  const { pathname } = useLocation();
   const {
     playlistModalState: { isActive },
   } = usePlaylistModal();
@@ -40,6 +41,17 @@ function App() {
         draggable
         pauseOnHover
       />
+      {pathname === "/" ||
+      pathname.includes("/explore") ||
+      pathname === "/login" ||
+      pathname === "/signup" ||
+      pathname === "/liked" ||
+      pathname === "/watchlater" ||
+      pathname === "/history" ||
+      pathname === "/profile" ||
+      pathname.includes("/playlists") ? (
+        <Navbar />
+      ) : null}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
@@ -95,6 +107,17 @@ function App() {
         />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      {pathname === "/" ||
+      pathname.includes("/explore") ||
+      pathname === "/login" ||
+      pathname === "/signup" ||
+      pathname === "/liked" ||
+      pathname === "/watchlater" ||
+      pathname === "/history" ||
+      pathname === "/profile" ||
+      pathname.includes("/playlists") ? (
+        <Footer />
+      ) : null}
     </div>
   );
 }

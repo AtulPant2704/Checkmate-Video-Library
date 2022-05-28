@@ -17,7 +17,6 @@ import {
   addToLikesHandler,
   removeFromLikesHandler,
 } from "../../utils";
-import { Navbar, Footer } from "../../components";
 import { VideoSection } from "./components/VideoSection";
 import { NotesSection } from "./components/NotesSection";
 import "./SingleVideoPage.css";
@@ -118,7 +117,6 @@ const SingleVideoPage = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <div className="singleVideo-page">
           <VideoSection
@@ -136,7 +134,6 @@ const SingleVideoPage = () => {
           <NotesSection videoID={videoID} videoRef={videoRef} />
         </div>
       </main>
-      <Footer />
     </>
   );
 };

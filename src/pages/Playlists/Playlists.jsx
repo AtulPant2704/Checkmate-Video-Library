@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { usePlaylists, useAuth } from "../../context";
 import { getPlaylistsHandler } from "../../utils";
-import { Navbar, Footer, Drawer } from "../../components";
+import { Drawer } from "../../components";
 import { PlaylistTile } from "./components/PlaylistTile";
 import "./Playlists.css";
 
@@ -18,7 +18,6 @@ const Playlists = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <div className="playlists-page">
           <Drawer />
@@ -32,7 +31,6 @@ const Playlists = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

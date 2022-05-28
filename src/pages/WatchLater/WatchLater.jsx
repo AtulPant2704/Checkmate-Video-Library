@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useWatchLater, useAuth } from "../../context";
 import { getWatchLaterHandler } from "../../utils";
-import { Navbar, Footer, Drawer, HorizontalVideoCard } from "../../components";
+import { Drawer, HorizontalVideoCard } from "../../components";
 import { playlistImage } from "../../assets";
 import "./WatchLater.css";
 
@@ -18,7 +18,6 @@ const WatchLater = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <div className="watchLaterVideo-page">
           <Drawer />
@@ -46,7 +45,6 @@ const WatchLater = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
