@@ -9,8 +9,8 @@ const Search = () => {
   const [searchedVideos, setSearchVideos] = useState([]);
   const [displaySearch, setDisplaySearch] = useState(false);
   const [checkDebouce, setCheckDebounce] = useState(false);
-  const [checkClick, setCheckClick] = useState(false);
   const timerRef = useRef();
+  const searchBarRef = useRef();
 
   useEffect(() => {
     clearTimeout(timerRef.current);
@@ -23,23 +23,33 @@ const Search = () => {
       );
       setSearchVideos(foundVideos);
       setCheckDebounce(true);
+      setDisplaySearch(true);
     }, 300);
   }, [searchQuery]);
 
   const navigateHandler = (videoId) => {
-    setCheckClick(true);
     navigate(`explore/${videoId}`);
     setSearchQuery("");
   };
 
+  const closeSearchBar = (e) => {
+    if (!searchBarRef.current.contains(e.target)) {
+      setDisplaySearch(false);
+    }
+  };
+
   useEffect(() => {
-    setCheckClick(false);
-  }, [navigate]);
+    document.addEventListener("click", closeSearchBar);
+
+    return () => {
+      document.removeEventListener("click", closeSearchBar);
+    };
+  }, []);
 
   useEffect(() => getVideos(setVideos), []);
 
   return (
-    <div className="search">
+    <div className="search" ref={searchBarRef}>
       <div className="input-search">
         <span className="btn-search">
           <i className="fas fa-search"></i>
@@ -49,7 +59,6 @@ const Search = () => {
           placeholder="Search"
           className="input-search"
           onFocus={() => setDisplaySearch(true)}
-          onBlur={() => (checkClick ? setDisplaySearch(false) : null)}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
