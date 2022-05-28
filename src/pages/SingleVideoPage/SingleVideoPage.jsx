@@ -113,7 +113,9 @@ const SingleVideoPage = () => {
     }
   };
 
-  useEffect(() => getSingleVideoHandler(videoID, setVideo), [videoID]);
+  useEffect(() => {
+    getSingleVideoHandler(videoID, setVideo, navigate);
+  }, [videoID]);
 
   return (
     <>
