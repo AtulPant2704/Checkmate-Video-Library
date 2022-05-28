@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useCategory } from "../../context";
 import "./Navbar.css";
+import { Search } from "../Search/Search";
 
-const Navbar = ({ searchQuery, setSearchQuery }) => {
+const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const {
     authState: { token, user },
   } = useAuth();
-  const { categoryDispatch } = useCategory();
 
   const openMenuBar = () => setMenuOpen(true);
 
@@ -33,11 +32,6 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
     }
   };
 
-  const searchInput = (event) => {
-    categoryDispatch({ type: "CLEAR_CATEGORY" });
-    setSearchQuery(event.target.value);
-  };
-
   return (
     <header>
       <div className="nav-header">
@@ -54,21 +48,13 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             </Link>
           </div>
         </div>
-        {location.pathname === "/" ? (
-          <div className="search">
-            <span className="btn-search">
-              <i className="fas fa-search"></i>
-            </span>
-            <input
-              type="text"
-              placeholder="Search"
-              className="input-search"
-              value={searchQuery}
-              onChange={searchInput}
-            />
-          </div>
-        ) : null}
-        <div className="user-action" onClick={() => userHandler(checkStatus(user))}>
+
+        <Search />
+
+        <div
+          className="user-action"
+          onClick={() => userHandler(checkStatus(user))}
+        >
           <button className="btn btn-text-primary btn-user">
             <i className="fa-solid fa-user"></i>
           </button>

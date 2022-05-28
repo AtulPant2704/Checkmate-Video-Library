@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useLikes, useHistory, usePlaylists, useNotes } from "../../context";
+import {
+  useAuth,
+  useLikes,
+  useHistory,
+  usePlaylists,
+  useNotes,
+} from "../../context";
 import { loginService } from "../../services";
 import {
   getLikesHandler,
   getPlaylistsHandler,
   getHistoryHandler,
-  getNotesHandler
+  getNotesHandler,
 } from "../../utils";
-import { Navbar, Footer } from "../../components";
 import "./Authentication.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { authDispatch } = useAuth();
+  const {
+    authState: { token },
+    authDispatch,
+  } = useAuth();
   const { likesDispatch } = useLikes();
   const { playlistsDispatch } = usePlaylists();
   const { historyDispatch } = useHistory();
@@ -24,10 +32,12 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [rememberMe, setRememberMe] = useState(false);
+  const [passwordType, setPasswordType] = useState("password");
 
   const guestUser = {
-    email: "test@gmail.com",
-    password: "test123",
+    email: "guest@gmail.com",
+    password: "Guest@1234",
   };
 
   const changeHandler = (event) => {
@@ -38,6 +48,7 @@ const Login = () => {
   const guestUserHandler = (event) => {
     event.preventDefault();
     setUser(guestUser);
+    setRememberMe(true);
   };
 
   const loginHandler = async (event) => {
@@ -47,8 +58,13 @@ const Login = () => {
       try {
         const response = await loginService(user);
         if (response.status === 200) {
-          localStorage.setItem("token", response.data.encodedToken);
-          localStorage.setItem("user", JSON.stringify(response.data.foundUser));
+          if (rememberMe) {
+            localStorage.setItem("token", response.data.encodedToken);
+            localStorage.setItem(
+              "user",
+              JSON.stringify(response.data.foundUser)
+            );
+          }
           authDispatch({
             type: "LOGIN",
             payload: {
@@ -73,15 +89,22 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <>
-      <Navbar />
       <section className="form-section">
         <div className="form-wrapper">
           <h2 className="form-heading">Login</h2>
-          <form action="" method="post">
+          <form className="login">
             <div className="form-email">
-              <label htmlFor="email">Email address</label>
+              <label htmlFor="email">
+                Email address <span>*</span>
+              </label>
               <input
                 id="email"
                 type="email"
@@ -92,24 +115,42 @@ const Login = () => {
                 onChange={changeHandler}
               />
             </div>
-            <div className="form-password">
-              <label htmlFor="password">Password</label>
+            <div className="form-password input-wrapper">
+              <label htmlFor="password">
+                Password <span>*</span>
+              </label>
               <input
                 id="password"
-                type="password"
+                type={passwordType}
                 placeholder="********"
+                autoComplete="off"
                 name="password"
                 value={user.password}
                 required
                 onChange={changeHandler}
               />
+              {passwordType === "password" ? (
+                <i
+                  className="fa-solid fa-eye password-icon"
+                  onClick={() => setPasswordType("text")}
+                ></i>
+              ) : (
+                <i
+                  className="fa-solid fa-eye-slash password-icon"
+                  onClick={() => setPasswordType("password")}
+                ></i>
+              )}
             </div>
             <div className="user-history">
-              <input type="checkbox" id="user-save" />
+              <input
+                type="checkbox"
+                id="user-save"
+                checked={rememberMe}
+                onChange={(e) =>
+                  e.target.checked ? setRememberMe(true) : setRememberMe(false)
+                }
+              />
               <label htmlFor="user-save">Remember me</label>
-              <Link to="./Put route to forgot password">
-                Forgot your Password?
-              </Link>
             </div>
             <button
               className="btn btn-text-primary text-underline btn-guest"
@@ -126,7 +167,6 @@ const Login = () => {
           </Link>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

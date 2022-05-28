@@ -1,12 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth, useLikes, usePlaylists, useHistory, useNotes } from "../../context";
-import { Navbar, Footer } from "../../components";
+import {
+  useAuth,
+  useLikes,
+  usePlaylists,
+  useHistory,
+  useNotes,
+} from "../../context";
 import "./Profile.css";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { authState: { user }, authDispatch } = useAuth();
+  const {
+    authState: { user },
+    authDispatch,
+  } = useAuth();
   const { likesDispatch } = useLikes();
   const { playlistsDispatch } = usePlaylists();
   const { historyDispatch } = useHistory();
@@ -26,15 +34,11 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <h1 className="profile-page-title align-center">Account</h1>
         <section className="profile-page">
           <div className="profile-tabs">
-            <button
-              className="tab profile-tab">
-              Profile
-            </button>
+            <button className="tab profile-tab">Profile</button>
           </div>
           <div className="user-page">
             <div className="user-details">
@@ -42,7 +46,9 @@ const Profile = () => {
               <div className="detail">
                 <div className="user-info">
                   <h4>Name</h4>
-                  <p>{user.firstName} {user.lastName}</p>
+                  <p>
+                    {user.firstName} {user.lastName}
+                  </p>
                 </div>
                 <div className="user-info">
                   <h4>Email</h4>
@@ -55,13 +61,13 @@ const Profile = () => {
               <button
                 className="btn btn-solid-primary btn-logout"
                 onClick={logoutHandler}
-              >Logout
-                </button>
+              >
+                Logout
+              </button>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 };

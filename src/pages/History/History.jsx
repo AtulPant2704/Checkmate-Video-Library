@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useHistory, useAuth } from "../../context";
 import { getHistoryHandler, deleteAllHistoryHandler } from "../../utils";
-import { Navbar, Footer, Drawer, HorizontalVideoCard } from "../../components";
+import { Drawer, HorizontalVideoCard } from "../../components";
 import { playlistImage } from "../../assets";
 import "./History.css";
 
@@ -27,7 +27,6 @@ const History = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <div className="history-page">
           <Drawer />
@@ -61,7 +60,6 @@ const History = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

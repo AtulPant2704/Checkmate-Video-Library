@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLikes, useAuth } from "../../context";
 import { getLikesHandler } from "../../utils";
-import { Navbar, Footer, Drawer, HorizontalVideoCard } from "../../components";
+import { Drawer, HorizontalVideoCard } from "../../components";
 import { playlistImage } from "../../assets";
 import "./LikedVideos.css";
 
@@ -18,7 +18,6 @@ const LikedVideos = () => {
 
   return (
     <>
-      <Navbar />
       <main>
         <div className="likedVideo-page">
           <Drawer />
@@ -46,7 +45,6 @@ const LikedVideos = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };

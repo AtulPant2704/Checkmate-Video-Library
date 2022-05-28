@@ -12,6 +12,10 @@
   border-radius: 5px;
 }
 
+.form-wrapper .login {
+  width: 70%;
+}
+
 .form-username label {
   display: block;
   font-size: 1rem;
@@ -50,4 +54,24 @@
 
 .form-wrapper .btn-submit {
   margin: 0.5rem 0;
+}
+
+.user-history label {
+  margin-left: 5px;
+}
+
+.form-wrapper label span {
+  color: var(--danger-color);
+}
+
+.form-wrapper .input-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.form-wrapper .password-icon {
+  position: absolute;
+  right: 3%;
+  top: 43%;
+  cursor: pointer;
 }
