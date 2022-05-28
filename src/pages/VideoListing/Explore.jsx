@@ -5,7 +5,6 @@ import {
   getSlicedVideosHandler,
   getCategoriesHandler,
   filterVideos,
-  searchFilter,
 } from "../../utils";
 import { Drawer, VideoCard, Loader } from "../../components";
 import "./Explore.css";
